@@ -51,7 +51,8 @@ struct LoginView: View {
                             Image(systemName: "envelope")
                                 .font(.title2)
                                 .foregroundColor(.gray)
-                            IBTextField(placeholder: "Please enter email", text: $viewModel.email)
+                            IBTextField(placeholder: "Please enter email",
+                                        text: $viewModel.email,keyboardType:    UIKeyboardType.emailAddress)
                         }
                         Divider()
                             .frame(height: 0.5)
@@ -63,7 +64,7 @@ struct LoginView: View {
                             Image(systemName: "lock")
                                 .font(.title2)
                                 .foregroundColor(.gray)
-                            IBTextField(placeholder: "Please enter password", text: $viewModel.email)
+                            IBSecureTextField(placeholder: "Please enter password", text: $viewModel.password)
                         }
                         Divider()
                             .frame(height: 0.5)
