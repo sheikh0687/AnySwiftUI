@@ -71,6 +71,18 @@ struct LoginView: View {
                             .background(Color.LIGHTGRAY)
                     }
                     
+                    VStack(spacing: 4) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "lock")
+                                .font(.title2)
+                                .foregroundColor(.gray)
+                            IBSecureTextField(placeholder: "Please Confirm password", text: $viewModel.password)
+                        }
+                        Divider()
+                            .frame(height: 0.5)
+                            .background(Color.LIGHTGRAY)
+                    }
+                    
                     IBSubmitButton(buttonText: "LOGIN") {
                         print("Login")
                     }
@@ -83,6 +95,8 @@ struct LoginView: View {
             .padding(.all, 24)
         }
     }
+    
+    
 }
 
 #Preview {
