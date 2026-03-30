@@ -9,11 +9,14 @@ import SwiftUI
 
 @main
 struct AnySwiftUIApp: App {
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject var appState = AppState.shared
+    
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-                OnboardingView()
-            }
+            Root()
+                .environmentObject(appState)
         }
     }
 }

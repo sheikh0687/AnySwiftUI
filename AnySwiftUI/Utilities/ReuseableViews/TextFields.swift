@@ -18,18 +18,18 @@ struct IBTextField: View {
     var body: some View {
         GeometryReader(content: { geometry in
             TextField(placeholder, text: $text)
-//                .foregroundStyle(Color.font)
+            //                .foregroundStyle(Color.font)
                 .font(font)
                 .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                 .frame(width: geometry.size.width, height: 36)
-//                .overlay(RoundedRectangle(cornerRadius: 4.0).strokeBorder(Color.border, style: StrokeStyle(lineWidth: 1.0)))
-//                .background(.bg)
+            //                .overlay(RoundedRectangle(cornerRadius: 4.0).strokeBorder(Color.border, style: StrokeStyle(lineWidth: 1.0)))
+            //                .background(.bg)
                 .cornerRadius(4)
                 .textInputAutocapitalization(.none)
                 .autocorrectionDisabled(true)
                 .textInputAutocapitalization(.never)
                 .keyboardType(keyboardType)
-                .onChange(of: text) { _ in
+                .onChange(of: text) {
                     if let limit = textLimit {
                         text = String(text.prefix(limit))
                     }
@@ -67,7 +67,7 @@ struct IBSecureTextField: View {
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled(true)
                 .keyboardType(keyboardType)
-                .onChange(of: text) { newValue in
+                .onChange(of: text) { _, newValue in
                     if let limit = textLimit {
                         text = String(newValue.prefix(limit))
                     }

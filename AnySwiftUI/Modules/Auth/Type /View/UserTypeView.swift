@@ -10,7 +10,7 @@ import SwiftUI
 struct UserTypeView: View {
     
     @State private var isJob: Bool = true
-    @State private var goToLogin: Bool = true
+    @State private var goToLogin: Bool = false
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -45,6 +45,7 @@ struct UserTypeView: View {
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 12)
                             .background(isJob == true ? Color.THEME : Color(.systemGray6))
+                            .cornerRadius(24)
                     }
                     
                     Button {
@@ -59,6 +60,7 @@ struct UserTypeView: View {
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 12)
                             .background(isJob == true ? Color(.systemGray6) : Color.THEME)
+                            .cornerRadius(24)
                     }
                 }
                 
@@ -84,11 +86,6 @@ struct UserTypeView: View {
                                     removal: .move(edge: .trailing).combined(with: .opacity))
                             )
                     }
-                    
-//                    Text(isJob == true ? "I am looking for jobs" : "I am looking for workers")
-//                        .font(.customfont(.heavy, fontSize: 20))
-//                        .foregroundColor(.white)
-//                        .offset(y: 200)
                     IBLabel(text: isJob == true ? "I am looking for jobs" : "I am looking for workers", font: .semibold(.headLine), color: .white)
                         .offset(y: 200)
                 }

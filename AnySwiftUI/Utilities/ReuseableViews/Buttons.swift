@@ -11,7 +11,7 @@ struct IBSubmitButton : View {
     
     var buttonText = ""
     var isDisabled = false
-    var font: Font = .medium(.title)
+    var font: Font = .semibold(.description)
     var cloClicked:(()->Void)?
     
     var body: some View {
@@ -22,6 +22,33 @@ struct IBSubmitButton : View {
                 .foregroundStyle(.white)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 40, maxHeight: 40 , alignment: .center)
                 .background(.BUTTON)
+                .opacity(isDisabled ? 0.7 : 1)
+                .cornerRadius(8)
+        }
+        .disabled(isDisabled)
+    }
+}
+
+struct IBSimpletButton : View {
+    
+    var height: CGFloat
+    var width: CGFloat
+    var fgColor: Color
+    var buttonText = ""
+    var isDisabled = false
+    var bg: Color
+    var font: Font = .semibold(.description)
+    var cloClicked:(()->Void)?
+    
+    var body: some View {
+        Button {
+            self.cloClicked?()
+        } label: {
+            IBLabel(text: buttonText , font: font, color: fgColor)
+//                .foregroundStyle(fgColor)
+//                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 40, maxHeight: 40 , alignment: .center)
+                .frame(width: width, height: height)
+                .background(bg)
                 .opacity(isDisabled ? 0.7 : 1)
                 .cornerRadius(8)
         }
