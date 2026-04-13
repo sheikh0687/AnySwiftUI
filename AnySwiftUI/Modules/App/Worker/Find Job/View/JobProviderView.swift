@@ -12,6 +12,7 @@ struct JobProviderView: View {
     
     @StateObject private var locationManager = LocationManager()
     @StateObject private var locationSearchVM = LocationSearchViewModel()
+    @EnvironmentObject var appState: AppState
     @StateObject var viewModel = JobProviderViewModel()
     
     var body: some View {
@@ -42,8 +43,12 @@ struct JobProviderView: View {
                 await loadJobProviderList()
             }
         }
+        .onChange(of: appState.goToHome) { _, go in
+            if go {
+                viewModel.navToBooking = false  // 👈 pops BookingDetailView
+            }
+        }
         .onChange(of: locationManager.latitude) {
-            
             // Save GPS to VM
             viewModel.userLat = locationManager.latitude
             viewModel.userLon = locationManager.longitude
@@ -65,6 +70,9 @@ struct JobProviderView: View {
             .presentationDetents([.medium, .large])
             .presentationDragIndicator(.visible)
         }
+        .navigationDestination(isPresented: $viewModel.navToBooking, destination: {
+            BookingDetailView(viewModel: .init(preselectedDate: viewModel.preselectedDate, obj: viewModel.objProviderList))
+        })
         .navigationBarBackButtonHidden(true)
     }
     
@@ -73,8 +81,9 @@ struct JobProviderView: View {
             let response = try await viewModel.fetchAvailableSlot()
             if response.status == "1" {
                 viewModel.availableSlot = response.result ?? []
-                viewModel.slotDay = response.result?[0].dayname ?? ""
+                viewModel.dayName = response.result?[0].dayname ?? ""
                 viewModel.date = response.result?[0].date ?? ""
+                viewModel.day = response.result?[0].day ?? ""
             }
         } catch {
             viewModel.customError = .customError(message: error.localizedDescription)
@@ -105,8 +114,15 @@ struct JobProviderView: View {
             Menu {
                 ForEach(viewModel.availableSlot, id: \.date) { slot in
                     Button {
-                        viewModel.slotDay = slot.dayname ?? ""
+                        viewModel.dayName = slot.dayname ?? ""
                         viewModel.date = slot.date ?? ""
+                        viewModel.day = slot.day ?? ""
+                        
+                        if let dateString = slot.date,
+                           let convertedDate = SGDate.dateFromAPI(dateString) {
+                            viewModel.preselectedDate = convertedDate
+                        }
+                        
                     } label: {
                         Text(slot.day ?? "")
                     }
@@ -116,7 +132,7 @@ struct JobProviderView: View {
                     Button {
                         print("Select Country")
                     } label: {
-                        IBLabel(text: viewModel.slotDay, font: .regular(.title), color: .black)
+                        IBLabel(text: viewModel.day, font: .regular(.title), color: .black)
                     }
                     
                     Spacer()
@@ -149,6 +165,10 @@ struct JobProviderView: View {
                 LazyVStack(spacing: 20) {
                     ForEach(viewModel.filteredList, id: \.id) { jobProvider in
                         JobBookingCardView(viewModel: viewModel, obj: jobProvider)
+                            .onTapGesture {
+                                viewModel.objProviderList = jobProvider
+                                viewModel.navToBooking = true
+                            }
                     }
                 }
             }
@@ -185,7 +205,6 @@ struct JobProviderView: View {
     
     private var searchLocation: some View {
         VStack(spacing: 0) {
-            
             // 📍 Location search bar
             HStack {
                 Image(systemName: "mappin.and.ellipse")
@@ -193,7 +212,10 @@ struct JobProviderView: View {
                 
                 TextField("Search location", text: $locationSearchVM.query)
                     .onChange(of: locationSearchVM.query) { _, value in
-                            viewModel.showLocationResults = true
+                        
+                        if viewModel.isSelectingSuggestion { return }
+                        
+                        viewModel.showLocationResults = true
                         locationSearchVM.search(value)
                     }
                 
@@ -243,10 +265,17 @@ struct JobProviderView: View {
     
     private func selectLocation(_ result: MKLocalSearchCompletion) {
         
+        viewModel.isSelectingSuggestion = true
+        
         locationSearchVM.selectLocation(result) { coordinate, address in
             
             // Save address in textfield
             locationSearchVM.query = address
+            
+            DispatchQueue.main.async {
+                viewModel.isSelectingSuggestion = false
+            }
+            
             viewModel.showLocationResults = false
             
             // Save lat/lon to ViewModel 🔥
@@ -260,34 +289,6 @@ struct JobProviderView: View {
             }
         }
     }
-    
-    //    private var searchLocation: some View {
-    //        HStack {
-    //            Image(systemName: "mappin.and.ellipse")
-    //                .tint(.accentColor)
-    //            IBTextField(placeholder: "Search outlet name", text: $viewModel.search)
-    //
-    //            Spacer()
-    //
-    //            Button {
-    //
-    //            } label: {
-    //                Image(systemName: "xmark")
-    //                    .fontWeight(.bold)
-    //                    .tint(.gray)
-    //            }
-    //        }
-    //        .padding(.horizontal, 16)
-    //        .padding(.vertical, 8)
-    //        .background (
-    //            RoundedRectangle(cornerRadius: 24)
-    //                .fill(Color.gray.opacity(0.2))
-    //        )
-    //        .overlay {
-    //            RoundedRectangle(cornerRadius: 24)
-    //                .stroke(Color.gray.opacity(0.2), lineWidth: 0.5)
-    //        }
-    //    }
 }
 
 struct JobBookingCardView: View {

@@ -12,6 +12,11 @@
 		B70628DC2F6D1C4800B1C179 /* NotificationCountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70628DB2F6D1C4800B1C179 /* NotificationCountModel.swift */; };
 		B713253E2F61442F0056A10B /* OtpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B713253D2F61442F0056A10B /* OtpModel.swift */; };
 		B713256A2F614ACA0056A10B /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71325692F614ACA0056A10B /* AppConstant.swift */; };
+		B71D85B02F7B999D00C44B36 /* BookingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D85AF2F7B999D00C44B36 /* BookingDetailView.swift */; };
+		B71D85BE2F7BA6E200C44B36 /* SGDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D85BD2F7BA6E200C44B36 /* SGDate.swift */; };
+		B71D85C32F7BA72000C44B36 /* BookingCalendarVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D85C22F7BA72000C44B36 /* BookingCalendarVM.swift */; };
+		B71D85C72F7BA7DF00C44B36 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D85C62F7BA7DF00C44B36 /* DayCell.swift */; };
+		B71D85E72F7BB41400C44B36 /* DayShiftCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D85E62F7BB41400C44B36 /* DayShiftCount.swift */; };
 		B72267C52F3AFF1A0068BAF2 /* AnySwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72267C12F3AFF1A0068BAF2 /* AnySwiftUIApp.swift */; };
 		B72267C72F3AFF1A0068BAF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B72267C22F3AFF1A0068BAF2 /* Assets.xcassets */; };
 		B72267D22F3B02070068BAF2 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72267D12F3B02070068BAF2 /* OnboardingView.swift */; };
@@ -20,6 +25,7 @@
 		B72267DB2F3B04D60068BAF2 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72267DA2F3B04D60068BAF2 /* UIFont+Extension.swift */; };
 		B72267E12F3B0E4C0068BAF2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72267E02F3B0E4C0068BAF2 /* LoginView.swift */; };
 		B72267E52F3B0FC50068BAF2 /* UserTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72267E42F3B0FC50068BAF2 /* UserTypeView.swift */; };
+		B726B1DF2F8D227600187BFA /* ClockInOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = B726B1DE2F8D227600187BFA /* ClockInOut.swift */; };
 		B7306C692F6954C10029B108 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7306C682F6954C10029B108 /* ChangePasswordView.swift */; };
 		B7306C6F2F69567C0029B108 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7306C6E2F69567C0029B108 /* ChangePasswordViewModel.swift */; };
 		B7306C992F695F0F0029B108 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7306C982F695F0F0029B108 /* TopBarView.swift */; };
@@ -33,8 +39,7 @@
 		B747FA412F5BF454008AAAD7 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B747FA402F5BF454008AAAD7 /* Buttons.swift */; };
 		B747FA432F5BF456008AAAD7 /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B747FA422F5BF456008AAAD7 /* Labels.swift */; };
 		B747FA452F5BF45A008AAAD7 /* TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = B747FA442F5BF45A008AAAD7 /* TextFields.swift */; };
-		B747FA512F5BF655008AAAD7 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = B747FA502F5BF655008AAAD7 /* RswiftLibrary */; };
-		B747FA532F5BF655008AAAD7 /* rswift in Frameworks */ = {isa = PBXBuildFile; productRef = B747FA522F5BF655008AAAD7 /* rswift */; };
+		B756B9862F89292800570540 /* WithdrawShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B756B9852F89292800570540 /* WithdrawShift.swift */; };
 		B75C0D732F74FF85002C4493 /* WorkerBookingDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75C0D722F74FF85002C4493 /* WorkerBookingDetail.swift */; };
 		B75C0D772F750479002C4493 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75C0D762F750479002C4493 /* EmptyView.swift */; };
 		B75C0D9D2F750C7B002C4493 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75C0D9C2F750C7B002C4493 /* Image.swift */; };
@@ -53,6 +58,12 @@
 		B7720ADC2F7A575D00514E49 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7720ADB2F7A575D00514E49 /* Root.swift */; };
 		B77DF59C2F6801C700EA39EC /* WorkerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77DF59B2F6801C700EA39EC /* WorkerDetailView.swift */; };
 		B77DF5A12F6802DE00EA39EC /* WorkerDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77DF5A02F6802DE00EA39EC /* WorkerDetailViewModel.swift */; };
+		B78239E42F8CE8B6008BACE7 /* BookingHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78239E32F8CE8B6008BACE7 /* BookingHoursView.swift */; };
+		B78239E62F8CF3A0008BACE7 /* BookingHOursBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78239E52F8CF3A0008BACE7 /* BookingHOursBooking.swift */; };
+		B78239E82F8CF8A8008BACE7 /* BookingHourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78239E72F8CF8A8008BACE7 /* BookingHourViewModel.swift */; };
+		B7948D1D2F7CF0ED004276E7 /* DayWiseShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7948D1C2F7CF0ED004276E7 /* DayWiseShift.swift */; };
+		B79B00BE2F87CC940061E976 /* BookingCartValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79B00BD2F87CC940061E976 /* BookingCartValue.swift */; };
+		B79B00C02F87D6E40061E976 /* FinalBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79B00BF2F87D6E40061E976 /* FinalBooking.swift */; };
 		B7AB416B2F691DB60069C7BF /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AB416A2F691DB60069C7BF /* ResetPasswordView.swift */; };
 		B7AB41712F691FD80069C7BF /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AB41702F691FD80069C7BF /* ResetPasswordViewModel.swift */; };
 		B7AB41772F6920E30069C7BF /* ResetPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AB41762F6920E30069C7BF /* ResetPasswordModel.swift */; };
@@ -98,6 +109,11 @@
 		B70628DB2F6D1C4800B1C179 /* NotificationCountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCountModel.swift; sourceTree = "<group>"; };
 		B713253D2F61442F0056A10B /* OtpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpModel.swift; sourceTree = "<group>"; };
 		B71325692F614ACA0056A10B /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
+		B71D85AF2F7B999D00C44B36 /* BookingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingDetailView.swift; sourceTree = "<group>"; };
+		B71D85BD2F7BA6E200C44B36 /* SGDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SGDate.swift; sourceTree = "<group>"; };
+		B71D85C22F7BA72000C44B36 /* BookingCalendarVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingCalendarVM.swift; sourceTree = "<group>"; };
+		B71D85C62F7BA7DF00C44B36 /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
+		B71D85E62F7BB41400C44B36 /* DayShiftCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayShiftCount.swift; sourceTree = "<group>"; };
 		B72267B32F3AFF0B0068BAF2 /* AnySwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnySwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B72267C12F3AFF1A0068BAF2 /* AnySwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnySwiftUIApp.swift; sourceTree = "<group>"; };
 		B72267C22F3AFF1A0068BAF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -107,6 +123,7 @@
 		B72267DA2F3B04D60068BAF2 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		B72267E02F3B0E4C0068BAF2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B72267E42F3B0FC50068BAF2 /* UserTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeView.swift; sourceTree = "<group>"; };
+		B726B1DE2F8D227600187BFA /* ClockInOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockInOut.swift; sourceTree = "<group>"; };
 		B7306C682F6954C10029B108 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		B7306C6E2F69567C0029B108 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		B7306C982F695F0F0029B108 /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
@@ -120,6 +137,7 @@
 		B747FA402F5BF454008AAAD7 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		B747FA422F5BF456008AAAD7 /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
 		B747FA442F5BF45A008AAAD7 /* TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
+		B756B9852F89292800570540 /* WithdrawShift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawShift.swift; sourceTree = "<group>"; };
 		B75C0D722F74FF85002C4493 /* WorkerBookingDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerBookingDetail.swift; sourceTree = "<group>"; };
 		B75C0D762F750479002C4493 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		B75C0D9C2F750C7B002C4493 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -135,6 +153,12 @@
 		B7720ADB2F7A575D00514E49 /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		B77DF59B2F6801C700EA39EC /* WorkerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerDetailView.swift; sourceTree = "<group>"; };
 		B77DF5A02F6802DE00EA39EC /* WorkerDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerDetailViewModel.swift; sourceTree = "<group>"; };
+		B78239E32F8CE8B6008BACE7 /* BookingHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingHoursView.swift; sourceTree = "<group>"; };
+		B78239E52F8CF3A0008BACE7 /* BookingHOursBooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingHOursBooking.swift; sourceTree = "<group>"; };
+		B78239E72F8CF8A8008BACE7 /* BookingHourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingHourViewModel.swift; sourceTree = "<group>"; };
+		B7948D1C2F7CF0ED004276E7 /* DayWiseShift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWiseShift.swift; sourceTree = "<group>"; };
+		B79B00BD2F87CC940061E976 /* BookingCartValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingCartValue.swift; sourceTree = "<group>"; };
+		B79B00BF2F87D6E40061E976 /* FinalBooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalBooking.swift; sourceTree = "<group>"; };
 		B7AB416A2F691DB60069C7BF /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		B7AB41702F691FD80069C7BF /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		B7AB41762F6920E30069C7BF /* ResetPasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordModel.swift; sourceTree = "<group>"; };
@@ -182,12 +206,10 @@
 			files = (
 				B76B3EAA2F67D122002EE02E /* IQKeyboardManagerSwift in Frameworks */,
 				B76B3E9F2F67CEFF002EE02E /* FirebaseMessaging in Frameworks */,
-				B747FA512F5BF655008AAAD7 /* RswiftLibrary in Frameworks */,
 				B76B3E9D2F67CEFF002EE02E /* FirebaseAuth in Frameworks */,
 				B75C0DA62F750CCF002C4493 /* SDWebImageSwiftUI in Frameworks */,
 				B7B8E3C62F5ECC1600DC39FE /* Alamofire in Frameworks */,
 				B7B8E3912F5E8AB600DC39FE /* CountryPicker in Frameworks */,
-				B747FA532F5BF655008AAAD7 /* rswift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +222,45 @@
 				B71325692F614ACA0056A10B /* AppConstant.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		B71D85A62F7B997100C44B36 /* Job Detail */ = {
+			isa = PBXGroup;
+			children = (
+				B71D85AC2F7B998C00C44B36 /* Model */,
+				B71D85AA2F7B998700C44B36 /* View */,
+				B71D85A82F7B998000C44B36 /* View Model */,
+			);
+			path = "Job Detail";
+			sourceTree = "<group>";
+		};
+		B71D85A82F7B998000C44B36 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				B71D85C22F7BA72000C44B36 /* BookingCalendarVM.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		B71D85AA2F7B998700C44B36 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B71D85AF2F7B999D00C44B36 /* BookingDetailView.swift */,
+				B71D85C62F7BA7DF00C44B36 /* DayCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B71D85AC2F7B998C00C44B36 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B71D85E62F7BB41400C44B36 /* DayShiftCount.swift */,
+				B7948D1C2F7CF0ED004276E7 /* DayWiseShift.swift */,
+				B79B00BD2F87CC940061E976 /* BookingCartValue.swift */,
+				B79B00BF2F87D6E40061E976 /* FinalBooking.swift */,
+				B756B9852F89292800570540 /* WithdrawShift.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B72267AA2F3AFF0B0068BAF2 = {
@@ -507,6 +568,7 @@
 			isa = PBXGroup;
 			children = (
 				B7306CDF2F6969160029B108 /* MyBookingView.swift */,
+				B78239DF2F8CE87C008BACE7 /* ShiftHoursDetail */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -681,6 +743,41 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		B78239DF2F8CE87C008BACE7 /* ShiftHoursDetail */ = {
+			isa = PBXGroup;
+			children = (
+				B78239E22F8CE89F008BACE7 /* Model */,
+				B78239E12F8CE89A008BACE7 /* View */,
+				B78239E02F8CE893008BACE7 /* View Model */,
+			);
+			path = ShiftHoursDetail;
+			sourceTree = "<group>";
+		};
+		B78239E02F8CE893008BACE7 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				B78239E72F8CF8A8008BACE7 /* BookingHourViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		B78239E12F8CE89A008BACE7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B78239E32F8CE8B6008BACE7 /* BookingHoursView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B78239E22F8CE89F008BACE7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B78239E52F8CF3A0008BACE7 /* BookingHOursBooking.swift */,
+				B726B1DE2F8D227600187BFA /* ClockInOut.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B7AB41592F691D7D0069C7BF /* Reset Password */ = {
 			isa = PBXGroup;
 			children = (
@@ -758,6 +855,7 @@
 				B7B8E3E62F5ED19200DC39FE /* LocalStorage.swift */,
 				B76B3EB62F67D583002EE02E /* LocationManager.swift */,
 				B7C9C59E2F7AAA830067806C /* LocationSearchViewModel.swift */,
+				B71D85BD2F7BA6E200C44B36 /* SGDate.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -939,6 +1037,7 @@
 			isa = PBXGroup;
 			children = (
 				B7E89E772F768DA600DA2BCB /* JobProviderView.swift */,
+				B71D85A62F7B997100C44B36 /* Job Detail */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -966,12 +1065,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				B747FA552F5BF660008AAAD7 /* PBXTargetDependency */,
 			);
 			name = AnySwiftUI;
 			packageProductDependencies = (
-				B747FA502F5BF655008AAAD7 /* RswiftLibrary */,
-				B747FA522F5BF655008AAAD7 /* rswift */,
 				B7B8E3902F5E8AB600DC39FE /* CountryPicker */,
 				B7B8E3C52F5ECC1600DC39FE /* Alamofire */,
 				B76B3E9C2F67CEFF002EE02E /* FirebaseAuth */,
@@ -1009,7 +1105,6 @@
 			mainGroup = B72267AA2F3AFF0B0068BAF2;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				B747FA4F2F5BF655008AAAD7 /* XCRemoteSwiftPackageReference "R.swift" */,
 				B7B8E38F2F5E8AB600DC39FE /* XCRemoteSwiftPackageReference "CountryPicker" */,
 				B7B8E3C42F5ECC1600DC39FE /* XCRemoteSwiftPackageReference "Alamofire" */,
 				B76B3E9B2F67CEFE002EE02E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
@@ -1047,25 +1142,34 @@
 				B7C20F5F2F7A89D600E9EA4C /* ShiftViewModel.swift in Sources */,
 				B7C20F5B2F7A899B00E9EA4C /* ShiftModel.swift in Sources */,
 				B7E89E942F76925D00DA2BCB /* AvailableSlot.swift in Sources */,
+				B71D85C72F7BA7DF00C44B36 /* DayCell.swift in Sources */,
 				B7B8E3CC2F5ECC4A00DC39FE /* Utility.swift in Sources */,
 				B7B8E3E72F5ED19200DC39FE /* LocalStorage.swift in Sources */,
 				B75CB55C2F6D3E2900B21C11 /* ImagePicker.swift in Sources */,
+				B726B1DF2F8D227600187BFA /* ClockInOut.swift in Sources */,
 				B7306C692F6954C10029B108 /* ChangePasswordView.swift in Sources */,
 				B747FA412F5BF454008AAAD7 /* Buttons.swift in Sources */,
 				B7BF3B412F681B7500B2FFEF /* ClientDetailViewModel.swift in Sources */,
 				B7472A692F6933B80052A797 /* Api_Basic.swift in Sources */,
 				B7C20F572F7A88F400E9EA4C /* ShiftSheetView.swift in Sources */,
 				B7B8E3BF2F5ECBE800DC39FE /* Service.swift in Sources */,
+				B71D85C32F7BA72000C44B36 /* BookingCalendarVM.swift in Sources */,
 				B75C0D9D2F750C7B002C4493 /* Image.swift in Sources */,
 				B72267E12F3B0E4C0068BAF2 /* LoginView.swift in Sources */,
+				B79B00BE2F87CC940061E976 /* BookingCartValue.swift in Sources */,
+				B7948D1D2F7CF0ED004276E7 /* DayWiseShift.swift in Sources */,
+				B78239E62F8CF3A0008BACE7 /* BookingHOursBooking.swift in Sources */,
 				B75C0D772F750479002C4493 /* EmptyView.swift in Sources */,
 				B7AB41712F691FD80069C7BF /* ResetPasswordViewModel.swift in Sources */,
 				B713253E2F61442F0056A10B /* OtpModel.swift in Sources */,
+				B756B9862F89292800570540 /* WithdrawShift.swift in Sources */,
 				B7B8E3FF2F5ED9C500DC39FE /* CountryList.swift in Sources */,
 				B7472A642F6930BD0052A797 /* UpdatePasswordViewModel.swift in Sources */,
+				B71D85E72F7BB41400C44B36 /* DayShiftCount.swift in Sources */,
 				B7B8E41C2F5EE12600DC39FE /* OtpView.swift in Sources */,
 				B76B3EA52F67D0E8002EE02E /* AppDelegate.swift in Sources */,
 				B77DF59C2F6801C700EA39EC /* WorkerDetailView.swift in Sources */,
+				B71D85BE2F7BA6E200C44B36 /* SGDate.swift in Sources */,
 				B72267C52F3AFF1A0068BAF2 /* AnySwiftUIApp.swift in Sources */,
 				B7306C992F695F0F0029B108 /* TopBarView.swift in Sources */,
 				B72267D22F3B02070068BAF2 /* OnboardingView.swift in Sources */,
@@ -1074,15 +1178,18 @@
 				B7306CC12F6966A10029B108 /* Tabs.swift in Sources */,
 				B72267E52F3B0FC50068BAF2 /* UserTypeView.swift in Sources */,
 				B7720AC62F7A4D3600514E49 /* ProfileView.swift in Sources */,
+				B78239E82F8CF8A8008BACE7 /* BookingHourViewModel.swift in Sources */,
 				B7306CBE2F69669F0029B108 /* DashboardView.swift in Sources */,
 				B7C9C59F2F7AAA830067806C /* LocationSearchViewModel.swift in Sources */,
 				B7C20F402F7A7ED800E9EA4C /* CommonModel.swift in Sources */,
 				B7720ADC2F7A575D00514E49 /* Root.swift in Sources */,
+				B71D85B02F7B999D00C44B36 /* BookingDetailView.swift in Sources */,
 				B7BF3B3E2F681B0900B2FFEF /* ClientDetailView.swift in Sources */,
 				B7AB416B2F691DB60069C7BF /* ResetPasswordView.swift in Sources */,
 				B7306C9F2F695F1A0029B108 /* TopBarViewModel.swift in Sources */,
 				B75C0D732F74FF85002C4493 /* WorkerBookingDetail.swift in Sources */,
 				B747FA452F5BF45A008AAAD7 /* TextFields.swift in Sources */,
+				B78239E42F8CE8B6008BACE7 /* BookingHoursView.swift in Sources */,
 				B7B8E3CF2F5ECC6F00DC39FE /* InternetConnection.swift in Sources */,
 				B7306C6F2F69567C0029B108 /* ChangePasswordViewModel.swift in Sources */,
 				B7B8E3DE2F5ECD4500DC39FE /* Router.swift in Sources */,
@@ -1109,6 +1216,7 @@
 				B747FA432F5BF456008AAAD7 /* Labels.swift in Sources */,
 				B7306CE02F6969160029B108 /* MyBookingView.swift in Sources */,
 				B7E89E7D2F768E2100DA2BCB /* JobProviderViewModel.swift in Sources */,
+				B79B00C02F87D6E40061E976 /* FinalBooking.swift in Sources */,
 				B72267D52F3B02BA0068BAF2 /* OnboardingModel.swift in Sources */,
 				B72267DB2F3B04D60068BAF2 /* UIFont+Extension.swift in Sources */,
 				B70628B42F6D15F400B1C179 /* SegmentButton.swift in Sources */,
@@ -1120,13 +1228,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B747FA552F5BF660008AAAD7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = B747FA542F5BF660008AAAD7 /* RswiftGenerateInternalResources */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B72267BC2F3AFF0E0068BAF2 /* Debug */ = {
@@ -1264,6 +1365,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnySwiftUI/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Any requires constant access to your phone’s location to notify to user.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Any requires constant access to your phone’s location to notify to user.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1307,6 +1410,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnySwiftUI/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Any requires constant access to your phone’s location to notify to user.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Any requires constant access to your phone’s location to notify to user.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1359,14 +1464,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B747FA4F2F5BF655008AAAD7 /* XCRemoteSwiftPackageReference "R.swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mac-cain13/R.swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.8.0;
-			};
-		};
 		B75C0DA42F750CCF002C4493 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -1410,21 +1507,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B747FA502F5BF655008AAAD7 /* RswiftLibrary */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B747FA4F2F5BF655008AAAD7 /* XCRemoteSwiftPackageReference "R.swift" */;
-			productName = RswiftLibrary;
-		};
-		B747FA522F5BF655008AAAD7 /* rswift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B747FA4F2F5BF655008AAAD7 /* XCRemoteSwiftPackageReference "R.swift" */;
-			productName = rswift;
-		};
-		B747FA542F5BF660008AAAD7 /* RswiftGenerateInternalResources */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B747FA4F2F5BF655008AAAD7 /* XCRemoteSwiftPackageReference "R.swift" */;
-			productName = "plugin:RswiftGenerateInternalResources";
-		};
 		B75C0DA52F750CCF002C4493 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B75C0DA42F750CCF002C4493 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;

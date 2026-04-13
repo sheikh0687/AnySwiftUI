@@ -9,12 +9,14 @@ import SwiftUI
 
 struct DashboardView: View {
  
+    @EnvironmentObject var appState: AppState
     @State private var selectedTab: Tabs = .myBooking
+    @State private var navPath = NavigationPath()
     @StateObject var topBarVM = TopBarViewModel()
 
     var body: some View {
         
-        NavigationStack {
+        NavigationStack(path: $navPath) {
             VStack(spacing: 0) {
                 
                 TopBarView(viewModel: topBarVM)
@@ -60,6 +62,9 @@ struct DashboardView: View {
                 .accentColor(.THEME)
                 .modifier(ToolbarColorSchemeModifier())
                 .environment(\.horizontalSizeClass, .compact)
+                .onChange(of: appState.switchToTab) { _, tab in
+                    selectedTab = tab
+                }
             }
             
             // 👉 GLOBAL NAVIGATION DESTINATIONS LIVE HERE
@@ -107,6 +112,15 @@ struct DashboardView: View {
             default:
                 topBarVM.showAttendance = false
                 topBarVM.showMenu = false
+            }
+        }
+        
+        .onChange(of: appState.goToHome) { _, go in
+            if go {
+                navPath = NavigationPath()
+                selectedTab = .myBooking          // switch tab
+                topBarVM.navToMenu = false       // close menu if open
+                appState.goToHome = false        // reset trigger
             }
         }
     }

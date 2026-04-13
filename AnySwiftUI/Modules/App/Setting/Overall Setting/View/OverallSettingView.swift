@@ -23,8 +23,6 @@ struct OverallSettingView: View {
     }
     
     func logout() {
-        let appState = AppState.shared
-        
         appState.isLoggedIn = false
         appState.useriD = ""
         appState.userFirstName = ""

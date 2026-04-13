@@ -29,4 +29,14 @@ class Utility {
                digitsOnly.first != "0" &&
                digitsOnly.allSatisfy { $0.isNumber }
     }
+    
+    class func getDayName(dateString: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date: Date? = dateFormatter.date(from: dateString)
+        let dateFormatterAMPM = DateFormatter()
+        dateFormatterAMPM.dateFormat = "EEEE"
+        let dateAMPM: String = dateFormatterAMPM.string(from: date!)
+        return dateAMPM
+    }
 }

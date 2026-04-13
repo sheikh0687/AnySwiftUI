@@ -21,6 +21,7 @@ class MyBookingViewModel: ObservableObject {
     @Published var companyDetail: String = ""
     @Published var shiftiD: String = ""
     @Published var showDeletePop: Bool = false
+    @Published var conToBookingHour: Bool = false
     
     @MainActor
     func fetchNotificationCount() async throws -> Api_NotificationCount {

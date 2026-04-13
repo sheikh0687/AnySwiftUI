@@ -12,10 +12,12 @@ class JobProviderViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var customError: CustomError?
 
-    @Published var slotDay: String = ""
+    @Published var dayName: String = ""
     @Published var date: String = ""
+    @Published var day: String = ""
     @Published var availableSlot: [Res_AvailableSlot] = []
     @Published var jobProviderList: [Res_JobProvider] = []
+    @Published var objProviderList: Res_JobProvider?
     
     @Published var strClientiD: String = ""
     @Published var addedFavClient: Bool = false
@@ -31,6 +33,10 @@ class JobProviderViewModel: ObservableObject {
     @Published var selectedAddress: String = ""
     
     @Published var showLocationResults = false
+    @Published var isSelectingSuggestion = false
+    
+    @Published var navToBooking: Bool = false
+    @Published var preselectedDate: Date?
     
     var filteredList: [Res_JobProvider] {
         if search.isEmpty {
@@ -66,10 +72,10 @@ class JobProviderViewModel: ObservableObject {
         
         var paramDict: [String : Any] = [:]
         paramDict["user_id"] = AppState.shared.useriD
-        paramDict["lat"] = ""
-        paramDict["lat"] = ""
+        paramDict["lat"] = userLat
+        paramDict["lat"] = userLon
         paramDict["finddate"] = date
-        paramDict["day_name"] = slotDay
+        paramDict["day_name"] = dayName
         paramDict["cat_id"] = ""
         paramDict["country_id"] = AppState.shared.countryiD
         paramDict["job_type_id"] = jobiD

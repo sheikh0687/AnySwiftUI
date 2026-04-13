@@ -21,7 +21,7 @@ struct MyBookingView: View {
                     ],
                     selectedIndex: $viewModel.selectedSegment
                 )
-                                
+                
                 ScrollView(showsIndicators: false) {
                     if viewModel.isLoading {
                         ProgressView("Loading booking...")
@@ -36,6 +36,8 @@ struct MyBookingView: View {
                                     .onTapGesture {
                                         if bookingShift.status == "Accept" {
                                             print("Booking Shift id: \(bookingShift.id ?? "")")
+                                            viewModel.shiftiD = bookingShift.id ?? ""
+                                            viewModel.conToBookingHour = true
                                         }
                                     }
                             }
@@ -56,25 +58,33 @@ struct MyBookingView: View {
                                 viewModel.showWithReq = false
                             }
                         }
-                    
-                    PopBeforeBooking(cloYes: { bool in
-                        if bool {
-                            print("Shift id from Closures: \(viewModel.shiftiD)")
-                            Task {
-                                do {
-                                    let response = try await viewModel.deleteWorkerShift()
-                                    if response.status == "1" {
-                                        viewModel.showWithReq = false
-                                        viewModel.showDeletePop = true
+                                        
+                    PopBeforeBooking (
+                        cloYes: { bool in
+                            if bool {
+                                print("Shift id from Closures: \(viewModel.shiftiD)")
+                                Task {
+                                    do {
+                                        let response = try await viewModel.deleteWorkerShift()
+                                        if response.status == "1" {
+                                            viewModel.showWithReq = false
+                                            viewModel.showDeletePop = true
+                                        }
+                                    } catch {
+                                        viewModel.customError = .customError(message: error.localizedDescription)
                                     }
-                                } catch {
-                                    viewModel.customError = .customError(message: error.localizedDescription)
                                 }
+                            } else {
+                                viewModel.showWithReq = false
                             }
-                        } else {
-                            viewModel.showWithReq = false
-                        }
-                    }, companyName: viewModel.companyDetail)
+                        },
+                        companyName: viewModel.companyDetail,
+                        shiftDetail: "",
+                        instantBooking: "",
+                        bookingNote: "",
+                        shiftStatus: "",
+                        comingFor: "Withdraw"
+                    )
                     .transition(.scale)
                     .zIndex(1)
                 }
@@ -89,7 +99,7 @@ struct MyBookingView: View {
                                 viewModel.showDeletePop = false
                             }
                         }
-
+                    
                     PopUpDelete(companyDetail: viewModel.companyDetail) {
                         Task {
                             await loadBookings()
@@ -118,6 +128,9 @@ struct MyBookingView: View {
                 dismissButton: .default(Text("Ok"))
             )
         }
+        .navigationDestination(isPresented: $viewModel.conToBookingHour, destination: {
+            BookingHoursView(cartID: viewModel.shiftiD)
+        })
         .navigationBarBackButtonHidden(true)
     }
     
@@ -233,7 +246,7 @@ struct WorkerBookingCardView: View {
                         print("Confirmed")
                     }
                 } else {
-                                        
+                    
                     IBLabel (
                         text: "Pending",
                         font: .semibold(.description),
