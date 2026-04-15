@@ -42,4 +42,12 @@ enum SGDate {
     static func dayName(from date: Date) -> String {
         return formatter("EEEE").string(from: date)
     }
+    
+    static func currentTime() -> String {
+        return formatter("HH:mm").string(from: Date())
+    }
+    
+    static func currentDate() -> String {
+        return formatter("yyyy-MM-dd").string(from: Date())
+    }
 }

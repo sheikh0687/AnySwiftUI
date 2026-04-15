@@ -20,6 +20,7 @@ enum AppStorageKey: String {
     case ios_RegisterediD
     case countryiD
     case jobTypeiD
+    case currencySymbol
 }
 
 final class AppState: ObservableObject {
@@ -81,6 +82,10 @@ final class AppState: ObservableObject {
     }
     
     @AppStorage(AppStorageKey.jobTypeiD.rawValue) var jobTypeiD: String = "" {
+        willSet { objectWillChange.send() }
+    }
+    
+    @AppStorage(AppStorageKey.currencySymbol.rawValue) var currencySymbol: String = "" {
         willSet { objectWillChange.send() }
     }
     

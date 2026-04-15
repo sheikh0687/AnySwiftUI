@@ -78,6 +78,7 @@ class LoginViewModel: ObservableObject {
         AppState.shared.userType = res.type ?? ""
         AppState.shared.countryiD = res.country_id ?? ""
         AppState.shared.jobTypeiD = res.job_type_id ?? ""
+        AppState.shared.currencySymbol = res.currency_symbol ?? ""
     }
     
     //    func saveCredentials(res: Res_LoginResponse) {

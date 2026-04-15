@@ -10,10 +10,14 @@ import SwiftUI
 struct MyBookingView: View {
     
     @StateObject var viewModel = MyBookingViewModel()
+    @State var showSameDayShift = false
     
     var body: some View {
         ZStack(alignment: .top) {
             VStack(spacing: 24) {
+                
+                ClientOfferView()
+                
                 SegmentButton (
                     item: [
                         SegmentItem(title: "Approved Booking", count: viewModel.acceptCount),
@@ -45,7 +49,11 @@ struct MyBookingView: View {
                     }
                 }
                 
-                Spacer()
+                IBSimpletButton(height: 36, width: 180, fgColor: .WHITE, buttonText: "See Same Day Job Request", bg: .BUTTON) {
+                    print("Check the Same day request")
+                    showSameDayShift = true
+                }
+//                Spacer()
             }
             .padding(.all, 16)
             
@@ -58,7 +66,7 @@ struct MyBookingView: View {
                                 viewModel.showWithReq = false
                             }
                         }
-                                        
+                    
                     PopBeforeBooking (
                         cloYes: { bool in
                             if bool {
@@ -130,6 +138,9 @@ struct MyBookingView: View {
         }
         .navigationDestination(isPresented: $viewModel.conToBookingHour, destination: {
             BookingHoursView(cartID: viewModel.shiftiD)
+        })
+        .navigationDestination(isPresented: $showSameDayShift, destination: {
+            SameDayShiftView()
         })
         .navigationBarBackButtonHidden(true)
     }

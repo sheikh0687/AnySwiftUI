@@ -1,14 +1,14 @@
 //
-//  JobProvider.swift
-//  AnySwiftUI
+//  OfferModel.swift
+//  Any
 //
-//  Created by Arbaz  on 27/03/26.
+//  Created by Arbaz  on 01/04/26.
 //
 
 import Foundation
 
-struct Api_JobProvider : Codable {
-    let result : [Res_JobProvider]?
+struct Api_ClientOffer : Codable {
+    let result : [Res_ClientOffer]?
     let message : String?
     let status : String?
 
@@ -21,13 +21,58 @@ struct Api_JobProvider : Codable {
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        result = try values.decodeIfPresent([Res_JobProvider].self, forKey: .result)
+        result = try values.decodeIfPresent([Res_ClientOffer].self, forKey: .result)
         message = try values.decodeIfPresent(String.self, forKey: .message)
         status = try values.decodeIfPresent(String.self, forKey: .status)
     }
 }
 
-struct Res_JobProvider : Codable {
+struct Res_ClientOffer : Codable, Hashable {
+    let id : String?
+    let client_id : String?
+    let shift_id : String?
+    let image : String?
+    let link : String?
+    let title : String?
+    let description : String?
+    let type : String?
+    let date_time : String?
+    let shift_details : Shift_details?
+    let client_details : Client_details?
+    
+    enum CodingKeys: String, CodingKey {
+
+        case id = "id"
+        case client_id = "client_id"
+        case shift_id = "shift_id"
+        case image = "image"
+        case link = "link"
+        case title = "title"
+        case description = "description"
+        case type = "type"
+        case date_time = "date_time"
+        case shift_details = "shift_details"
+        case client_details = "client_details"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(String.self, forKey: .id)
+        client_id = try values.decodeIfPresent(String.self, forKey: .client_id)
+        shift_id = try values.decodeIfPresent(String.self, forKey: .shift_id)
+        image = try values.decodeIfPresent(String.self, forKey: .image)
+        link = try values.decodeIfPresent(String.self, forKey: .link)
+        title = try values.decodeIfPresent(String.self, forKey: .title)
+        description = try values.decodeIfPresent(String.self, forKey: .description)
+        type = try values.decodeIfPresent(String.self, forKey: .type)
+        date_time = try values.decodeIfPresent(String.self, forKey: .date_time)
+        shift_details = try values.decodeIfPresent(Shift_details.self, forKey: .shift_details)
+        client_details = try values.decodeIfPresent(Client_details.self, forKey: .client_details)
+    }
+}
+
+struct Client_details : Codable, Hashable {
+
     let id : String?
     let customer_id : String?
     let card_id : String?
@@ -85,7 +130,7 @@ struct Res_JobProvider : Codable {
     let shift_autoapproval : String?
     let currency : String?
     let currency_symbol : String?
-    let fav_status : String?
+    let fav_status: String?
 
     enum CodingKeys: String, CodingKey {
 
@@ -151,6 +196,7 @@ struct Res_JobProvider : Codable {
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
+
         id = try values.decodeIfPresent(String.self, forKey: .id)
         customer_id = try values.decodeIfPresent(String.self, forKey: .customer_id)
         card_id = try values.decodeIfPresent(String.self, forKey: .card_id)
@@ -210,87 +256,116 @@ struct Res_JobProvider : Codable {
         currency_symbol = try values.decodeIfPresent(String.self, forKey: .currency_symbol)
         fav_status = try values.decodeIfPresent(String.self, forKey: .fav_status)
     }
-
-    init(
-        id: String?,
-        business_logo: String?,
-        business_name: String?,
-        business_address: String?
-    ) {
-        self.customer_id = nil
-        self.card_id = nil
-        self.live_customer_id = nil
-        self.client_id = nil
-        self.first_name = nil
-        self.last_name = nil
-        self.mobile = nil
-        self.mobile_with_code = nil
-        self.email = nil
-        self.password = nil
-        self.country_id = nil
-        self.country_name = nil
-        self.state_id = nil
-        self.state_name = nil
-        self.city_id = nil
-        self.city_name = nil
-        self.image = nil
-        self.type = nil
-        self.social_id = nil
-        self.lat = nil
-        self.lon = nil
-        self.address = nil
-        self.addresstype = nil
-        self.address_id = nil
-        self.gender = nil
-        self.gender_type = nil
-        self.wallet = nil
-        self.register_id = nil
-        self.ios_register_id = nil
-        self.status = nil
-        self.approve_status = nil
-        self.available_status = nil
-        self.code = nil
-        self.new_code = nil
-        self.date_time = nil
-        self.remove_status = nil
-        self.pay_now_number = nil
-        self.local_bank_number = nil
-        self.bank_name = nil
-        self.nrc_document = nil
-
-        // ⭐ ONLY VALUES WE CARE ABOUT
-        self.id = id
-        self.business_logo = business_logo
-        self.business_name = business_name
-        self.business_address = business_address
-
-        self.une_register_number = nil
-        self.min_day_rate = nil
-        self.ticked_day_rate = nil
-        self.urgent_rate = nil
-        self.booking_status = nil
-        self.note = nil
-        self.job_document = nil
-        self.job_type_id = nil
-        self.job_type_name = nil
-        self.request_payment_type = nil
-        self.shift_autoapproval = nil
-        self.currency = nil
-        self.currency_symbol = nil
-        self.fav_status = nil
-    }
-    
 }
 
-//extension Res_JobProvider {
-//    
-//    init?(clientDetails: Client_details?) {
-//        guard let client = clientDetails else { return nil }
-//        
-//        self.init (
-//            id: client.business_logo ?? "",
-//            name: client.business_name ?? "",
-//            email: client.business_address ?? "",
-//        )
-//    }
-//}
+struct Shift_details : Codable, Hashable {
+
+    let id : String?
+    let user_id : String?
+    let outlet_id : String?
+    let job_type : String?
+    let job_type_id : String?
+    let worker_count : String?
+    let start_time : String?
+    let end_time : String?
+    let total_time : String?
+    let total_time_in_min : String?
+    let day_name : String?
+    let shiftStatus : String?
+    let date : String?
+    let break_type : String?
+    let shift_break_time : String?
+    let shift_break_time_in_min : String?
+    let meals : String?
+    let shift_rate : String?
+    let note : String?
+    let date_time : String?
+    let shift_type : String?
+    let current_worker_count : String?
+    let address : String?
+    let lat : String?
+    let lon : String?
+    let status : String?
+    let apply_time_same_for_allworkers : String?
+    let single_date : String?
+    let shift_autoapproval : String?
+    let country_id : String?
+    let currency : String?
+    let currency_symbol : String?
+    let custom_shift_rate_status : String?
+
+    enum CodingKeys: String, CodingKey {
+
+        case id = "id"
+        case user_id = "user_id"
+        case outlet_id = "outlet_id"
+        case job_type = "job_type"
+        case job_type_id = "job_type_id"
+        case worker_count = "worker_count"
+        case start_time = "start_time"
+        case end_time = "end_time"
+        case total_time = "total_time"
+        case total_time_in_min = "total_time_in_min"
+        case day_name = "day_name"
+        case shiftStatus = "shiftStatus"
+        case date = "date"
+        case break_type = "break_type"
+        case shift_break_time = "shift_break_time"
+        case shift_break_time_in_min = "shift_break_time_in_min"
+        case meals = "meals"
+        case shift_rate = "shift_rate"
+        case note = "note"
+        case date_time = "date_time"
+        case shift_type = "shift_type"
+        case current_worker_count = "current_worker_count"
+        case address = "address"
+        case lat = "lat"
+        case lon = "lon"
+        case status = "status"
+        case apply_time_same_for_allworkers = "apply_time_same_for_allworkers"
+        case single_date = "single_date"
+        case shift_autoapproval = "shift_autoapproval"
+        case country_id = "country_id"
+        case currency = "currency"
+        case currency_symbol = "currency_symbol"
+        case custom_shift_rate_status = "custom_shift_rate_status"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+
+        id = try values.decodeIfPresent(String.self, forKey: .id)
+        user_id = try values.decodeIfPresent(String.self, forKey: .user_id)
+        outlet_id = try values.decodeIfPresent(String.self, forKey: .outlet_id)
+        job_type = try values.decodeIfPresent(String.self, forKey: .job_type)
+        job_type_id = try values.decodeIfPresent(String.self, forKey: .job_type_id)
+        worker_count = try values.decodeIfPresent(String.self, forKey: .worker_count)
+        start_time = try values.decodeIfPresent(String.self, forKey: .start_time)
+        end_time = try values.decodeIfPresent(String.self, forKey: .end_time)
+        total_time = try values.decodeIfPresent(String.self, forKey: .total_time)
+        total_time_in_min = try values.decodeIfPresent(String.self, forKey: .total_time_in_min)
+        day_name = try values.decodeIfPresent(String.self, forKey: .day_name)
+        shiftStatus = try values.decodeIfPresent(String.self, forKey: .shiftStatus)
+        date = try values.decodeIfPresent(String.self, forKey: .date)
+        break_type = try values.decodeIfPresent(String.self, forKey: .break_type)
+        shift_break_time = try values.decodeIfPresent(String.self, forKey: .shift_break_time)
+        shift_break_time_in_min = try values.decodeIfPresent(String.self, forKey: .shift_break_time_in_min)
+        meals = try values.decodeIfPresent(String.self, forKey: .meals)
+        shift_rate = try values.decodeIfPresent(String.self, forKey: .shift_rate)
+        note = try values.decodeIfPresent(String.self, forKey: .note)
+        date_time = try values.decodeIfPresent(String.self, forKey: .date_time)
+        shift_type = try values.decodeIfPresent(String.self, forKey: .shift_type)
+        current_worker_count = try values.decodeIfPresent(String.self, forKey: .current_worker_count)
+        address = try values.decodeIfPresent(String.self, forKey: .address)
+        lat = try values.decodeIfPresent(String.self, forKey: .lat)
+        lon = try values.decodeIfPresent(String.self, forKey: .lon)
+        status = try values.decodeIfPresent(String.self, forKey: .status)
+        apply_time_same_for_allworkers = try values.decodeIfPresent(String.self, forKey: .apply_time_same_for_allworkers)
+        single_date = try values.decodeIfPresent(String.self, forKey: .single_date)
+        shift_autoapproval = try values.decodeIfPresent(String.self, forKey: .shift_autoapproval)
+        country_id = try values.decodeIfPresent(String.self, forKey: .country_id)
+        currency = try values.decodeIfPresent(String.self, forKey: .currency)
+        currency_symbol = try values.decodeIfPresent(String.self, forKey: .currency_symbol)
+        custom_shift_rate_status = try values.decodeIfPresent(String.self, forKey: .custom_shift_rate_status)
+    }
+}

@@ -11,15 +11,26 @@ internal import Combine
 class BookingHourViewModel: ObservableObject {
     
     @Published var isLoading = false
-    @Published var customError: CustomError?
     
     @Published var cartiD: String = ""
+    @Published var clientLat: String = ""
+    @Published var clientLon: String = ""
+    @Published var workingStatus: String = ""
+    
+    @Published var locationAlert: LocationAlert?
+    @Published var isCheckingLocation = false
+    @Published var navigateToComplete  = false
+
     @Published var shiftDetail: Api_BookingHours?
     @Published var arrayOfBreakTime: [String] = []
     
+    @Published var clockOutInResult: Api_ClockOutIn?
+    @Published var showClockOutConfirmation = false
+    @Published var clockInError: ClockInError?
+    
+    @Published var activeBreakPopup: BreakPopup?
+    
     init(cartiD: String) {
-        self.isLoading = isLoading
-        self.customError = customError
         self.cartiD = cartiD
     }
     
@@ -47,12 +58,16 @@ class BookingHourViewModel: ObservableObject {
         var paramDict: [String : Any] = [:]
         paramDict["user_id"] = AppState.shared.useriD
         paramDict["cart_id"] = cartiD
-        paramDict["shift_id"] = shiftDetail?.result?.id ?? ""
-        paramDict["clock_time"] = ""
+        paramDict["shift_id"] = shiftDetail?.result?.shift_id ?? ""
+        paramDict["clock_time"] = SGDate.currentTime()
         paramDict["type"] = strType
-        paramDict["date"] = SGDate.today()
-        paramDict["lat"] = ""
-        paramDict["lon"] = ""
+        paramDict["date"] = SGDate.currentDate()
+        
+        let lat = LocationManager.shared.latitude
+        let lon = LocationManager.shared.longitude
+        
+        paramDict["lat"] = lat
+        paramDict["lon"] = lon
         
         print(paramDict)
         
@@ -61,6 +76,16 @@ class BookingHourViewModel: ObservableObject {
             params: paramDict,
             responseType: Api_ClockOutIn.self
         )
+        
+        if response.status == "1" {
+            self.workingStatus    = response.result?.working_status ?? ""
+            self.clockOutInResult = response          // ← triggers navigation in the View
+        } else {
+            self.clockInError = ClockInError (
+                message: response.message ?? "",
+                address: shiftDetail?.result?.set_shift?.address ?? ""
+            )
+        }
         
         return response
     }

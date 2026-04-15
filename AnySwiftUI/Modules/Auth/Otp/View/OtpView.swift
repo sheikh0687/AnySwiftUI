@@ -17,10 +17,11 @@ struct OtpView: View {
             contactNumber: contactNumber,
             email: email,
             strType: strType,
-            mobileCode: mobileCode)
+            mobileCode: mobileCode
+        )
         )
     }
-
+    
     var body: some View {
         ZStack(alignment: .top) {
             VStack(alignment: .center, spacing: 24) {

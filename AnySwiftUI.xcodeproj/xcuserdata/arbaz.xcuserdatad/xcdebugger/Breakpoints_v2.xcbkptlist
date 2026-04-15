@@ -14,8 +14,8 @@
             filePath = "AnySwiftUI/Modules/Auth/Login/View Model/LoginViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "collectSignupData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -167,33 +167,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "376CC32B-9804-4F15-A05D-80D5B3FD10D4"
+            uuid = "891C8696-0D2D-4347-BC7A-6684FBD45EDC"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnySwiftUI/Modules/App/Worker/My Booking/View/ShiftHoursDetail/View Model/BookingHourViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "fecthShiftDetail()"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "addClockOutIn(strType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DB109546-525F-4389-B5CA-C637F0FA3BC2"
+            uuid = "84619A5E-3CC1-4EDA-B46E-56E537532036"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnySwiftUI/Modules/App/Worker/Find Job/View/Job Detail/View Model/BookingCalendarVM.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "fetchDayWiseShift()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6D21A1A8-5D22-4D44-B1F0-386D10F84DC3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnySwiftUI/Modules/App/Worker/Find Job/View/Job Detail/View Model/BookingCalendarVM.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "fetchShiftCount()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6E991365-CBA8-4BE6-9626-B3593A15305A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AnySwiftUI/Modules/App/Worker/My Booking/View/MyBookingView.swift"
+            filePath = "AnySwiftUI/Modules/App/Worker/My Booking/View/Urgent Shift/View Model/SameDayShiftViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "acceptShift(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
