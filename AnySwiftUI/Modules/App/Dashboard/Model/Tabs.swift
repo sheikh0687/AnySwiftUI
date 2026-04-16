@@ -14,3 +14,10 @@ enum Tabs {
     case wishList
     case profile
 }
+
+enum clientTab {
+    case clientJobs
+    case jobPosting
+    case urgentJob
+    case jobRequest
+}

@@ -111,6 +111,10 @@
 		B7E89E7D2F768E2100DA2BCB /* JobProviderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E89E7C2F768E2100DA2BCB /* JobProviderViewModel.swift */; };
 		B7E89E942F76925D00DA2BCB /* AvailableSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E89E932F76925D00DA2BCB /* AvailableSlot.swift */; };
 		B7E89EB52F769C5700DA2BCB /* JobProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E89EB42F769C5700DA2BCB /* JobProvider.swift */; };
+		B7EB2EEA2F90ACED00A27908 /* JobRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EB2EE92F90ACED00A27908 /* JobRequestView.swift */; };
+		B7EB2EEC2F90AF3D00A27908 /* ClientJobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EB2EEB2F90AF3D00A27908 /* ClientJobView.swift */; };
+		B7EB2EEE2F90AFE900A27908 /* JobPostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EB2EED2F90AFE900A27908 /* JobPostingView.swift */; };
+		B7EB2EF02F90B00900A27908 /* UrgentJobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EB2EEF2F90B00900A27908 /* UrgentJobView.swift */; };
 		B7EE8B692F72613600A4F93F /* PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE8B682F72613600A4F93F /* PopUp.swift */; };
 		B7F5317A2F8F5FAE007E6E45 /* SameDayShiftViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F531792F8F5FAE007E6E45 /* SameDayShiftViewModel.swift */; };
 		B7F531872F8F9027007E6E45 /* DeclineShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F531862F8F9027007E6E45 /* DeclineShift.swift */; };
@@ -220,6 +224,10 @@
 		B7E89E7C2F768E2100DA2BCB /* JobProviderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobProviderViewModel.swift; sourceTree = "<group>"; };
 		B7E89E932F76925D00DA2BCB /* AvailableSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSlot.swift; sourceTree = "<group>"; };
 		B7E89EB42F769C5700DA2BCB /* JobProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobProvider.swift; sourceTree = "<group>"; };
+		B7EB2EE92F90ACED00A27908 /* JobRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobRequestView.swift; sourceTree = "<group>"; };
+		B7EB2EEB2F90AF3D00A27908 /* ClientJobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientJobView.swift; sourceTree = "<group>"; };
+		B7EB2EED2F90AFE900A27908 /* JobPostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostingView.swift; sourceTree = "<group>"; };
+		B7EB2EEF2F90B00900A27908 /* UrgentJobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UrgentJobView.swift; path = "AnySwiftUI/Modules/App/Client/Job Posting/View/UrgentJobView.swift"; sourceTree = SOURCE_ROOT; };
 		B7EE8B682F72613600A4F93F /* PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUp.swift; sourceTree = "<group>"; };
 		B7F531792F8F5FAE007E6E45 /* SameDayShiftViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SameDayShiftViewModel.swift; sourceTree = "<group>"; };
 		B7F531862F8F9027007E6E45 /* DeclineShift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeclineShift.swift; sourceTree = "<group>"; };
@@ -543,6 +551,10 @@
 		B7306CAF2F6966060029B108 /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				B7EB2ED32F90AB5D00A27908 /* Client Job */,
+				B7EB2ED92F90ABEF00A27908 /* Job Posting */,
+				B7EB2EDF2F90AC1D00A27908 /* Urgent Job Posting */,
+				B7EB2EE52F90ACBF00A27908 /* Job Request */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -1154,6 +1166,134 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		B7EB2ED32F90AB5D00A27908 /* Client Job */ = {
+			isa = PBXGroup;
+			children = (
+				B7EB2ED62F90ABCF00A27908 /* Model */,
+				B7EB2ED52F90ABCA00A27908 /* View */,
+				B7EB2ED42F90ABC200A27908 /* View Model */,
+			);
+			path = "Client Job";
+			sourceTree = "<group>";
+		};
+		B7EB2ED42F90ABC200A27908 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		B7EB2ED52F90ABCA00A27908 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B7EB2EEB2F90AF3D00A27908 /* ClientJobView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B7EB2ED62F90ABCF00A27908 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B7EB2ED92F90ABEF00A27908 /* Job Posting */ = {
+			isa = PBXGroup;
+			children = (
+				B7EB2EDC2F90AC0700A27908 /* Model */,
+				B7EB2EDB2F90AC0200A27908 /* View */,
+				B7EB2EDA2F90ABFA00A27908 /* View Model */,
+			);
+			path = "Job Posting";
+			sourceTree = "<group>";
+		};
+		B7EB2EDA2F90ABFA00A27908 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		B7EB2EDB2F90AC0200A27908 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B7EB2EED2F90AFE900A27908 /* JobPostingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B7EB2EDC2F90AC0700A27908 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B7EB2EDF2F90AC1D00A27908 /* Urgent Job Posting */ = {
+			isa = PBXGroup;
+			children = (
+				B7EB2EE22F90AC3E00A27908 /* Model */,
+				B7EB2EE12F90AC3A00A27908 /* View */,
+				B7EB2EE02F90AC3300A27908 /* View Model */,
+			);
+			path = "Urgent Job Posting";
+			sourceTree = "<group>";
+		};
+		B7EB2EE02F90AC3300A27908 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		B7EB2EE12F90AC3A00A27908 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B7EB2EEF2F90B00900A27908 /* UrgentJobView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B7EB2EE22F90AC3E00A27908 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B7EB2EE52F90ACBF00A27908 /* Job Request */ = {
+			isa = PBXGroup;
+			children = (
+				B7EB2EE82F90ACDC00A27908 /* Model */,
+				B7EB2EE72F90ACD800A27908 /* View */,
+				B7EB2EE62F90ACCF00A27908 /* View Model */,
+			);
+			path = "Job Request";
+			sourceTree = "<group>";
+		};
+		B7EB2EE62F90ACCF00A27908 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		B7EB2EE72F90ACD800A27908 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B7EB2EE92F90ACED00A27908 /* JobRequestView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B7EB2EE82F90ACDC00A27908 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1273,6 +1413,7 @@
 				B7472A642F6930BD0052A797 /* UpdatePasswordViewModel.swift in Sources */,
 				B71D85E72F7BB41400C44B36 /* DayShiftCount.swift in Sources */,
 				B7B8E41C2F5EE12600DC39FE /* OtpView.swift in Sources */,
+				B7EB2EF02F90B00900A27908 /* UrgentJobView.swift in Sources */,
 				B76B3EA52F67D0E8002EE02E /* AppDelegate.swift in Sources */,
 				B77DF59C2F6801C700EA39EC /* WorkerDetailView.swift in Sources */,
 				B7F5317A2F8F5FAE007E6E45 /* SameDayShiftViewModel.swift in Sources */,
@@ -1314,12 +1455,15 @@
 				B70628DC2F6D1C4800B1C179 /* NotificationCountModel.swift in Sources */,
 				B766B9E82F8E42CF0090FA54 /* OfferModel.swift in Sources */,
 				B7AB419B2F6925990069C7BF /* PasswordOtpViewModel.swift in Sources */,
+				B7EB2EEE2F90AFE900A27908 /* JobPostingView.swift in Sources */,
 				B7B8E3D72F5ECCD700DC39FE /* Reachability.m in Sources */,
 				B7DD10412F3B55BA00C365AA /* LoginViewModel.swift in Sources */,
 				B7BF3B532F6829AD00B2FFEF /* RegisteredView.swift in Sources */,
 				B7E89E512F76823700DA2BCB /* WorkerTransaction.swift in Sources */,
 				B7720AD02F7A53E600514E49 /* AppSettingModel.swift in Sources */,
 				B7E89E042F76535700DA2BCB /* DeleteWorkerShift.swift in Sources */,
+				B7EB2EEC2F90AF3D00A27908 /* ClientJobView.swift in Sources */,
+				B7EB2EEA2F90ACED00A27908 /* JobRequestView.swift in Sources */,
 				B7E89E392F767ACE00DA2BCB /* WorkerTransactionViewModel.swift in Sources */,
 				B766B9F82F8E7EC40090FA54 /* SameDayShiftView.swift in Sources */,
 				B7E89E362F76686A00DA2BCB /* WorkerTransactionView.swift in Sources */,

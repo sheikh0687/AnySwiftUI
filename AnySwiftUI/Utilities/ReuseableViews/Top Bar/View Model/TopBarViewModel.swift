@@ -41,6 +41,4 @@ class TopBarViewModel: ObservableObject {
         
         return response
     }
-    
-    
 }

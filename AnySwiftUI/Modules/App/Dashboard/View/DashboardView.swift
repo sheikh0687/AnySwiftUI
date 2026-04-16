@@ -11,6 +11,7 @@ struct DashboardView: View {
  
     @EnvironmentObject var appState: AppState
     @State private var selectedTab: Tabs = .myBooking
+    @State private var selectClientTab: clientTab = .clientJobs
     @State private var navPath = NavigationPath()
     @StateObject var topBarVM = TopBarViewModel()
 
@@ -21,49 +22,90 @@ struct DashboardView: View {
                 
                 TopBarView(viewModel: topBarVM)
                 
-                TabView(selection: $selectedTab) {
-                    
-                    // MARK: My Bookings
-                    MyBookingView()
-                        .tag(Tabs.myBooking)
-                        .tabItem {
-                            Label("My Bookings", systemImage: "briefcase.fill")
-                        }
-                    
-                    // MARK: Find Job
-                    JobProviderView()
-                        .tag(Tabs.findJob)
-                        .tabItem {
-                            Label("Find a Job", systemImage: "magnifyingglass")
-                        }
-                    
-                    // MARK: Wallet
-                    WorkerTransactionView()
-                        .tag(Tabs.wallet)
-                        .tabItem {
-                            Label("Wallet", systemImage: "creditcard.fill")
-                        }
-                    
-                    // MARK: Wishlist
-                    JobProviderView()
-                        .tag(Tabs.wishList)
-                        .tabItem {
-                            Label("WishList", systemImage: "heart.fill")
-                        }
-                    
-                    // MARK: Profile
-                    ProfileView()
-                        .tag(Tabs.profile)
-                        .tabItem {
-                            Label("Profile", systemImage: "person.crop.circle.fill")
-                        }
-                }
-                .environmentObject(topBarVM)
-                .accentColor(.THEME)
-                .modifier(ToolbarColorSchemeModifier())
-                .environment(\.horizontalSizeClass, .compact)
-                .onChange(of: appState.switchToTab) { _, tab in
-                    selectedTab = tab
+                if appState.userType == "Worker" {
+                    TabView(selection: $selectedTab) {
+                        
+                        // MARK: My Bookings
+                        MyBookingView()
+                            .tag(Tabs.myBooking)
+                            .tabItem {
+                                Label("My Bookings", systemImage: "briefcase.fill")
+                            }
+                        
+                        // MARK: Find Job
+                        JobProviderView()
+                            .tag(Tabs.findJob)
+                            .tabItem {
+                                Label("Find a Job", systemImage: "magnifyingglass")
+                            }
+                        
+                        // MARK: Wallet
+                        WorkerTransactionView()
+                            .tag(Tabs.wallet)
+                            .tabItem {
+                                Label("Wallet", systemImage: "creditcard.fill")
+                            }
+                        
+                        // MARK: Wishlist
+                        JobProviderView()
+                            .tag(Tabs.wishList)
+                            .tabItem {
+                                Label("WishList", systemImage: "heart.fill")
+                            }
+                        
+                        // MARK: Profile
+                        ProfileView()
+                            .tag(Tabs.profile)
+                            .tabItem {
+                                Label("Profile", systemImage: "person.crop.circle.fill")
+                            }
+                    }
+                    .environmentObject(topBarVM)
+                    .accentColor(.THEME)
+                    .modifier(ToolbarColorSchemeModifier())
+                    .environment(\.horizontalSizeClass, .compact)
+                    .onChange(of: appState.switchToTab) { _, tab in
+                        selectedTab = tab
+                    }
+
+                } else {
+                    TabView(selection: $selectClientTab) {
+                        
+                        // MARK: My Bookings
+                        ClientJobView()
+                            .tag(clientTab.clientJobs)
+                            .tabItem {
+                                Label("My Jobs", systemImage: "briefcase.fill")
+                            }
+                        
+                        // MARK: Find Job
+                        JobPostingView()
+                            .tag(clientTab.jobPosting)
+                            .tabItem {
+                                Label("Post a Job", systemImage: "plus.circle.fill")
+                            }
+                        
+                        // MARK: Wishlist
+                        UrgentJobView()
+                            .tag(clientTab.urgentJob)
+                            .tabItem {
+                                Label("Urgent", systemImage: "magnifyingglass")
+                            }
+                        
+                        // MARK: Profile
+                        JobRequestView()
+                            .tag(clientTab.jobRequest)
+                            .tabItem {
+                                Label("Request", systemImage: "person.crop.circle.fill")
+                            }
+                    }
+                    .environmentObject(topBarVM)
+                    .accentColor(.THEME)
+                    .modifier(ToolbarColorSchemeModifier())
+                    .environment(\.horizontalSizeClass, .compact)
+                    .onChange(of: appState.switchToTab) { _, tab in
+                        selectedTab = tab
+                    }
                 }
             }
             
@@ -76,8 +118,14 @@ struct DashboardView: View {
         // MARK: Lifecycle
         .onAppear {
             setupTabBarAppearance()
-            topBarVM.showMenu = false
-            topBarVM.showAttendance = true
+            
+            if appState.userType == "Worker" {
+                topBarVM.showMenu = false
+                topBarVM.showAttendance = true
+            } else {
+                topBarVM.showMenu = true
+                topBarVM.showAttendance = false
+            }
             
             topBarVM.onMenuTap = {
                 topBarVM.navToMenu = true
@@ -112,6 +160,22 @@ struct DashboardView: View {
             default:
                 topBarVM.showAttendance = false
                 topBarVM.showMenu = false
+            }
+        }
+        .onChange(of: selectClientTab) { _, tab in
+            switch tab {
+            case .clientJobs:
+                topBarVM.showMenu = true
+                topBarVM.showAttendance = false
+            case .jobPosting:
+                topBarVM.showMenu = true
+                topBarVM.showAttendance = false
+            case .urgentJob:
+                topBarVM.showMenu = true
+                topBarVM.showAttendance = false
+            case .jobRequest:
+                topBarVM.showMenu = true
+                topBarVM.showAttendance = false
             }
         }
         
