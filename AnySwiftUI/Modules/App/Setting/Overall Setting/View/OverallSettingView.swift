@@ -32,6 +32,11 @@ struct OverallSettingView: View {
         appState.ios_RegisterediD = ""
         appState.userType = ""
         appState.countryiD = ""
+        appState.clientiD = ""
+        appState.businessName = ""
+        appState.businessLogo = ""
+        appState.outletName = ""
+        appState.outletImage = ""
     }
 }
 

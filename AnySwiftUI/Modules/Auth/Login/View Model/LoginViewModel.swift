@@ -79,6 +79,11 @@ class LoginViewModel: ObservableObject {
         AppState.shared.countryiD = res.country_id ?? ""
         AppState.shared.jobTypeiD = res.job_type_id ?? ""
         AppState.shared.currencySymbol = res.currency_symbol ?? ""
+        AppState.shared.clientiD = res.id ?? ""
+        AppState.shared.businessName = res.business_name ?? ""
+        AppState.shared.businessLogo = res.business_logo ?? ""
+        AppState.shared.outletName = res.business_name ?? ""
+        AppState.shared.outletImage = res.business_logo ?? ""
     }
     
     //    func saveCredentials(res: Res_LoginResponse) {

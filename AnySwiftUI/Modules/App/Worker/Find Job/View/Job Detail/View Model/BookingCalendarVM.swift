@@ -40,10 +40,6 @@ final class BookingCalendarVM: ObservableObject {
     @Published var countryName: String = ""
     @Published var documentReq: String = ""
     
-//    @Published var conToBook: Bool = false
-//    @Published var conToWithdraw: Bool = false
-//    @Published var upldNrc: Bool = false
-    
     @Published var isLoading: Bool = false
     @Published var customError: CustomError?
     @Published var obj: Res_JobProvider?

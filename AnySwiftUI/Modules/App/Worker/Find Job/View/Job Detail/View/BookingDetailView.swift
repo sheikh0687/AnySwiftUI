@@ -39,156 +39,6 @@ struct BookingDetailView: View {
                 }
                 .zIndex(5)
             }
-//            if viewModel.conToBook {
-//                ZStack {
-//                    Color.black.opacity(0.4)
-//                        .ignoresSafeArea()
-//                        .onTapGesture {
-//                            withAnimation {
-//                                viewModel.conToBook = false
-//                            }
-//                        }
-//                                        
-//                    PopBeforeBooking (
-//                        cloYes: { bool in
-//                            if bool {
-//                                Task {
-//                                    await addShiftToCart()
-//                                }
-//                            } else {
-//                                viewModel.conToBook = false
-//                            }
-//                        },
-//                        companyName: viewModel.companyDetail,
-//                        shiftDetail: viewModel.shiftDetail,
-//                        instantBooking: viewModel.instantApproved == "Yes" ? "Instant Approval" : "",
-//                        bookingNote: viewModel.notes,
-//                        shiftStatus: "",
-//                        comingFor: "Book"
-//                    )
-//                    .transition(.scale)
-//                    .zIndex(1)
-//                }
-//            }
-//            
-//            if viewModel.conToWithdraw {
-//                ZStack {
-//                    Color.black.opacity(0.4)
-//                        .ignoresSafeArea()
-//                        .onTapGesture {
-//                            withAnimation {
-//                                viewModel.conToWithdraw = false
-//                            }
-//                        }
-//                                        
-//                    PopBeforeBooking (
-//                        cloYes: { bool in
-//                            if bool {
-//                                Task {
-//                                    await addShiftWithdrawReq()
-//                                }
-//                            } else {
-//                                viewModel.conToWithdraw = false
-//                            }
-//                        },
-//                        companyName: viewModel.companyDetail,
-//                        shiftDetail: "",
-//                        instantBooking: "",
-//                        bookingNote: "",
-//                        shiftStatus: viewModel.shiftStatus,
-//                        comingFor: "Withdraw"
-//                    )
-//                    .transition(.scale)
-//                    .zIndex(1)
-//                }
-//            }
-//            
-//            if viewModel.shiftBooked {
-//                ZStack {
-//                    Color.black.opacity(0.4)
-//                        .ignoresSafeArea()
-//                        .onTapGesture {
-//                            withAnimation {
-//                                viewModel.shiftBooked = false
-//                            }
-//                        }
-//                                        
-//                    PopSuccess (
-//                        title: viewModel.instantApproved == "Yes"
-//                        ? ""
-//                        : "Your Booking Request Has Been Sent",
-//                        description: viewModel.instantApproved == "Yes"
-//                        ? "Your shift booking for \(viewModel.singleDate) has been auto approved. Kindly be on time for your shift."
-//                        : "You will receive a notification once the unit manager has approved/declined your shift.",
-//                        cloOk: {
-//                            withAnimation {
-//                                viewModel.shiftBooked = false
-//                            }
-//                            
-//                            appState.switchToTab = .myBooking
-//                            appState.goToHome = true
-//                            dismiss()
-//                        }
-//                    )
-//                    .transition(.scale)
-//                    .zIndex(1)
-//                }
-//            }
-//            
-//            if viewModel.shiftLeft {
-//                ZStack {
-//                    Color.black.opacity(0.4)
-//                        .ignoresSafeArea()
-//                        .onTapGesture {
-//                            withAnimation {
-//                                viewModel.shiftLeft = false
-//                            }
-//                        }
-//                                        
-//                    PopSuccess (
-//                        title: "Booking status update",
-//                        description: "Bookings for \(viewModel.obj?.business_name ?? "") on \(viewModel.selectedDate) have been switched from Instant Approval to Pending Approval due to the client’s billing issue. Please wait a few hours for the approval notification. No action needed on your side for now.",
-//                        cloOk: {
-//                            withAnimation {
-//                                viewModel.shiftLeft = false
-//                            }
-//                            
-//                            appState.switchToTab = .myBooking
-//                            appState.goToHome = true
-//                            dismiss()
-//                        }
-//                    )
-//                    .transition(.scale)
-//                    .zIndex(1)
-//                }
-//            }
-//            
-//            if viewModel.upldNrc {
-//                ZStack {
-//                    Color.black.opacity(0.4)
-//                        .ignoresSafeArea()
-//                        .onTapGesture {
-//                            withAnimation {
-//                                viewModel.upldNrc = false
-//                            }
-//                        }
-//                                        
-//                    PopDocView (
-//                        countryName: viewModel.countryName,
-//                        documentRequired: viewModel.documentReq,
-//                        cloSubmit: { nrcImg, docImg in
-//                            Task {
-//                                try? await viewModel.updateWorkerDocuments(nrcImg: nrcImg, docImg: docImg)
-//                            }
-//                        },
-//                        cloBack: {
-//                            viewModel.upldNrc = false
-//                        }
-//                    )
-//                    .transition(.scale)
-//                    .zIndex(1)
-//                }
-//            }
         }
         .alert(item: $viewModel.customError) { error in
             Alert (
@@ -200,6 +50,11 @@ struct BookingDetailView: View {
         .navigationTitle("Booking Request")
         .navigationBarBackButtonHidden(false)
         .navigationBarTitleDisplayMode(.inline)
+        .onChange(of: appState.goToHome) { _, go in
+            if go {
+                dismiss()
+            }
+        }
     }
     
     private var headerView: some View {

@@ -14,8 +14,8 @@
             filePath = "AnySwiftUI/Modules/Auth/Login/View Model/LoginViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "collectSignupData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,25 +94,9 @@
             filePath = "AnySwiftUI/Modules/App/Worker/Find Job/View Model/JobProviderViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "addFavUnFav(clientiD:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DAAF1A15-9E3F-45F1-95AF-1E5D049A7DD4"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AnySwiftUI/Modules/App/Worker/Find Job/View Model/JobProviderViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "fetchJobProviderList()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -126,8 +110,8 @@
             filePath = "AnySwiftUI/Modules/App/Worker/Find Job/View/Job Detail/View/BookingDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "293"
-            endingLineNumber = "293"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "BookingDetailView"
             landmarkType = "14">
          </BreakpointContent>
@@ -142,8 +126,8 @@
             filePath = "AnySwiftUI/Modules/App/Worker/Find Job/View/Job Detail/View/BookingDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "BookingDetailView"
             landmarkType = "14">
          </BreakpointContent>
@@ -158,8 +142,8 @@
             filePath = "AnySwiftUI/Modules/App/Worker/Find Job/View/Job Detail/View/BookingDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "385"
-            endingLineNumber = "385"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "content"
             landmarkType = "24">
          </BreakpointContent>
@@ -190,8 +174,8 @@
             filePath = "AnySwiftUI/Modules/App/Worker/Find Job/View/Job Detail/View Model/BookingCalendarVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "fetchDayWiseShift()"
             landmarkType = "7">
          </BreakpointContent>
@@ -206,8 +190,8 @@
             filePath = "AnySwiftUI/Modules/App/Worker/Find Job/View/Job Detail/View Model/BookingCalendarVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "fetchShiftCount()"
             landmarkType = "7">
          </BreakpointContent>

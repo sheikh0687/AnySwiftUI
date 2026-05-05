@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct UrgentJobView: View {
-    
     var body: some View {
         Text("Welcome to UrgentJobView")
     }

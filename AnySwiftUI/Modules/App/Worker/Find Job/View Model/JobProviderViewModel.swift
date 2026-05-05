@@ -11,10 +11,11 @@ class JobProviderViewModel: ObservableObject {
     
     @Published var isLoading = false
     @Published var customError: CustomError?
-
+    
     @Published var dayName: String = ""
     @Published var date: String = ""
     @Published var day: String = ""
+    
     @Published var availableSlot: [Res_AvailableSlot] = []
     @Published var jobProviderList: [Res_JobProvider] = []
     @Published var objProviderList: Res_JobProvider?
@@ -37,6 +38,9 @@ class JobProviderViewModel: ObservableObject {
     
     @Published var navToBooking: Bool = false
     @Published var preselectedDate: Date?
+    
+    @Published var scrollOffset: CGFloat = 0
+    @Published var showTopViews: Bool = true
     
     var filteredList: [Res_JobProvider] {
         if search.isEmpty {

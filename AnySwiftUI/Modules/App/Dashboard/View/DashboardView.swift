@@ -182,9 +182,13 @@ struct DashboardView: View {
         .onChange(of: appState.goToHome) { _, go in
             if go {
                 navPath = NavigationPath()
-                selectedTab = .myBooking          // switch tab
+                selectedTab = appState.switchToTab          // switch tab
                 topBarVM.navToMenu = false       // close menu if open
-                appState.goToHome = false        // reset trigger
+                
+                // Reset trigger asynchronously so other views can react to it first
+                DispatchQueue.main.async {
+                    appState.goToHome = false
+                }
             }
         }
     }

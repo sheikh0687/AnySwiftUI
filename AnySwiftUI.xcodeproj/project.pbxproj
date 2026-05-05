@@ -17,6 +17,12 @@
 		B71D85C32F7BA72000C44B36 /* BookingCalendarVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D85C22F7BA72000C44B36 /* BookingCalendarVM.swift */; };
 		B71D85C72F7BA7DF00C44B36 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D85C62F7BA7DF00C44B36 /* DayCell.swift */; };
 		B71D85E72F7BB41400C44B36 /* DayShiftCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D85E62F7BB41400C44B36 /* DayShiftCount.swift */; };
+		B72066392FA8A25A00EE854A /* WorkerCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72066382FA8A25A00EE854A /* WorkerCount.swift */; };
+		B720663B2FA8A27A00EE854A /* JobPostingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B720663A2FA8A27A00EE854A /* JobPostingViewModel.swift */; };
+		B72066412FA8C18E00EE854A /* SelectJobDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72066402FA8C18E00EE854A /* SelectJobDetailView.swift */; };
+		B72066432FA8C1AD00EE854A /* JobDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72066422FA8C1AD00EE854A /* JobDetail.swift */; };
+		B72066452FA8C1DD00EE854A /* JobDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72066442FA8C1DC00EE854A /* JobDetailViewModel.swift */; };
+		B72066472FA8CD1300EE854A /* WeeklyDayName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72066462FA8CD1300EE854A /* WeeklyDayName.swift */; };
 		B72267C52F3AFF1A0068BAF2 /* AnySwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72267C12F3AFF1A0068BAF2 /* AnySwiftUIApp.swift */; };
 		B72267C72F3AFF1A0068BAF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B72267C22F3AFF1A0068BAF2 /* Assets.xcassets */; };
 		B72267D22F3B02070068BAF2 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72267D12F3B02070068BAF2 /* OnboardingView.swift */; };
@@ -39,6 +45,15 @@
 		B747FA412F5BF454008AAAD7 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B747FA402F5BF454008AAAD7 /* Buttons.swift */; };
 		B747FA432F5BF456008AAAD7 /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B747FA422F5BF456008AAAD7 /* Labels.swift */; };
 		B747FA452F5BF45A008AAAD7 /* TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = B747FA442F5BF45A008AAAD7 /* TextFields.swift */; };
+		B74DBB1F2F960D8300AAB836 /* OutletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74DBB1E2F960D8300AAB836 /* OutletModel.swift */; };
+		B74DBB212F960F5100AAB836 /* ManpowerSHift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74DBB202F960F5100AAB836 /* ManpowerSHift.swift */; };
+		B74DBB232F96123B00AAB836 /* UpcomingShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74DBB222F96123B00AAB836 /* UpcomingShift.swift */; };
+		B74DBB252F96146E00AAB836 /* WeeklyShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74DBB242F96146E00AAB836 /* WeeklyShift.swift */; };
+		B74DBB272F961F9800AAB836 /* ClientJobViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74DBB262F961F9800AAB836 /* ClientJobViewModel.swift */; };
+		B74DBB292F962B9C00AAB836 /* OutletSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74DBB282F962B9C00AAB836 /* OutletSelectorView.swift */; };
+		B74DBB2B2F962BDC00AAB836 /* ManpowerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74DBB2A2F962BDC00AAB836 /* ManpowerView.swift */; };
+		B74DBB2D2F962C0D00AAB836 /* UpcomingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74DBB2C2F962C0D00AAB836 /* UpcomingView.swift */; };
+		B74DBB2F2F962C4300AAB836 /* JobWeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74DBB2E2F962C4300AAB836 /* JobWeeklyView.swift */; };
 		B756B9862F89292800570540 /* WithdrawShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B756B9852F89292800570540 /* WithdrawShift.swift */; };
 		B75C0D732F74FF85002C4493 /* WorkerBookingDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75C0D722F74FF85002C4493 /* WorkerBookingDetail.swift */; };
 		B75C0D772F750479002C4493 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75C0D762F750479002C4493 /* EmptyView.swift */; };
@@ -131,6 +146,12 @@
 		B71D85C22F7BA72000C44B36 /* BookingCalendarVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingCalendarVM.swift; sourceTree = "<group>"; };
 		B71D85C62F7BA7DF00C44B36 /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
 		B71D85E62F7BB41400C44B36 /* DayShiftCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayShiftCount.swift; sourceTree = "<group>"; };
+		B72066382FA8A25A00EE854A /* WorkerCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerCount.swift; sourceTree = "<group>"; };
+		B720663A2FA8A27A00EE854A /* JobPostingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostingViewModel.swift; sourceTree = "<group>"; };
+		B72066402FA8C18E00EE854A /* SelectJobDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectJobDetailView.swift; sourceTree = "<group>"; };
+		B72066422FA8C1AD00EE854A /* JobDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetail.swift; sourceTree = "<group>"; };
+		B72066442FA8C1DC00EE854A /* JobDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetailViewModel.swift; sourceTree = "<group>"; };
+		B72066462FA8CD1300EE854A /* WeeklyDayName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyDayName.swift; sourceTree = "<group>"; };
 		B72267B32F3AFF0B0068BAF2 /* AnySwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnySwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B72267C12F3AFF1A0068BAF2 /* AnySwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnySwiftUIApp.swift; sourceTree = "<group>"; };
 		B72267C22F3AFF1A0068BAF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -154,6 +175,15 @@
 		B747FA402F5BF454008AAAD7 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		B747FA422F5BF456008AAAD7 /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
 		B747FA442F5BF45A008AAAD7 /* TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
+		B74DBB1E2F960D8300AAB836 /* OutletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutletModel.swift; sourceTree = "<group>"; };
+		B74DBB202F960F5100AAB836 /* ManpowerSHift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManpowerSHift.swift; sourceTree = "<group>"; };
+		B74DBB222F96123B00AAB836 /* UpcomingShift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingShift.swift; sourceTree = "<group>"; };
+		B74DBB242F96146E00AAB836 /* WeeklyShift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyShift.swift; sourceTree = "<group>"; };
+		B74DBB262F961F9800AAB836 /* ClientJobViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientJobViewModel.swift; sourceTree = "<group>"; };
+		B74DBB282F962B9C00AAB836 /* OutletSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutletSelectorView.swift; sourceTree = "<group>"; };
+		B74DBB2A2F962BDC00AAB836 /* ManpowerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManpowerView.swift; sourceTree = "<group>"; };
+		B74DBB2C2F962C0D00AAB836 /* UpcomingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingView.swift; sourceTree = "<group>"; };
+		B74DBB2E2F962C4300AAB836 /* JobWeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobWeeklyView.swift; sourceTree = "<group>"; };
 		B756B9852F89292800570540 /* WithdrawShift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawShift.swift; sourceTree = "<group>"; };
 		B75C0D722F74FF85002C4493 /* WorkerBookingDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerBookingDetail.swift; sourceTree = "<group>"; };
 		B75C0D762F750479002C4493 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
@@ -293,6 +323,41 @@
 				B79B00BD2F87CC940061E976 /* BookingCartValue.swift */,
 				B79B00BF2F87D6E40061E976 /* FinalBooking.swift */,
 				B756B9852F89292800570540 /* WithdrawShift.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B720663C2FA8C14C00EE854A /* Job Detail */ = {
+			isa = PBXGroup;
+			children = (
+				B720663F2FA8C17A00EE854A /* Model */,
+				B720663E2FA8C17500EE854A /* View */,
+				B720663D2FA8C16E00EE854A /* View Model */,
+			);
+			path = "Job Detail";
+			sourceTree = "<group>";
+		};
+		B720663D2FA8C16E00EE854A /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				B72066442FA8C1DC00EE854A /* JobDetailViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		B720663E2FA8C17500EE854A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B72066402FA8C18E00EE854A /* SelectJobDetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B720663F2FA8C17A00EE854A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B72066422FA8C1AD00EE854A /* JobDetail.swift */,
+				B72066462FA8CD1300EE854A /* WeeklyDayName.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1179,6 +1244,7 @@
 		B7EB2ED42F90ABC200A27908 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				B74DBB262F961F9800AAB836 /* ClientJobViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -1187,6 +1253,10 @@
 			isa = PBXGroup;
 			children = (
 				B7EB2EEB2F90AF3D00A27908 /* ClientJobView.swift */,
+				B74DBB282F962B9C00AAB836 /* OutletSelectorView.swift */,
+				B74DBB2A2F962BDC00AAB836 /* ManpowerView.swift */,
+				B74DBB2C2F962C0D00AAB836 /* UpcomingView.swift */,
+				B74DBB2E2F962C4300AAB836 /* JobWeeklyView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1194,6 +1264,10 @@
 		B7EB2ED62F90ABCF00A27908 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B74DBB1E2F960D8300AAB836 /* OutletModel.swift */,
+				B74DBB202F960F5100AAB836 /* ManpowerSHift.swift */,
+				B74DBB222F96123B00AAB836 /* UpcomingShift.swift */,
+				B74DBB242F96146E00AAB836 /* WeeklyShift.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1211,6 +1285,7 @@
 		B7EB2EDA2F90ABFA00A27908 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				B720663A2FA8A27A00EE854A /* JobPostingViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -1219,6 +1294,7 @@
 			isa = PBXGroup;
 			children = (
 				B7EB2EED2F90AFE900A27908 /* JobPostingView.swift */,
+				B720663C2FA8C14C00EE854A /* Job Detail */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1226,6 +1302,7 @@
 		B7EB2EDC2F90AC0700A27908 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B72066382FA8A25A00EE854A /* WorkerCount.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1394,6 +1471,7 @@
 				B747FA412F5BF454008AAAD7 /* Buttons.swift in Sources */,
 				B7BF3B412F681B7500B2FFEF /* ClientDetailViewModel.swift in Sources */,
 				B7472A692F6933B80052A797 /* Api_Basic.swift in Sources */,
+				B74DBB272F961F9800AAB836 /* ClientJobViewModel.swift in Sources */,
 				B7C20F572F7A88F400E9EA4C /* ShiftSheetView.swift in Sources */,
 				B7B8E3BF2F5ECBE800DC39FE /* Service.swift in Sources */,
 				B71D85C32F7BA72000C44B36 /* BookingCalendarVM.swift in Sources */,
@@ -1405,9 +1483,11 @@
 				B79B00BE2F87CC940061E976 /* BookingCartValue.swift in Sources */,
 				B7948D1D2F7CF0ED004276E7 /* DayWiseShift.swift in Sources */,
 				B78239E62F8CF3A0008BACE7 /* BookingHOursBooking.swift in Sources */,
+				B74DBB252F96146E00AAB836 /* WeeklyShift.swift in Sources */,
 				B75C0D772F750479002C4493 /* EmptyView.swift in Sources */,
 				B7AB41712F691FD80069C7BF /* ResetPasswordViewModel.swift in Sources */,
 				B713253E2F61442F0056A10B /* OtpModel.swift in Sources */,
+				B72066412FA8C18E00EE854A /* SelectJobDetailView.swift in Sources */,
 				B756B9862F89292800570540 /* WithdrawShift.swift in Sources */,
 				B7B8E3FF2F5ED9C500DC39FE /* CountryList.swift in Sources */,
 				B7472A642F6930BD0052A797 /* UpdatePasswordViewModel.swift in Sources */,
@@ -1416,9 +1496,12 @@
 				B7EB2EF02F90B00900A27908 /* UrgentJobView.swift in Sources */,
 				B76B3EA52F67D0E8002EE02E /* AppDelegate.swift in Sources */,
 				B77DF59C2F6801C700EA39EC /* WorkerDetailView.swift in Sources */,
+				B72066452FA8C1DD00EE854A /* JobDetailViewModel.swift in Sources */,
+				B74DBB2F2F962C4300AAB836 /* JobWeeklyView.swift in Sources */,
 				B7F5317A2F8F5FAE007E6E45 /* SameDayShiftViewModel.swift in Sources */,
 				B71D85BE2F7BA6E200C44B36 /* SGDate.swift in Sources */,
 				B72267C52F3AFF1A0068BAF2 /* AnySwiftUIApp.swift in Sources */,
+				B74DBB212F960F5100AAB836 /* ManpowerSHift.swift in Sources */,
 				B7306C992F695F0F0029B108 /* TopBarView.swift in Sources */,
 				B766B9EA2F8E5C300090FA54 /* ClockingAlert.swift in Sources */,
 				B72267D22F3B02070068BAF2 /* OnboardingView.swift in Sources */,
@@ -1428,14 +1511,17 @@
 				B72267E52F3B0FC50068BAF2 /* UserTypeView.swift in Sources */,
 				B7720AC62F7A4D3600514E49 /* ProfileView.swift in Sources */,
 				B78239E82F8CF8A8008BACE7 /* BookingHourViewModel.swift in Sources */,
+				B74DBB292F962B9C00AAB836 /* OutletSelectorView.swift in Sources */,
 				B7306CBE2F69669F0029B108 /* DashboardView.swift in Sources */,
 				B7C9C59F2F7AAA830067806C /* LocationSearchViewModel.swift in Sources */,
 				B7C20F402F7A7ED800E9EA4C /* CommonModel.swift in Sources */,
 				B766B9E52F8E42C90090FA54 /* BannerCursor.swift in Sources */,
+				B72066472FA8CD1300EE854A /* WeeklyDayName.swift in Sources */,
 				B766B9F22F8E747A0090FA54 /* ShiftSummaryView.swift in Sources */,
 				B766B9E62F8E42C90090FA54 /* ClientOfferViewModel.swift in Sources */,
 				B7720ADC2F7A575D00514E49 /* Root.swift in Sources */,
 				B71D85B02F7B999D00C44B36 /* BookingDetailView.swift in Sources */,
+				B72066392FA8A25A00EE854A /* WorkerCount.swift in Sources */,
 				B7BF3B3E2F681B0900B2FFEF /* ClientDetailView.swift in Sources */,
 				B7AB416B2F691DB60069C7BF /* ResetPasswordView.swift in Sources */,
 				B7306C9F2F695F1A0029B108 /* TopBarViewModel.swift in Sources */,
@@ -1447,8 +1533,10 @@
 				B7B8E3DE2F5ECD4500DC39FE /* Router.swift in Sources */,
 				B713256A2F614ACA0056A10B /* AppConstant.swift in Sources */,
 				B7720AAA2F7A497C00514E49 /* OverallSettingView.swift in Sources */,
+				B74DBB1F2F960D8300AAB836 /* OutletModel.swift in Sources */,
 				B7AB41772F6920E30069C7BF /* ResetPasswordModel.swift in Sources */,
 				B7E89E782F768DA600DA2BCB /* JobProviderView.swift in Sources */,
+				B74DBB2B2F962BDC00AAB836 /* ManpowerView.swift in Sources */,
 				B70628CF2F6D177300B1C179 /* MyBookingViewModel.swift in Sources */,
 				B7AB41972F69257F0069C7BF /* PasswordOtpView.swift in Sources */,
 				B7472A5D2F69309A0052A797 /* UpdatePasswordView.swift in Sources */,
@@ -1470,11 +1558,15 @@
 				B7B8E3E12F5ECE5F00DC39FE /* LoginModel.swift in Sources */,
 				B7B8E4362F5EE33C00DC39FE /* OtpViewModel.swift in Sources */,
 				B7E89EB52F769C5700DA2BCB /* JobProvider.swift in Sources */,
+				B720663B2FA8A27A00EE854A /* JobPostingViewModel.swift in Sources */,
+				B74DBB2D2F962C0D00AAB836 /* UpcomingView.swift in Sources */,
+				B72066432FA8C1AD00EE854A /* JobDetail.swift in Sources */,
 				B747FA432F5BF456008AAAD7 /* Labels.swift in Sources */,
 				B7306CE02F6969160029B108 /* MyBookingView.swift in Sources */,
 				B7E89E7D2F768E2100DA2BCB /* JobProviderViewModel.swift in Sources */,
 				B79B00C02F87D6E40061E976 /* FinalBooking.swift in Sources */,
 				B72267D52F3B02BA0068BAF2 /* OnboardingModel.swift in Sources */,
+				B74DBB232F96123B00AAB836 /* UpcomingShift.swift in Sources */,
 				B766B9EE2F8E67A50090FA54 /* BreakTime.swift in Sources */,
 				B766B9EC2F8E64940090FA54 /* BreakPopupSheet.swift in Sources */,
 				B72267DB2F3B04D60068BAF2 /* UIFont+Extension.swift in Sources */,

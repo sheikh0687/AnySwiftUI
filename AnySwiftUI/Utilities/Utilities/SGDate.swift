@@ -50,4 +50,8 @@ enum SGDate {
     static func currentDate() -> String {
         return formatter("yyyy-MM-dd").string(from: Date())
     }
+    
+    static func currentDateWithMonth() -> String {
+        return formatter("dd MMM yy").string(from: Date())
+    }
 }

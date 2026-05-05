@@ -21,6 +21,11 @@ enum AppStorageKey: String {
     case countryiD
     case jobTypeiD
     case currencySymbol
+    case outletName
+    case outletImage
+    case businessName
+    case businessLogo
+    case clientiD
 }
 
 final class AppState: ObservableObject {
@@ -89,6 +94,26 @@ final class AppState: ObservableObject {
         willSet { objectWillChange.send() }
     }
     
+    @AppStorage(AppStorageKey.outletName.rawValue) var outletName: String = "" {
+        willSet { objectWillChange.send() }
+    }
+
+    @AppStorage(AppStorageKey.outletImage.rawValue) var outletImage: String = "" {
+        willSet { objectWillChange.send() }
+    }
+    
+    @AppStorage(AppStorageKey.businessName.rawValue) var businessName: String = "" {
+        willSet { objectWillChange.send() }
+    }
+
+    @AppStorage(AppStorageKey.businessLogo.rawValue) var businessLogo: String = "" {
+        willSet { objectWillChange.send() }
+    }
+
+    @AppStorage(AppStorageKey.clientiD.rawValue) var clientiD: String = "" {
+        willSet { objectWillChange.send() }
+    }
+
     @Published var goToHome: Bool = false
     @Published var switchToTab: Tabs = .myBooking
     

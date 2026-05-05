@@ -12,48 +12,64 @@ struct JobProviderView: View {
     
     @StateObject private var locationManager = LocationManager()
     @StateObject private var locationSearchVM = LocationSearchViewModel()
-    @EnvironmentObject var appState: AppState
     @StateObject var viewModel = JobProviderViewModel()
+    
+//    @EnvironmentObject var appState: AppState
     
     var body: some View {
         ZStack(alignment: .top) {
-            VStack(alignment: .leading, spacing: 24) {
-                // Search Location
-                searchLocation
+            VStack(alignment: .leading, spacing: 0) {
                 
-                // Search Bar
-                searchBarView
+                if viewModel.showTopViews {
+                    VStack(alignment: .leading, spacing: 16) {
+                        // Search Location
+                        searchLocation
+                        
+                        // Search Bar
+                        searchBarView
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.top, 24)
+                    .padding(.bottom, 12)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                }
                 
-                // Available Booking Date
-                slotDateBooking
-                
-                // Job Provider
-                jobProviderList
+                VStack(alignment: .leading, spacing: 16) {
+                    // Available Booking Date
+                    slotDateBooking
+                        .padding(.horizontal, 24)
+                    
+                    // Job Provider
+                    jobProviderList
+                }
+                .padding(.top, viewModel.showTopViews ? 0 : 16)
             }
-            .padding(.all, 24)
         }
+        .animation(.easeInOut(duration: 0.3), value: viewModel.showTopViews)
         .onAppear {
-            Task  {
+            Task {
                 await loadAvailableSlot()
                 await loadJobProviderList()
             }
+            
+            locationManager.requestLocation()
         }
         .onChange(of: viewModel.addedFavClient) {
             Task {
                 await loadJobProviderList()
             }
         }
-        .onChange(of: appState.goToHome) { _, go in
-            if go {
-                viewModel.navToBooking = false  // 👈 pops BookingDetailView
-            }
-        }
+//        .onChange(of: appState.goToHome) { _, go in
+//            if go {
+//                viewModel.navToBooking = false  // 👈 pops BookingDetailView
+//            }
+//        }
         .onChange(of: locationManager.latitude) {
             // Save GPS to VM
             viewModel.userLat = locationManager.latitude
             viewModel.userLon = locationManager.longitude
-            locationSearchVM.query = locationManager.currentAddress
             
+            locationSearchVM.query = locationManager.currentAddress
             // Reload providers near user
             Task {
                 await loadJobProviderList()
@@ -155,6 +171,19 @@ struct JobProviderView: View {
     
     private var jobProviderList: some View {
         ScrollView(showsIndicators: false) {
+            
+            Color.clear
+                .frame(height: 0)
+                .background (
+                    GeometryReader { geo in
+                        Color.clear
+                            .preference(
+                                key: ScrollOffsetKey.self,
+                                value: geo.frame(in: .named("scroll")).minY
+                            )
+                    }
+                )
+            
             if viewModel.isLoading {
                 ProgressView("Loading Provider...")
                     .frame(maxWidth: .infinity)
@@ -170,6 +199,18 @@ struct JobProviderView: View {
                                 viewModel.navToBooking = true
                             }
                     }
+                }
+                .padding(.horizontal, 24)
+                .padding(.bottom, 24)
+            }
+        }
+        .coordinateSpace(name: "scroll")
+        .onPreferenceChange(ScrollOffsetKey.self) { value in
+            // ✅ value starts at 0, goes negative when scrolling down
+            let shouldShow = value > -30
+            if shouldShow != viewModel.showTopViews {
+                withAnimation(.easeInOut(duration: 0.25)) {
+                    viewModel.showTopViews = shouldShow
                 }
             }
         }
@@ -219,17 +260,29 @@ struct JobProviderView: View {
                         locationSearchVM.search(value)
                     }
                 
-                // 📍 Current GPS button
-                Button {
-                    locationManager.requestLocation()
-                } label: {
-                    Image(systemName: "location.circle.fill")
-                        .foregroundColor(.blue)
+                if !locationSearchVM.query.isEmpty {
+                    Button {
+                        locationSearchVM.query = ""
+                        locationSearchVM.results = []
+                        viewModel.showLocationResults = false
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.gray)
+                    }
                 }
+                
+                // 📍 Current GPS button
+//                Button {
+//                    locationSearchVM.query = "Fetching location..."
+//                    locationManager.requestLocation()
+//                } label: {
+//                    Image(systemName: "location.circle.fill")
+//                        .foregroundColor(.blue)
+//                }
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 10)
-            .background(
+            .background (
                 RoundedRectangle(cornerRadius: 24)
                     .fill(Color.gray.opacity(0.2))
             )
@@ -239,26 +292,65 @@ struct JobProviderView: View {
             }
             
             // 🔎 Apple autocomplete results
+//            if viewModel.showLocationResults && !locationSearchVM.results.isEmpty {
+//                ScrollView {
+//                    LazyVStack(alignment: .leading) {
+//                        ForEach(locationSearchVM.results, id: \.self) { result in
+//                            VStack(alignment: .leading, spacing: 4) {
+//                                Text(result.title).bold()
+//                                Text(result.subtitle).font(.caption)
+//                            }
+//                            .padding()
+//                            .onTapGesture {
+//                                selectLocation(result)
+//                            }
+//                            
+//                            Divider()
+//                        }
+//                    }
+//                }
+//                .frame(maxHeight: 200)
+//                .background(.white)
+//                .clipShape(RoundedRectangle(cornerRadius: 16))
+//            }
+  
             if viewModel.showLocationResults && !locationSearchVM.results.isEmpty {
-                ScrollView {
-                    LazyVStack(alignment: .leading) {
-                        ForEach(locationSearchVM.results, id: \.self) { result in
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(result.title).bold()
-                                Text(result.subtitle).font(.caption)
+                VStack(spacing: 0) {
+                    ForEach(locationSearchVM.results, id: \.self) { result in
+                        Button {
+                            selectLocation(result)
+                        } label: {
+                            HStack(spacing: 12) {
+                                Image(systemName: "mappin.circle.fill")
+                                    .foregroundColor(.accentColor)
+                                    .font(.system(size: 18))
+                                
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(result.title)
+                                        .font(.system(size: 14, weight: .semibold))
+                                        .foregroundColor(.black)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    if !result.subtitle.isEmpty {
+                                        Text(result.subtitle)
+                                            .font(.system(size: 12))
+                                            .foregroundColor(.gray)
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                    }
+                                }
                             }
-                            .padding()
-                            .onTapGesture {
-                                selectLocation(result)
-                            }
-                            
-                            Divider()
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 10)
+                        }
+                        
+                        if result != locationSearchVM.results.last {
+                            Divider().padding(.leading, 46)
                         }
                     }
                 }
-                .frame(maxHeight: 200)
-                .background(.white)
+                .background(Color.white)
                 .clipShape(RoundedRectangle(cornerRadius: 16))
+                .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
+                .padding(.top, 4)
             }
         }
     }
@@ -399,6 +491,16 @@ struct JobBookingCardView: View {
     }
 }
 
+// MARK: - Scroll Offset Preference Key
+struct ScrollOffsetKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()  // ✅ take latest value, not accumulate
+    }
+}
+
 #Preview {
     JobProviderView()
+        .environmentObject(AppState())
 }
+
