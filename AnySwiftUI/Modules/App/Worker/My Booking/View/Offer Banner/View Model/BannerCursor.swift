@@ -5,12 +5,13 @@
 //  Created by Arbaz  on 04/04/26.
 //
 
-internal import Combine
+import Observation
 
+@Observable
 // MARK: - Simple Banner Autoplay Engine
-final class BannerAutoPlayer: ObservableObject {
+final class BannerAutoPlayer {
     
-    @Published var index: Int = 0
+    var index: Int = 0
     private(set) var isAutoScrolling = false
 //    @Published var isUserScrolling: Bool = false   // ⭐️ NEW
     

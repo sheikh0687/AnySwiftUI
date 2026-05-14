@@ -12,10 +12,8 @@ struct JobProviderView: View {
     
     @StateObject private var locationManager = LocationManager()
     @StateObject private var locationSearchVM = LocationSearchViewModel()
-    @StateObject var viewModel = JobProviderViewModel()
-    
-//    @EnvironmentObject var appState: AppState
-    
+    @State var viewModel = JobProviderViewModel()
+
     var body: some View {
         ZStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 0) {

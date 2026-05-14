@@ -5,16 +5,16 @@
 //  Created by Arbaz  on 17/03/26.
 //
 
-internal import Combine
+import Observation
 
-class ChangePasswordViewModel: ObservableObject {
+@Observable
+class ChangePasswordViewModel {
     
-    @Published var isLoading: Bool = false
-    @Published var customError: CustomError?
-    
-    @Published var password = ""
-    @Published var oldPassword = ""
-    @Published var confirmPassword = ""
+    var isLoading: Bool = false
+    var customError: CustomError?
+    var password = ""
+    var oldPassword = ""
+    var confirmPassword = ""
     
     @MainActor
     func webChangePassword() async throws -> Api_Basic {

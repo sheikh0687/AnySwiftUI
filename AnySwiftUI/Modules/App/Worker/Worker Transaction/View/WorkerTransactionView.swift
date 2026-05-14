@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WorkerTransactionView: View {
     
-    @StateObject var viewModel = WorkerTransactionViewModel()
+    @State var viewModel = WorkerTransactionViewModel()
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -22,10 +22,8 @@ struct WorkerTransactionView: View {
             }
             .padding(.all, 24)
         }
-        .onAppear {
-            Task {
-                await loadTransactionHistory()
-            }
+        .task {
+            await loadTransactionHistory()
         }
         .alert(item: $viewModel.customError) { error in
             Alert (

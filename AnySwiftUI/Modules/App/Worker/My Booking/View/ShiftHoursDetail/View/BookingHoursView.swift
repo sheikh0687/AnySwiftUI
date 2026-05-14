@@ -10,11 +10,11 @@ import SwiftUI
 struct BookingHoursView: View {
     
     @Environment(\.dismiss) var dismiss
-    @StateObject private var viewModel: BookingHourViewModel
+    @State private var viewModel: BookingHourViewModel
     @ObservedObject  private var locationManager = LocationManager.shared
     
     init(cartID: String) {
-        _viewModel = StateObject(wrappedValue: BookingHourViewModel(cartiD: cartID))
+        _viewModel = State(wrappedValue: BookingHourViewModel(cartiD: cartID))
     }
     
     var body: some View {

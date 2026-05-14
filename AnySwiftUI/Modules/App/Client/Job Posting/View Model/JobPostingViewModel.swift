@@ -5,53 +5,58 @@
 //  Created by Arbaz  on 04/05/26.
 //
 
-internal import Combine
+import Observation
 
-class JobPostingViewModel: ObservableObject {
+@Observable
+class JobPostingViewModel {
     
     // MARK: Form Fields
-    @Published var selectedOutletName: String = ""
-    @Published var selectedOutletID: String = ""
-    @Published var showOutletRow: Bool = false  // driven by API response
- 
-    @Published var jobTypeName: String = ""
-    @Published var jobTypeID: String = ""
- 
-    @Published var workerCount: Int = 1 {
+    var selectedOutletName: String = ""
+    var selectedOutletID: String = ""
+    var showOutletRow: Bool = false  // driven by API response
+    
+    var jobTypeName: String = ""
+    var jobTypeID: String = ""
+    
+    var workerCount: Int = 1 {
         didSet { syncWorker() }
     }
- 
-    @Published var scheduleType: ScheduleType? = nil
- 
+    
+    var scheduleType: ScheduleType? = nil
+    
     // Weekly days
-    @Published var selectedDaysName: String = ""
-    @Published var shiftStatus: String = ""
- 
-    // Specific dates
-    @Published var selectedDates: [String] = []
-    @Published var selectedDayNames: [String] = []
- 
-    // Shift
-    @Published var workerShifts: [WorkerShift] = [WorkerShift()]
-    @Published var applyTimeToAllWorkers: Bool = false
+     var selectedDaysName: String = ""
+     var shiftStatus: String = ""
     
-    @Published var globalStartTime: Date = Date()
-    @Published var globalEndTime: Date = Date()
- 
-    @Published var rateName: String = ""
-    @Published var breakType: String = ""
+//    c dates
+     var selectedDates: [String] = []
+     var selectedDayNames: [String] = []
     
-    @Published var breakTime: String = ""
-    @Published var meal: String = ""
- 
-    @Published var notes: String = ""
-
+     var workerShifts: [WorkerShift] = [WorkerShift()]
+     var applyTimeToAllWorkers: Bool = false
+    
+     var globalStartTime: Date = Date()
+     var globalEndTime: Date = Date()
+    
+     var rateName: String = ""
+     var breakType: String = ""
+    
+     var breakTime: String = ""
+     var meal: String = ""
+    
+     var notes: String = ""
+    
+    init() {
+        self.selectedOutletName = AppState.shared.outletName
+        self.selectedOutletID = AppState.shared.clientiD
+    }
+    
     // MARK: Computed helpers
     var scheduleLabel: String {
         guard let s = scheduleType else { return "Choose Schedule" }
         return s.rawValue
     }
- 
+    
     var dayLabel: String {
         switch scheduleType {
         case .weekly:   return selectedDaysName.isEmpty ? "Select Days" : selectedDaysName
@@ -60,7 +65,7 @@ class JobPostingViewModel: ObservableObject {
         case .none:     return "Select Days"
         }
     }
- 
+    
     var defaultRateLabel: String {
         switch scheduleType {
         case .weekly:    return "Default Weekly Rate"
@@ -69,7 +74,7 @@ class JobPostingViewModel: ObservableObject {
         case .none:      return "Default Date or Day Rate"
         }
     }
- 
+    
     var shiftType: String {
         switch scheduleType {
         case .weekly:    return "Normal"
@@ -78,15 +83,15 @@ class JobPostingViewModel: ObservableObject {
         case .none:      return ""
         }
     }
- 
+    
     var showNoteForWorker: Bool {
         return scheduleType == .urgent
     }
-
+    
     // MARK: Sync worker array
     func syncWorker() {
         
-        objectWillChange.send()   // 🔥 FORCE UI REFRESH
+//        objectWillChange.send()   // 🔥 FORCE UI REFRESH
         
         if workerShifts.count < workerCount {
             let diff = workerCount - workerShifts.count
@@ -107,7 +112,7 @@ class JobPostingViewModel: ObservableObject {
             return s
         }
     }
- 
+    
     // MARK: Remove a specific date
     func removeDate(at index: Int) {
         guard index < selectedDates.count else { return }
@@ -141,34 +146,73 @@ class JobPostingViewModel: ObservableObject {
     }
     
     // MARK: Collect Params (mirrors collectParamJobPost)
-    func collectParams() -> [String: Any] {
+    func collectParams() {
+        
         let startTimes = applyTimeToAllWorkers
-            ? Array(repeating: formattedTime(globalStartTime), count: workerCount)
-            : workerShifts.map { formattedTime($0.startTime) }
+        ? Array(repeating: formattedTime(globalStartTime), count: workerCount)
+        : workerShifts.map { formattedTime($0.startTime) }
+        
         let endTimes = applyTimeToAllWorkers
-            ? Array(repeating: formattedTime(globalEndTime), count: workerCount)
-            : workerShifts.map { formattedTime($0.endTime) }
- 
-        return [
-            "job_type": jobTypeName,
-            "job_type_id": jobTypeID,
-            "worker_count": workerCount,
-            "start_time": applyTimeToAllWorkers ? formattedTime(globalStartTime) : (startTimes.first ?? ""),
-            "end_time": applyTimeToAllWorkers ? formattedTime(globalEndTime) : (endTimes.first ?? ""),
-            "day_name": selectedDaysName,
-            "shiftStatus": shiftStatus,
-            "break_type": breakType,
-            "shift_type": shiftType,
-            "meals": meal,
-            "note": notes,
-            "single_date": selectedDates.joined(separator: ","),
-            "apply_time_same_for_allworkers": applyTimeToAllWorkers ? "Yes" : "No",
-            "multi_work_start_time": startTimes.joined(separator: ","),
-            "multi_work_end_time": endTimes.joined(separator: ","),
-            "shift_break_time": breakTime,
-            "outlet_id": selectedOutletID,
-            "business_name": selectedOutletName
-        ]
+        ? Array(repeating: formattedTime(globalEndTime), count: workerCount)
+        : workerShifts.map { formattedTime($0.endTime) }
+        
+        paramJobPostDict["user_id"] = AppState.shared.useriD
+        paramJobPostDict["job_type"] = jobTypeName
+        paramJobPostDict["job_type_id"] = jobTypeID
+        paramJobPostDict["worker_count"] = workerCount
+        
+        paramJobPostDict["start_time"] = applyTimeToAllWorkers
+        ? formattedTime(globalStartTime)
+        : (startTimes.first ?? "")
+        
+        paramJobPostDict["end_time"] = applyTimeToAllWorkers
+        ? formattedTime(globalEndTime)
+        : (endTimes.first ?? "")
+        
+        paramJobPostDict["shiftStatus"] = shiftStatus
+        paramJobPostDict["break_type"] = breakType
+        paramJobPostDict["shift_type"] = shiftType
+        paramJobPostDict["meals"] = meal
+        paramJobPostDict["note"] = notes
+        
+        paramJobPostDict["single_date"] = selectedDates.joined(separator: ",")
+        
+        paramJobPostDict["apply_time_same_for_allworkers"] = applyTimeToAllWorkers ? "Yes" : "No"
+        
+        paramJobPostDict["multi_work_start_time"] = startTimes.joined(separator: ",")
+        paramJobPostDict["multi_work_end_time"] = endTimes.joined(separator: ",")
+        
+        paramJobPostDict["shift_break_time"] = breakTime
+        paramJobPostDict["shift_break_time_in_min"] = Utility.convertToMinutes(from: breakTime)
+        paramJobPostDict["outlet_id"] = selectedOutletID
+        paramJobPostDict["business_name"] = selectedOutletName
+        
+        // MARK: - day_name logic (mirrors UIKit PublishJobVC exactly)
+        var dayName: String
+        
+        switch scheduleType {
+        case .weekly:
+            // Comes directly from days picker — already comma separated
+            // e.g. "Monday,Tuesday,Friday"
+            dayName = selectedDaysName
+            
+        case .urgent:
+            // Auto set to today — same as Utility.getCurrentDay()
+            dayName = Utility.getCurrentDay()
+            
+        case .specificDate:
+            // Derived from selected dates → day names joined
+            // e.g. selectedDayNames = ["Monday", "Wednesday"]
+            // result = "Monday,Wednesday"
+            dayName = selectedDayNames.joined(separator: ",")
+            
+        case .none:
+            dayName = ""
+        }
+
+        paramJobPostDict["day_name"] = dayName
+        
+        print(paramJobPostDict)
     }
     
     private func formattedTime(_ date: Date) -> String {
@@ -177,16 +221,19 @@ class JobPostingViewModel: ObservableObject {
         return f.string(from: date)
     }
     
-    @Published var showOutletPicker = false
-    @Published var showJobTypePicker = false
-    @Published var showWorkerCountPicker = false
-    @Published var showSchedulePicker = false
-    @Published var showDaysPicker = false
-    @Published var showDatePicker = false
-    @Published var showRatePicker = false
-    @Published var showBreakPicker = false
-    @Published var showMealPicker = false
+    var showOutletPicker = false
+    var showJobTypePicker = false
+    var showWorkerCountPicker = false
+    var showSchedulePicker = false
+    var showDaysPicker = false
+    var showDatePicker = false
+    var showRatePicker = false
+    var showBreakPicker = false
+    var showMealPicker = false
     
-    @Published var alertMessage: String? = nil
-    @Published var showAlert = false
+    var alertMessage: String? = nil
+    var showAlert = false
+    
+    var isLoading = false
+    var navigateToAssign = false
 }

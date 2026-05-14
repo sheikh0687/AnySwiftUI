@@ -5,7 +5,7 @@
 //  Created by Arbaz  on 31/03/26.
 //
 
-internal import Combine
+import Observation
 import SwiftUI
 
 enum BookingPopup: Identifiable, Hashable {
@@ -18,41 +18,42 @@ enum BookingPopup: Identifiable, Hashable {
     var id: Self { self }
 }
 
-final class BookingCalendarVM: ObservableObject {
+@Observable
+final class BookingCalendarVM {
     
-    @Published var currentWeekIndex: Int = 0
-    @Published var selectedDate: Date = Date()
-    @Published var currentWeekDays: [Date] = []
-    @Published var monthTitle: String = ""
+    var currentWeekIndex: Int = 0
+    var selectedDate: Date = Date()
+    var currentWeekDays: [Date] = []
+    var monthTitle: String = ""
     
-    @Published var clientiD: String = ""
-    @Published var jobType: String = ""
-    @Published var notes: String = ""
-    @Published var nrcDocument: String = ""
-    @Published var instantApproved: String = ""
-    @Published var companyDetail: String = ""
-    @Published var shiftDetail: String = ""
-    @Published var outletiD: String = ""
-    @Published var shiftiD: String = ""
-    @Published var shiftRate: String = ""
-    @Published var singleDate: String = ""
-    @Published var shiftStatus: String = ""
-    @Published var countryName: String = ""
-    @Published var documentReq: String = ""
+    var clientiD: String = ""
+    var jobType: String = ""
+    var notes: String = ""
+    var nrcDocument: String = ""
+    var instantApproved: String = ""
+    var companyDetail: String = ""
+    var shiftDetail: String = ""
+    var outletiD: String = ""
+    var shiftiD: String = ""
+    var shiftRate: String = ""
+    var singleDate: String = ""
+    var shiftStatus: String = ""
+    var countryName: String = ""
+    var documentReq: String = ""
     
-    @Published var isLoading: Bool = false
-    @Published var customError: CustomError?
-    @Published var obj: Res_JobProvider?
-    @Published var shiftBooked: Bool = false
-    @Published var shiftLeft: Bool = false
+    var isLoading: Bool = false
+    var customError: CustomError?
+    var obj: Res_JobProvider?
+    var shiftBooked: Bool = false
+    var shiftLeft: Bool = false
     
     private var weekStartDates: [Date] = []
     private var weekEndDates: [Date] = []
     
-    @Published var weekShifts: [Res_DayShiftCount] = []
-    @Published var dayWiseShift: [Res_DayWiseShift] = []
+    var weekShifts: [Res_DayShiftCount] = []
+    var dayWiseShift: [Res_DayWiseShift] = []
     
-    @Published var activePopup: BookingPopup?
+    var activePopup: BookingPopup?
     
     private let calendar = SGDate.calendar
     

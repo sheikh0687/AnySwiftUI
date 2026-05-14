@@ -10,7 +10,7 @@ internal import Combine
 
 struct SameDayShiftView: View {
     
-    @StateObject var viewModel = SameDayShiftViewModel()
+    @State var viewModel = SameDayShiftViewModel()
     
     var body: some View {
         ZStack(alignment: .top) {

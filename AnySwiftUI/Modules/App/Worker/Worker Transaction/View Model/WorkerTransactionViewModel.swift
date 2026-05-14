@@ -5,16 +5,18 @@
 //  Created by Arbaz  on 27/03/26.
 //
 
-internal import Combine
+import Observation
 
-class WorkerTransactionViewModel: ObservableObject {
+@Observable
+class WorkerTransactionViewModel {
     
-    @Published var isLoading = false
-    @Published var customError: CustomError?
-    @Published var totalEarning = 0
-    @Published var totalJob = 0
+    var isLoading = false
+    var customError: CustomError?
     
-    @Published var workerTransaction: [Res_WorkerTransactionHistory] = []
+    var totalEarning = 0
+    var totalJob = 0
+    
+    var workerTransaction: [Res_WorkerTransactionHistory] = []
     
     @MainActor
     func fetchWorkerTransactionHistory() async throws -> Api_WorkerTransactionHistory {

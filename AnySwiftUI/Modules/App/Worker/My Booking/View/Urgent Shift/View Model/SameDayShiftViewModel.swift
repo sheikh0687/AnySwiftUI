@@ -5,16 +5,17 @@
 //  Created by Arbaz  on 15/04/26.
 //
 
-internal import Combine
+import Observation
 
-class SameDayShiftViewModel: ObservableObject {
+@Observable
+class SameDayShiftViewModel {
     
-    @Published var isLoading = false
-    @Published var customError: CustomError?
+    var isLoading = false
+    var customError: CustomError?
     
-    @Published var arrayOfSameDayShift: [Res_UrgentShift] = []
-    @Published var sameDayShift: Res_UrgentShift?
-    @Published var activeAlert: SameDayAlert?
+    var arrayOfSameDayShift: [Res_UrgentShift] = []
+    var sameDayShift: Res_UrgentShift?
+    var activeAlert: SameDayAlert?
     
     @MainActor
     func fetchSameDayShift() async throws -> Api_UrgentShift {

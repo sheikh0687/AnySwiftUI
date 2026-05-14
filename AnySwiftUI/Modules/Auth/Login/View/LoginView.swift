@@ -10,10 +10,10 @@ import CountryPicker
 
 struct LoginView: View {
     
-    @StateObject private var viewModel: LoginViewModel
+    @State private var viewModel: LoginViewModel
     
     init(userType: String) {
-        _viewModel = StateObject(wrappedValue: LoginViewModel(userType: userType))
+        _viewModel = State(wrappedValue: LoginViewModel(userType: userType))
     }
     
     var body: some View {

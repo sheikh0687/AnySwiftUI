@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ClientJobView: View {
     
-    @StateObject var viewModel = ClientJobViewModel()
+    @State var viewModel = ClientJobViewModel()
     
     var segmentItems: [SegmentItem] {
         [

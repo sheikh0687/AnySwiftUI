@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PasswordOtpView: View {
     
-    @ObservedObject var viewModel: OtpViewModel
+    @State var viewModel: OtpViewModel
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -64,7 +64,6 @@ struct PasswordOtpView: View {
                     font: .medium(.subtitle),
                     color: .red
                 )
-//                .multilineTextAlignment(.center)
             }
         }
     }

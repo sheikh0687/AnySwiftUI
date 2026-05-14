@@ -11,7 +11,7 @@ struct BookingDetailView: View {
     
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var appState: AppState
-    @StateObject var viewModel: BookingCalendarVM
+    @State var viewModel: BookingCalendarVM
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -267,7 +267,7 @@ struct BookingPopupPresenter: View {
 
 struct WeeklyCalanderView: View {
     
-    @StateObject var vm: BookingCalendarVM
+    @State var vm: BookingCalendarVM
     
     var body: some View {
         VStack(spacing: 16) {
@@ -320,7 +320,7 @@ struct WeeklyCalanderView: View {
 
 struct DayWiseShiftView: View {
     
-    @StateObject var vm: BookingCalendarVM
+    @State var vm: BookingCalendarVM
     
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {

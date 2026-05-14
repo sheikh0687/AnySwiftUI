@@ -5,15 +5,15 @@
 //  Created by Arbaz  on 17/03/26.
 //
 
-internal import Combine
+import Observation
 
-class UpdatePasswordViewModel: ObservableObject {
+@Observable
+class UpdatePasswordViewModel {
     
-    @Published var isLoading: Bool = false
-    @Published var customError: CustomError?
-    
-    @Published var password: String = ""
-    @Published var confirmPassword: String = ""
+    var isLoading: Bool = false
+    var customError: CustomError?
+    var password: String = ""
+    var confirmPassword: String = ""
     
     @MainActor
     func resetPassword() async throws -> Api_Basic {

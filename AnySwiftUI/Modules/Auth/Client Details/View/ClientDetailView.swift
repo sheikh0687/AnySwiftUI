@@ -10,7 +10,7 @@ import CountryPicker
 
 struct ClientDetailView: View {
     
-    @StateObject private var viewModel = ClientDetailViewModel()
+    @State private var viewModel = ClientDetailViewModel()
     
     var body: some View {
         ZStack(alignment: .top) {

@@ -5,42 +5,43 @@
 //  Created by Arbaz  on 27/03/26.
 //
 
-internal import Combine
+import Observation
 
-class JobProviderViewModel: ObservableObject {
+@Observable
+class JobProviderViewModel {
     
-    @Published var isLoading = false
-    @Published var customError: CustomError?
+    var isLoading = false
+    var customError: CustomError?
     
-    @Published var dayName: String = ""
-    @Published var date: String = ""
-    @Published var day: String = ""
+    var dayName: String = ""
+    var date: String = ""
+    var day: String = ""
     
-    @Published var availableSlot: [Res_AvailableSlot] = []
-    @Published var jobProviderList: [Res_JobProvider] = []
-    @Published var objProviderList: Res_JobProvider?
+    var availableSlot: [Res_AvailableSlot] = []
+    var jobProviderList: [Res_JobProvider] = []
+    var objProviderList: Res_JobProvider?
     
-    @Published var strClientiD: String = ""
-    @Published var addedFavClient: Bool = false
+    var strClientiD: String = ""
+    var addedFavClient: Bool = false
     
-    @Published var search: String = ""
-    @Published var showJobType: Bool = false
+    var search: String = ""
+    var showJobType: Bool = false
     
-    @Published var jobiD: String = ""
-    @Published var jobName: String = ""
+    var jobiD: String = ""
+    var jobName: String = ""
     
-    @Published var userLat: Double = 0.0
-    @Published var userLon: Double = 0.0
-    @Published var selectedAddress: String = ""
+    var userLat: Double = 0.0
+    var userLon: Double = 0.0
+    var selectedAddress: String = ""
     
-    @Published var showLocationResults = false
-    @Published var isSelectingSuggestion = false
+    var showLocationResults = false
+    var isSelectingSuggestion = false
     
-    @Published var navToBooking: Bool = false
-    @Published var preselectedDate: Date?
+    var navToBooking: Bool = false
+    var preselectedDate: Date?
     
-    @Published var scrollOffset: CGFloat = 0
-    @Published var showTopViews: Bool = true
+    var scrollOffset: CGFloat = 0
+    var showTopViews: Bool = true
     
     var filteredList: [Res_JobProvider] {
         if search.isEmpty {

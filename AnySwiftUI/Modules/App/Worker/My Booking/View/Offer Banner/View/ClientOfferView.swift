@@ -10,8 +10,8 @@ import SwiftUI
 
 struct ClientOfferView: View {
     
-    @StateObject var viewModel = ClientOfferVM()
-    @StateObject private var autoPlayer = BannerAutoPlayer()
+    @State var viewModel = ClientOfferVM()
+    @State private var autoPlayer = BannerAutoPlayer()
     @Environment(\.scenePhase) private var scenePhase
     
     var body: some View {

@@ -114,6 +114,7 @@ final class AppState: ObservableObject {
         willSet { objectWillChange.send() }
     }
 
+    @Published var hasOutlets: Bool = false
     @Published var goToHome: Bool = false
     @Published var switchToTab: Tabs = .myBooking
     

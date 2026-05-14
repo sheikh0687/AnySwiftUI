@@ -6,27 +6,28 @@
 //
 
 import Foundation
-internal import Combine
+import Observation
 
-class OtpViewModel: ObservableObject {
+@Observable
+class OtpViewModel {
     
-    @Published var isLoading: Bool = false
-    @Published var customError: CustomError?
+    var isLoading: Bool = false
+    var customError: CustomError?
     
-    @Published var showErrorMessgae = false
+    var showErrorMessgae = false
     
-    @Published var digits: [String] = Array(repeating: "", count: 5)
-    @Published var numberOfDigits = 5
+    var digits: [String] = Array(repeating: "", count: 5)
+    var numberOfDigits = 5
     
-    @Published var isReceivedOTP: Bool = false
-    @Published var otpCode: Int = 0
-    @Published var optionalCode: String = ""
+    var isReceivedOTP: Bool = false
+    var otpCode: Int = 0
+    var optionalCode: String = ""
     
-    @Published var email: String = ""
-    @Published var contactNumber: String = "8982484814"
-    @Published var strType: String = ""
-    @Published var mobileCode: String = ""
-    @Published var navContinue: Bool = false
+    var email: String = ""
+    var contactNumber: String = "8982484814"
+    var strType: String = ""
+    var mobileCode: String = ""
+    var navContinue: Bool = false
     
     init(contactNumber: String, email: String, strType: String, mobileCode: String) {
         self.contactNumber = contactNumber

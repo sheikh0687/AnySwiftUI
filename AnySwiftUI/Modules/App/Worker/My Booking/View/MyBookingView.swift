@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MyBookingView: View {
     
-    @StateObject var viewModel = MyBookingViewModel()
+    @State var viewModel = MyBookingViewModel()
     @State var showSameDayShift = false
     
     var body: some View {

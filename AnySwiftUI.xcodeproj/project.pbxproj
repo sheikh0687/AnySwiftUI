@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B704F4262FACAD89008AFA83 /* AddJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = B704F4252FACAD89008AFA83 /* AddJob.swift */; };
 		B70628B42F6D15F400B1C179 /* SegmentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70628B32F6D15F400B1C179 /* SegmentButton.swift */; };
 		B70628CF2F6D177300B1C179 /* MyBookingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70628CE2F6D177300B1C179 /* MyBookingViewModel.swift */; };
 		B70628DC2F6D1C4800B1C179 /* NotificationCountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70628DB2F6D1C4800B1C179 /* NotificationCountModel.swift */; };
+		B70D59962FB1B1B30025FB69 /* UrgentShiftViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70D59952FB1B1B30025FB69 /* UrgentShiftViewModel.swift */; };
+		B70D59982FB1B2640025FB69 /* UrgentShiftModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70D59972FB1B2640025FB69 /* UrgentShiftModel.swift */; };
 		B713253E2F61442F0056A10B /* OtpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B713253D2F61442F0056A10B /* OtpModel.swift */; };
 		B713256A2F614ACA0056A10B /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71325692F614ACA0056A10B /* AppConstant.swift */; };
 		B71D85B02F7B999D00C44B36 /* BookingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D85AF2F7B999D00C44B36 /* BookingDetailView.swift */; };
@@ -82,6 +85,8 @@
 		B7720AD02F7A53E600514E49 /* AppSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7720ACF2F7A53E600514E49 /* AppSettingModel.swift */; };
 		B7720AD42F7A540B00514E49 /* AppSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7720AD32F7A540B00514E49 /* AppSettingViewModel.swift */; };
 		B7720ADC2F7A575D00514E49 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7720ADB2F7A575D00514E49 /* Root.swift */; };
+		B77BAD842FAB09F10002288A /* AssignJobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77BAD832FAB09F10002288A /* AssignJobView.swift */; };
+		B77BAD862FAB0B7C0002288A /* PreviousWorkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77BAD852FAB0B7C0002288A /* PreviousWorkers.swift */; };
 		B77DF59C2F6801C700EA39EC /* WorkerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77DF59B2F6801C700EA39EC /* WorkerDetailView.swift */; };
 		B77DF5A12F6802DE00EA39EC /* WorkerDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77DF5A02F6802DE00EA39EC /* WorkerDetailViewModel.swift */; };
 		B78239E42F8CE8B6008BACE7 /* BookingHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78239E32F8CE8B6008BACE7 /* BookingHoursView.swift */; };
@@ -116,6 +121,7 @@
 		B7C20F572F7A88F400E9EA4C /* ShiftSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C20F562F7A88F400E9EA4C /* ShiftSheetView.swift */; };
 		B7C20F5B2F7A899B00E9EA4C /* ShiftModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C20F5A2F7A899B00E9EA4C /* ShiftModel.swift */; };
 		B7C20F5F2F7A89D600E9EA4C /* ShiftViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C20F5E2F7A89D600E9EA4C /* ShiftViewModel.swift */; };
+		B7C55AD92FAB0C3100889BAE /* AssignJobViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C55AD82FAB0C3100889BAE /* AssignJobViewModel.swift */; };
 		B7C9C59F2F7AAA830067806C /* LocationSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C9C59E2F7AAA830067806C /* LocationSearchViewModel.swift */; };
 		B7DD10412F3B55BA00C365AA /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DD10402F3B55BA00C365AA /* LoginViewModel.swift */; };
 		B7E89E042F76535700DA2BCB /* DeleteWorkerShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E89E032F76535600DA2BCB /* DeleteWorkerShift.swift */; };
@@ -136,9 +142,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B704F4252FACAD89008AFA83 /* AddJob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJob.swift; sourceTree = "<group>"; };
 		B70628B32F6D15F400B1C179 /* SegmentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentButton.swift; sourceTree = "<group>"; };
 		B70628CE2F6D177300B1C179 /* MyBookingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookingViewModel.swift; sourceTree = "<group>"; };
 		B70628DB2F6D1C4800B1C179 /* NotificationCountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCountModel.swift; sourceTree = "<group>"; };
+		B70D59952FB1B1B30025FB69 /* UrgentShiftViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrgentShiftViewModel.swift; sourceTree = "<group>"; };
+		B70D59972FB1B2640025FB69 /* UrgentShiftModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrgentShiftModel.swift; sourceTree = "<group>"; };
 		B713253D2F61442F0056A10B /* OtpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpModel.swift; sourceTree = "<group>"; };
 		B71325692F614ACA0056A10B /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
 		B71D85AF2F7B999D00C44B36 /* BookingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingDetailView.swift; sourceTree = "<group>"; };
@@ -209,6 +218,8 @@
 		B7720ACF2F7A53E600514E49 /* AppSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingModel.swift; sourceTree = "<group>"; };
 		B7720AD32F7A540B00514E49 /* AppSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingViewModel.swift; sourceTree = "<group>"; };
 		B7720ADB2F7A575D00514E49 /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
+		B77BAD832FAB09F10002288A /* AssignJobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignJobView.swift; sourceTree = "<group>"; };
+		B77BAD852FAB0B7C0002288A /* PreviousWorkers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousWorkers.swift; sourceTree = "<group>"; };
 		B77DF59B2F6801C700EA39EC /* WorkerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerDetailView.swift; sourceTree = "<group>"; };
 		B77DF5A02F6802DE00EA39EC /* WorkerDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerDetailViewModel.swift; sourceTree = "<group>"; };
 		B78239E32F8CE8B6008BACE7 /* BookingHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingHoursView.swift; sourceTree = "<group>"; };
@@ -244,6 +255,7 @@
 		B7C20F562F7A88F400E9EA4C /* ShiftSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftSheetView.swift; sourceTree = "<group>"; };
 		B7C20F5A2F7A899B00E9EA4C /* ShiftModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftModel.swift; sourceTree = "<group>"; };
 		B7C20F5E2F7A89D600E9EA4C /* ShiftViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftViewModel.swift; sourceTree = "<group>"; };
+		B7C55AD82FAB0C3100889BAE /* AssignJobViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignJobViewModel.swift; sourceTree = "<group>"; };
 		B7C9C59E2F7AAA830067806C /* LocationSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewModel.swift; sourceTree = "<group>"; };
 		B7DD10402F3B55BA00C365AA /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		B7E89E032F76535600DA2BCB /* DeleteWorkerShift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteWorkerShift.swift; sourceTree = "<group>"; };
@@ -886,6 +898,41 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		B77BAD7F2FAB09640002288A /* Assign Job */ = {
+			isa = PBXGroup;
+			children = (
+				B77BAD822FAB09D10002288A /* Model */,
+				B77BAD812FAB09CA0002288A /* View */,
+				B77BAD802FAB09810002288A /* View Model */,
+			);
+			path = "Assign Job";
+			sourceTree = "<group>";
+		};
+		B77BAD802FAB09810002288A /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				B7C55AD82FAB0C3100889BAE /* AssignJobViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		B77BAD812FAB09CA0002288A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B77BAD832FAB09F10002288A /* AssignJobView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B77BAD822FAB09D10002288A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B77BAD852FAB0B7C0002288A /* PreviousWorkers.swift */,
+				B704F4252FACAD89008AFA83 /* AddJob.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B77DF5892F6800B500EA39EC /* Worker Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -1295,6 +1342,7 @@
 			children = (
 				B7EB2EED2F90AFE900A27908 /* JobPostingView.swift */,
 				B720663C2FA8C14C00EE854A /* Job Detail */,
+				B77BAD7F2FAB09640002288A /* Assign Job */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1320,6 +1368,7 @@
 		B7EB2EE02F90AC3300A27908 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				B70D59952FB1B1B30025FB69 /* UrgentShiftViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -1335,6 +1384,7 @@
 		B7EB2EE22F90AC3E00A27908 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B70D59972FB1B2640025FB69 /* UrgentShiftModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1489,6 +1539,7 @@
 				B713253E2F61442F0056A10B /* OtpModel.swift in Sources */,
 				B72066412FA8C18E00EE854A /* SelectJobDetailView.swift in Sources */,
 				B756B9862F89292800570540 /* WithdrawShift.swift in Sources */,
+				B7C55AD92FAB0C3100889BAE /* AssignJobViewModel.swift in Sources */,
 				B7B8E3FF2F5ED9C500DC39FE /* CountryList.swift in Sources */,
 				B7472A642F6930BD0052A797 /* UpdatePasswordViewModel.swift in Sources */,
 				B71D85E72F7BB41400C44B36 /* DayShiftCount.swift in Sources */,
@@ -1516,6 +1567,7 @@
 				B7C9C59F2F7AAA830067806C /* LocationSearchViewModel.swift in Sources */,
 				B7C20F402F7A7ED800E9EA4C /* CommonModel.swift in Sources */,
 				B766B9E52F8E42C90090FA54 /* BannerCursor.swift in Sources */,
+				B70D59962FB1B1B30025FB69 /* UrgentShiftViewModel.swift in Sources */,
 				B72066472FA8CD1300EE854A /* WeeklyDayName.swift in Sources */,
 				B766B9F22F8E747A0090FA54 /* ShiftSummaryView.swift in Sources */,
 				B766B9E62F8E42C90090FA54 /* ClientOfferViewModel.swift in Sources */,
@@ -1528,10 +1580,12 @@
 				B75C0D732F74FF85002C4493 /* WorkerBookingDetail.swift in Sources */,
 				B747FA452F5BF45A008AAAD7 /* TextFields.swift in Sources */,
 				B78239E42F8CE8B6008BACE7 /* BookingHoursView.swift in Sources */,
+				B704F4262FACAD89008AFA83 /* AddJob.swift in Sources */,
 				B7B8E3CF2F5ECC6F00DC39FE /* InternetConnection.swift in Sources */,
 				B7306C6F2F69567C0029B108 /* ChangePasswordViewModel.swift in Sources */,
 				B7B8E3DE2F5ECD4500DC39FE /* Router.swift in Sources */,
 				B713256A2F614ACA0056A10B /* AppConstant.swift in Sources */,
+				B70D59982FB1B2640025FB69 /* UrgentShiftModel.swift in Sources */,
 				B7720AAA2F7A497C00514E49 /* OverallSettingView.swift in Sources */,
 				B74DBB1F2F960D8300AAB836 /* OutletModel.swift in Sources */,
 				B7AB41772F6920E30069C7BF /* ResetPasswordModel.swift in Sources */,
@@ -1548,6 +1602,7 @@
 				B7DD10412F3B55BA00C365AA /* LoginViewModel.swift in Sources */,
 				B7BF3B532F6829AD00B2FFEF /* RegisteredView.swift in Sources */,
 				B7E89E512F76823700DA2BCB /* WorkerTransaction.swift in Sources */,
+				B77BAD862FAB0B7C0002288A /* PreviousWorkers.swift in Sources */,
 				B7720AD02F7A53E600514E49 /* AppSettingModel.swift in Sources */,
 				B7E89E042F76535700DA2BCB /* DeleteWorkerShift.swift in Sources */,
 				B7EB2EEC2F90AF3D00A27908 /* ClientJobView.swift in Sources */,
@@ -1567,6 +1622,7 @@
 				B79B00C02F87D6E40061E976 /* FinalBooking.swift in Sources */,
 				B72267D52F3B02BA0068BAF2 /* OnboardingModel.swift in Sources */,
 				B74DBB232F96123B00AAB836 /* UpcomingShift.swift in Sources */,
+				B77BAD842FAB09F10002288A /* AssignJobView.swift in Sources */,
 				B766B9EE2F8E67A50090FA54 /* BreakTime.swift in Sources */,
 				B766B9EC2F8E64940090FA54 /* BreakPopupSheet.swift in Sources */,
 				B72267DB2F3B04D60068BAF2 /* UIFont+Extension.swift in Sources */,

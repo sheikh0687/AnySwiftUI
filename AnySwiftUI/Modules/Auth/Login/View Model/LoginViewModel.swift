@@ -5,42 +5,42 @@
 //  Created by Arbaz  on 10/02/26.
 //
 
-import Foundation
-internal import Combine
+import Observation
 import CountryPicker
 
-class LoginViewModel: ObservableObject {
+@Observable
+class LoginViewModel {
     
-    @Published var userType: String = ""
+    var userType: String = ""
     
-    @Published var isLogin: Bool = false
-    @Published var email: String = ""
-    @Published var password: String = ""
-    @Published var confirmPassword: String = ""
+    var isLogin: Bool = false
+    var email: String = ""
+    var password: String = ""
+    var confirmPassword: String = ""
     
-    @Published var firstName: String = ""
-    @Published var lastName: String = ""
-    @Published var mobileNumber: String = ""
-    @Published var mobileCode: String = ""
+    var firstName: String = ""
+    var lastName: String = ""
+    var mobileNumber: String = ""
+    var mobileCode: String = ""
     
-    @Published var showCountryPicker = false
-    @Published var countryObj: Country?
+    var showCountryPicker = false
+    var countryObj: Country?
     
-    @Published var isCheck = false
-    @Published var goToVerify: Bool = false
-    @Published var resetPassword: Bool = false
+    var isCheck = false
+    var goToVerify: Bool = false
+    var resetPassword: Bool = false
     
-    @Published var loginResponse: Api_LoginResponse?
-    @Published var countryList: [Res_CountryList] = []
-    @Published var selectedCountry: String = "Select Country"
-    @Published var selectedCountryiD: String = ""
+    var loginResponse: Api_LoginResponse?
+    var countryList: [Res_CountryList] = []
+    var selectedCountry: String = "Select Country"
+    var selectedCountryiD: String = ""
     
     init(userType: String) {
         self.userType = userType
     }
     
-    @Published var isLoading: Bool = false
-    @Published var customError: CustomError? = nil
+    var isLoading: Bool = false
+    var customError: CustomError? = nil
     
     @MainActor
     func login() async throws -> Api_LoginResponse {
@@ -85,32 +85,6 @@ class LoginViewModel: ObservableObject {
         AppState.shared.outletName = res.business_name ?? ""
         AppState.shared.outletImage = res.business_logo ?? ""
     }
-    
-    //    func saveCredentials(res: Res_LoginResponse) {
-    //        let defaults = UserDefaults.standard
-    //        
-    //        defaults.set(true, forKey: AppStorageKey.isLoggedIn.rawValue)
-    //        defaults.set(res.id ?? "", forKey: AppStorageKey.useriD.rawValue)
-    //        defaults.set(res.first_name ?? "", forKey: AppStorageKey.userFirstName.rawValue)
-    //        defaults.set(res.last_name ?? "", forKey: AppStorageKey.userLastName.rawValue)
-    //        defaults.set(res.email ?? "", forKey: AppStorageKey.userEmail.rawValue)
-    //        defaults.set(res.mobile ?? "", forKey: AppStorageKey.userMobile.rawValue)
-    //        defaults.set(res.ios_register_id ?? "", forKey: AppStorageKey.ios_RegisterediD.rawValue)
-    //        defaults.set(res.type ?? "", forKey: AppStorageKey.userType.rawValue)
-    //        defaults.set(res.country_id ?? "", forKey: AppStorageKey.countryiD.rawValue)
-    //        
-    //        // ⭐ update UI STATE LAST
-    //        let appState = AppState.shared
-    //        appState.isLoggedIn = true
-    //        appState.useriD = res.id ?? ""
-    //        appState.userFirstName = res.first_name ?? ""
-    //        appState.userLastName = res.last_name ?? ""
-    //        appState.emailiD = res.email ?? ""
-    //        appState.userMobile = res.mobile ?? ""
-    //        appState.ios_RegisterediD = res.ios_register_id ?? ""
-    //        appState.userType = res.type ?? ""
-    //        appState.countryiD = res.country_id ?? ""
-    //    }
     
     @MainActor
     func countryList() async throws -> Api_CountryList {

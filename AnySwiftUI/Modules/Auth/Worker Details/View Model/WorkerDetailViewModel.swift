@@ -5,17 +5,17 @@
 //  Created by Arbaz  on 16/03/26.
 //
 
-internal import Combine
+import Observation
 import UIKit
 
-class WorkerDetailViewModel: ObservableObject {
+@Observable
+class WorkerDetailViewModel {
     
-    @Published var isLoading = false
-    @Published var customError: CustomError?
-
-    @Published var selectedProfileImage: UIImage? = nil
-    @Published var showCameraActionSheet: Bool = false
-    @Published var isWorkerCreated: Bool = false
+    var isLoading = false
+    var customError: CustomError?
+    var selectedProfileImage: UIImage? = nil
+    var showCameraActionSheet: Bool = false
+    var isWorkerCreated: Bool = false
     
     @MainActor
     func updateWorkerProfile() async throws -> Api_LoginResponse {

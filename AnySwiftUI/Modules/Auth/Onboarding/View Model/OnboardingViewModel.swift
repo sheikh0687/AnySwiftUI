@@ -5,13 +5,14 @@
 //  Created by Arbaz  on 10/02/26.
 //
 
+import Observation
 import SwiftUI
-internal import Combine
 
-class OnboardingViewModel: ObservableObject {
+@Observable
+class OnboardingViewModel {
     
-    @Published var currentPage = 0
-    @Published var goToLogin = false
+    var currentPage = 0
+    var goToLogin = false
     
     let onboardingData: [OnboardingItem] = [
         .init(imageName: "logo", title: "Welcome to ANY", description: "Find jobs and get workers\nINSTANTLY"),

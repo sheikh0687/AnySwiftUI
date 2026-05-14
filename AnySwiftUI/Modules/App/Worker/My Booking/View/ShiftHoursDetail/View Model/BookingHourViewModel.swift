@@ -5,30 +5,30 @@
 //  Created by Arbaz  on 13/04/26.
 //
 
-import Foundation
-internal import Combine
+import Observation
 
-class BookingHourViewModel: ObservableObject {
+@Observable
+class BookingHourViewModel {
     
-    @Published var isLoading = false
+    var isLoading = false
     
-    @Published var cartiD: String = ""
-    @Published var clientLat: String = ""
-    @Published var clientLon: String = ""
-    @Published var workingStatus: String = ""
+    var cartiD: String = ""
+    var clientLat: String = ""
+    var clientLon: String = ""
+    var workingStatus: String = ""
     
-    @Published var locationAlert: LocationAlert?
-    @Published var isCheckingLocation = false
-    @Published var navigateToComplete  = false
+    var locationAlert: LocationAlert?
+    var isCheckingLocation = false
+    var navigateToComplete  = false
 
-    @Published var shiftDetail: Api_BookingHours?
-    @Published var arrayOfBreakTime: [String] = []
+    var shiftDetail: Api_BookingHours?
+    var arrayOfBreakTime: [String] = []
     
-    @Published var clockOutInResult: Api_ClockOutIn?
-    @Published var showClockOutConfirmation = false
-    @Published var clockInError: ClockInError?
+    var clockOutInResult: Api_ClockOutIn?
+    var showClockOutConfirmation = false
+    var clockInError: ClockInError?
     
-    @Published var activeBreakPopup: BreakPopup?
+    var activeBreakPopup: BreakPopup?
     
     init(cartiD: String) {
         self.cartiD = cartiD

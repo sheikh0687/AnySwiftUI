@@ -5,29 +5,30 @@
 //  Created by Arbaz  on 16/03/26.
 //
 
-internal import Combine
+import Observation
 import UIKit
 import CountryPicker
 
-class ClientDetailViewModel: ObservableObject {
+@Observable
+class ClientDetailViewModel {
     
-    @Published var isLoading = false
-    @Published var customError: CustomError?
+    var isLoading = false
+    var customError: CustomError?
 
-    @Published var selectedBusinessProfile: UIImage? = nil
+    var selectedBusinessProfile: UIImage? = nil
     
-    @Published var businessName: String = ""
-    @Published var registerNumber: String = ""
-    @Published var businessAddress: String = ""
-    @Published var businessLat: Double = 0.0
-    @Published var businessLon: Double = 0.0
+    var businessName: String = ""
+    var registerNumber: String = ""
+    var businessAddress: String = ""
+    var businessLat: Double = 0.0
+    var businessLon: Double = 0.0
     
-    @Published var mobileNumber: String = ""
+    var mobileNumber: String = ""
     
-    @Published var showCountryPicker = false
-    @Published var countryObj: Country?
+    var showCountryPicker = false
+    var countryObj: Country?
     
-    @Published var navContinue: Bool = false
+    var navContinue: Bool = false
     
     @MainActor
     func updateClientDetails() async throws -> Api_LoginResponse {

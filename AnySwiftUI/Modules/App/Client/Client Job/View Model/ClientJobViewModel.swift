@@ -5,43 +5,39 @@
 //  Created by Arbaz  on 20/04/26.
 //
 
-internal import Combine
+import Observation
 
-@MainActor
-class ClientJobViewModel: ObservableObject {
+@Observable
+class ClientJobViewModel {
     
     // Tab
-    @Published var selectedTab: JobTab = .daily
+    var selectedTab: JobTab = .daily
     
-    // Outlet
-    @Published var outlets: [Res_ClientOutlet] = []
-    @Published var selectedOutlet: Res_ClientOutlet?
-    @Published var showOutletDropDown = false
+    var outlets: [Res_ClientOutlet] = []
+    var selectedOutlet: Res_ClientOutlet?
+    var showOutletDropDown = false
     
-    // Daily
-    @Published var todayShiftName: String = ""
-    @Published var todayShiftDescription: String = ""
-    @Published var manpowerWorkers: [Worker_details] = []
-    @Published var weeklyPendingCount: Int = 0
-    @Published var dailyPendingCount: Int = 0
+    var todayShiftName: String = ""
+    var todayShiftDescription: String = ""
+    var manpowerWorkers: [Worker_details] = []
+    var weeklyPendingCount: Int = 0
+    var dailyPendingCount: Int = 0
     
-    // Weekly
-    @Published var currentWeekIndex: Int = 0
-    @Published var weekStartDates: [Date] = []
-    @Published var weekEndDates: [Date] = []
-    @Published var weekStartToEnd: [String] = []
-    @Published var weekDays: [Date] = []
-    @Published var currentMonthYear: String = ""
-    @Published var jobTypes: [Res_WeeklyShift] = []
+    var currentWeekIndex: Int = 0
+    var weekStartDates: [Date] = []
+    var weekEndDates: [Date] = []
+    var weekStartToEnd: [String] = []
+    var weekDays: [Date] = []
+    var currentMonthYear: String = ""
+    var jobTypes: [Res_WeeklyShift] = []
     
-    // Upcoming
-    @Published var upcomingShifts: [Res_UpcomingShifts] = []
+    var upcomingShifts: [Res_UpcomingShifts] = []
     
     // Loading
-    @Published var isLoading = false
+    var isLoading = false
     
-    @Published var navigateToRequest = false
-    @Published var navigateToRequestByDate: String? = nil
+    var navigateToRequest = false
+    var navigateToRequestByDate: String? = nil
     
     var selectedTabIndex: Int {
         get { selectedTab == .daily ? 0 : 1 }
@@ -259,8 +255,12 @@ class ClientJobViewModel: ObservableObject {
     }
     
     func applyOutlets(_ response: Api_ClientOutlet) {
-        guard response.status == "1", let result = response.result else { return }
+        guard response.status == "1", let result = response.result else { 
+            AppState.shared.hasOutlets = false
+            return 
+        }
         
+        AppState.shared.hasOutlets = !result.isEmpty
         var items = result
         
         // Insert default business as first if not already present

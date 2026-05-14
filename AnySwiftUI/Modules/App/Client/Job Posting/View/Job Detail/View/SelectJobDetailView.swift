@@ -13,13 +13,13 @@ struct SelectJobDetailView: View {
     /// Called on final selection: (displayName/value, id/secondParam)
     var onSelect: (String, String) -> Void
     
-    @StateObject var viewModel: JobDetailViewModel
+    @State var viewModel: JobDetailViewModel
     @Environment(\.dismiss) private var dismiss
     
     init(mode: PickerMode, onSelect: @escaping (String, String) -> Void) {
         self.mode = mode
         self.onSelect = onSelect
-        _viewModel = StateObject(wrappedValue: JobDetailViewModel(mode: mode))
+        _viewModel = State(wrappedValue: JobDetailViewModel(mode: mode))
     }
     
     var body: some View {

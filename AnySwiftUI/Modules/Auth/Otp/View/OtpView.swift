@@ -10,10 +10,10 @@ internal import Combine
 
 struct OtpView: View {
     
-    @StateObject private var viewModel: OtpViewModel
+    @State private var viewModel: OtpViewModel
     
     init(strType: String, contactNumber: String, mobileCode: String, email: String) {
-        _viewModel = StateObject(wrappedValue: OtpViewModel (
+        _viewModel = State(wrappedValue: OtpViewModel (
             contactNumber: contactNumber,
             email: email,
             strType: strType,

@@ -5,22 +5,21 @@
 //  Created by Arbaz  on 01/04/26.
 //
 
-import UIKit
+import Observation
 import SwiftUI
-internal import Combine
 
-@MainActor
-class ClientOfferVM: ObservableObject {
+@Observable
+class ClientOfferVM {
     
-    @Published var offers: [Res_ClientOffer] = []
-    @Published var isLoading = false
-    @Published var showOfferDetail = false
-    @Published var bookingShift = false
-    @Published var infoDetail = false
-    @Published var shiftDate = ""
+    var offers: [Res_ClientOffer] = []
+    var isLoading = false
+    var showOfferDetail = false
+    var bookingShift = false
+    var infoDetail = false
+    var shiftDate = ""
     
-    @Published var selectedClientInfo: Res_ClientOffer?
-    @Published var selectedProvider: Res_JobProvider?
+    var selectedClientInfo: Res_ClientOffer?
+    var selectedProvider: Res_JobProvider?
     
     func getBannerList() async throws -> Api_ClientOffer {
         isLoading = true
@@ -42,26 +41,5 @@ class ClientOfferVM: ObservableObject {
         }
         
         return response
-        
-        //        do {
-        //            let json = try await CommunicationManager.callPostServiceAsync (
-        //                apiUrl: Router.get_banner_list.url(),
-        //                parameters: paramsDict,
-        //                parentViewController: nil
-        //            )
-        //
-        //            // Convert SwiftyJSON -> Data -> Codable model
-        //            let data = try json.rawData()
-        //            let decoded = try JSONDecoder().decode(Api_ClientOffer.self, from: data)
-        //
-        //            if decoded.status == "1" {
-        //                self.offers = decoded.result ?? []
-        //            } else {
-        //                self.offers = []
-        //            }
-        //
-        //        } catch {
-        //            print("API ERROR:", error.localizedDescription)
-        //        }
     }
 }

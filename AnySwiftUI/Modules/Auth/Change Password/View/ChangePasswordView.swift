@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChangePasswordView: View {
     
-    @StateObject private var viewModel = ChangePasswordViewModel()
+    @State private var viewModel = ChangePasswordViewModel()
     
     var body: some View {
         ZStack(alignment: .top) {

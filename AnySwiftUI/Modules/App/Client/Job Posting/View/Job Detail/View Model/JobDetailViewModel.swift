@@ -5,28 +5,29 @@
 //  Created by Arbaz  on 04/05/26.
 //
 
-internal import Combine
+import Observation
 
-class JobDetailViewModel: ObservableObject {
+@Observable
+class JobDetailViewModel {
     
     let mode: PickerMode
-    @Published var items: [SelectionItem] = []
-    @Published var isLoading: Bool = false
-    @Published var errorMessage: String? = nil
+    var items: [SelectionItem] = []
+    var isLoading: Bool = false
+    var errorMessage: String? = nil
  
     // Break Type specific
-    @Published var showBreakTimePicker: Bool = false
-    @Published var selectedBreakType: String = ""
+    var showBreakTimePicker: Bool = false
+    var selectedBreakType: String = ""
     
     let breakTimes = ["1 hour", "1 hour, 30 mins", "2 hours", "2 hours, 30 mins", "3 hours"]
  
     // Days specific
-    @Published var selectedDayIDs: Set<String> = []
-    @Published var shiftStatusArray: [String] = [] // ✅ ADD THIS — mirrors arr_ShiftStu
+    var selectedDayIDs: Set<String> = []
+    var shiftStatusArray: [String] = [] // ✅ ADD THIS — mirrors arr_ShiftStu
     
-    @Published var showBreakTimeSheet = false
-    @Published var alertMessage: String? = nil
-    @Published var showAlert = false
+    var showBreakTimeSheet = false
+    var alertMessage: String? = nil
+    var showAlert = false
  
     init(mode: PickerMode) {
         self.mode = mode
@@ -168,7 +169,7 @@ class JobDetailViewModel: ObservableObject {
         
         var outletItems = result
         
-        if let defaultOutlet = Res_ClientOutlet.makeDefault(
+        if let defaultOutlet = Res_ClientOutlet.makeDefault (
             id: AppState.shared.useriD,
             businessName: AppState.shared.businessName,
             businessLogo: AppState.shared.businessLogo

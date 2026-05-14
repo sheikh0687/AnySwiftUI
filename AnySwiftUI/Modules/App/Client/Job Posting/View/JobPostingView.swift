@@ -9,161 +9,178 @@ import SwiftUI
 
 struct JobPostingView: View {
     
-    @StateObject var viewModel = JobPostingViewModel()
+    @EnvironmentObject var appState: AppState
+    @State var viewModel = JobPostingViewModel()
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 24) {
-                
-                // MARK: Outlet (shown if API returns outlets)
-                FormRow (
-                    title: "Select Outlet",
-                    value: viewModel.selectedOutletName.isEmpty ? "Choose Outlet" : viewModel.selectedOutletName
-                ) {
-                    viewModel.showOutletPicker = true
-                }
-
-                // MARK: Job Type
-                FormRow (
-                    title: "Job Type",
-                    value: viewModel.jobTypeName.isEmpty ? "Choose Job Type" : viewModel.jobTypeName
-                ) {
-                    viewModel.showJobTypePicker = true
-                }
-
-                // MARK: Number of Workers
-                FormRow (
-                    title: "Number of Workers",
-                    value: "\(viewModel.workerCount)"
-                ) {
-                    viewModel.showWorkerCountPicker = true
-                }
-
-                // MARK: Schedule Type
-                FormRow (
-                    title: "Schedule Type",
-                    value: viewModel.scheduleLabel
-                ) {
-                    viewModel.showSchedulePicker = true
-                }
- 
-                // MARK: Days / Dates
-                if viewModel.scheduleType != nil {
-                    VStack(alignment: .leading, spacing: 12) {
+        ZStack {
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 24) {
+                    
+                    // MARK: Outlet (shown if API returns outlets)
+                    if appState.hasOutlets {
                         FormRow (
-                            title: "Days",
-                            value: viewModel.dayLabel,
-                            isDisabled: viewModel.scheduleType == .urgent
+                            title: "Select Outlet",
+                            value: viewModel.selectedOutletName.isEmpty ? "Choose Outlet" : viewModel.selectedOutletName
                         ) {
-                            if viewModel.scheduleType == .weekly {
-                                viewModel.showDaysPicker = true
-                            } else if viewModel.scheduleType == .specificDate {
-                                viewModel.showDatePicker = true
-                            }
-                        }
- 
-                        // Selected date chips (Specific Date mode)
-                        if viewModel.scheduleType == .specificDate && !viewModel.selectedDates.isEmpty {
-                             DateChipsView(dates: viewModel.selectedDates) { index in
-                                viewModel.removeDate(at: index)
-                            }
+                            viewModel.showOutletPicker = true
                         }
                     }
-                }
 
-                // MARK: Shift Section
-                VStack(alignment: .leading, spacing: 16) {
- 
-                    IBLabel(text: "Shift", font: .semibold(.title), color: .primary)
- 
-                    // Apply same time to all workers toggle (only if > 1 worker)
-                    if viewModel.workerCount > 1 {
-                        ApplyAllWorkersToggle (
-                            isOn: $viewModel.applyTimeToAllWorkers,
-                            globalStart: $viewModel.globalStartTime,
-                            globalEnd: $viewModel.globalEndTime
-                        ) {
-                            if viewModel.applyTimeToAllWorkers {
-                                viewModel.applyGlobalTimeToAll()
+                    // MARK: Job Type
+                    FormRow (
+                        title: "Job Type",
+                        value: viewModel.jobTypeName.isEmpty ? "Choose Job Type" : viewModel.jobTypeName
+                    ) {
+                        viewModel.showJobTypePicker = true
+                    }
+
+                    // MARK: Number of Workers
+                    FormRow (
+                        title: "Number of Workers",
+                        value: "\(viewModel.workerCount)"
+                    ) {
+                        viewModel.showWorkerCountPicker = true
+                    }
+
+                    // MARK: Schedule Type
+                    FormRow (
+                        title: "Schedule Type",
+                        value: viewModel.scheduleLabel
+                    ) {
+                        viewModel.showSchedulePicker = true
+                    }
+     
+                    // MARK: Days / Dates
+                    if viewModel.scheduleType != nil {
+                        VStack(alignment: .leading, spacing: 12) {
+                            FormRow (
+                                title: "Days",
+                                value: viewModel.dayLabel,
+                                isDisabled: viewModel.scheduleType == .urgent
+                            ) {
+                                if viewModel.scheduleType == .weekly {
+                                    viewModel.showDaysPicker = true
+                                } else if viewModel.scheduleType == .specificDate {
+                                    viewModel.showDatePicker = true
+                                }
+                            }
+     
+                            // Selected date chips (Specific Date mode)
+                            if viewModel.scheduleType == .specificDate && !viewModel.selectedDates.isEmpty {
+                                 DateChipsView(dates: viewModel.selectedDates) { index in
+                                    viewModel.removeDate(at: index)
+                                }
                             }
                         }
                     }
- 
-                    // Per-worker or single shift pickers
-                    if viewModel.applyTimeToAllWorkers {
-                        // Single row for all workers
-                        SingleShiftRow (
-                            label: "All Workers",
-                            startTime: $viewModel.globalStartTime,
-                            endTime: $viewModel.globalEndTime
-                        )
-                        .onChange(of: viewModel.globalStartTime) { viewModel.applyGlobalTimeToAll() }
-                        .onChange(of: viewModel.globalEndTime) { viewModel.applyGlobalTimeToAll() }
-                    } else {
-                        ForEach($viewModel.workerShifts) { $shift in
-                            let idx = viewModel.workerShifts.firstIndex(where: { $0.id == shift.id })! + 1
+
+                    // MARK: Shift Section
+                    VStack(alignment: .leading, spacing: 16) {
+     
+                        IBLabel(text: "Shift", font: .semibold(.title), color: .primary)
+     
+                        // Apply same time to all workers toggle (only if > 1 worker)
+                        if viewModel.workerCount > 1 {
+                            ApplyAllWorkersToggle (
+                                isOn: $viewModel.applyTimeToAllWorkers,
+                                globalStart: $viewModel.globalStartTime,
+                                globalEnd: $viewModel.globalEndTime
+                            ) {
+                                if viewModel.applyTimeToAllWorkers {
+                                    viewModel.applyGlobalTimeToAll()
+                                }
+                            }
+                        }
+     
+                        // Per-worker or single shift pickers
+                        if viewModel.applyTimeToAllWorkers {
+                            // Single row for all workers
                             SingleShiftRow (
-                                label: "Worker #\(idx)",
-                                startTime: $shift.startTime,
-                                endTime: $shift.endTime
+                                label: "All Workers",
+                                startTime: $viewModel.globalStartTime,
+                                endTime: $viewModel.globalEndTime
                             )
+                            .onChange(of: viewModel.globalStartTime) { viewModel.applyGlobalTimeToAll() }
+                            .onChange(of: viewModel.globalEndTime) { viewModel.applyGlobalTimeToAll() }
+                        } else {
+                            ForEach($viewModel.workerShifts) { $shift in
+                                let idx = viewModel.workerShifts.firstIndex(where: { $0.id == shift.id })! + 1
+                                SingleShiftRow (
+                                    label: "Worker #\(idx)",
+                                    startTime: $shift.startTime,
+                                    endTime: $shift.endTime
+                                )
+                            }
+                        }
+     
+                        Divider()
+                    }
+                    
+                    // MARK: Rate
+                    FormRow (
+                        title: "Rate",
+                        value: viewModel.rateName.isEmpty ? viewModel.defaultRateLabel : viewModel.rateName
+                    ) {
+                        viewModel.showRatePicker = true
+                    }
+     
+                    // MARK: Breaks
+                    FormRow (
+                        title: "Breaks",
+                        value: viewModel.breakType.isEmpty ? "Select" : viewModel.breakType
+                    ) {
+                        viewModel.showBreakPicker = true
+                    }
+     
+                    // MARK: Meals
+                    FormRow (
+                        title: "Meals",
+                        value: viewModel.meal.isEmpty ? "Select" : viewModel.meal
+                    ) {
+                        viewModel.showMealPicker = true
+                    }
+     
+                    // MARK: Notes for Workers
+                    VStack(alignment: .leading, spacing: 10) {
+                        IBLabel (
+                            text: viewModel.showNoteForWorker ? "Notes for Workers (Urgent)" : "Notes for Workers",
+                            font: .semibold(.title),
+                            color: .primary
+                        )
+     
+                        TextEditor(text: $viewModel.notes)
+                            .frame(height: 150)
+                            .padding(12)
+                            .background(Color(.systemGray5))
+                            .cornerRadius(12)
+                    }
+
+                    IBSubmitButton(buttonText: "Post a Job") {
+                        if let error = viewModel.validate() {
+                            viewModel.alertMessage = error
+                            viewModel.showAlert = true
+                        } else {
+                            viewModel.collectParams()
+                            viewModel.navigateToAssign = true
                         }
                     }
- 
-                    Divider()
                 }
-                
-                // MARK: Rate
-                FormRow (
-                    title: "Rate",
-                    value: viewModel.rateName.isEmpty ? viewModel.defaultRateLabel : viewModel.rateName
-                ) {
-                    viewModel.showRatePicker = true
-                }
- 
-                // MARK: Breaks
-                FormRow (
-                    title: "Breaks",
-                    value: viewModel.breakType.isEmpty ? "Select" : viewModel.breakType
-                ) {
-                    viewModel.showBreakPicker = true
-                }
- 
-                // MARK: Meals
-                FormRow (
-                    title: "Meals",
-                    value: viewModel.meal.isEmpty ? "Select" : viewModel.meal
-                ) {
-                    viewModel.showMealPicker = true
-                }
- 
-                // MARK: Notes for Workers
-                VStack(alignment: .leading, spacing: 10) {
-                    IBLabel (
-                        text: viewModel.showNoteForWorker ? "Notes for Workers (Urgent)" : "Notes for Workers",
-                        font: .semibold(.title),
-                        color: .primary
-                    )
- 
-                    TextEditor(text: $viewModel.notes)
-                        .frame(height: 150)
-                        .padding(12)
-                        .background(Color(.systemGray5))
-                        .cornerRadius(12)
-                }
-
-                IBSubmitButton(buttonText: "Post a Job") {
-                    if let error = viewModel.validate() {
-                        viewModel.alertMessage = error
-                        viewModel.showAlert = true
-                    } else {
-                        let params = viewModel.collectParams()
-                        print("Posting job with params: \(params)")
-                        // Navigate to ConfirmJobPostVC equivalent
-                    }
+                .padding(.all, 24)
+            }
+            
+            if viewModel.isLoading {
+                ZStack {
+                    Color.black.opacity(0.2).ignoresSafeArea()
+                    ProgressView()
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
                 }
             }
-            .padding(.all, 24)
+        }
+        .navigationDestination(isPresented: $viewModel.navigateToAssign) {
+            AssignJobView(viewModel: .init(jobiD: viewModel.jobTypeID))
         }
         
         .sheet(isPresented: $viewModel.showOutletPicker) {
@@ -368,6 +385,7 @@ struct DateChipsView: View {
 }
 
 struct CalendarPickerView: View {
+    
     var onSelect: (String, String) -> Void
     @Environment(\.dismiss) var dismiss
     @State private var selectedDate = Date()
@@ -386,7 +404,7 @@ struct CalendarPickerView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Add") {
                         let df = DateFormatter()
-                        df.dateFormat = "dd/MM/yyyy"
+                        df.dateFormat = "yyyy-MM-dd"
                         let dayFmt = DateFormatter()
                         dayFmt.dateFormat = "EEEE"
                         onSelect(df.string(from: selectedDate), dayFmt.string(from: selectedDate))
@@ -403,4 +421,5 @@ struct CalendarPickerView: View {
 
 #Preview {
     JobPostingView()
+        .environmentObject(AppState.shared)
 }

@@ -39,4 +39,25 @@ class Utility {
         let dateAMPM: String = dateFormatterAMPM.string(from: date!)
         return dateAMPM
     }
+    
+    class func convertToMinutes(from text: String) -> Int {
+        var total = 0
+        if text.contains("hour") {
+            if let hour = Int(text.components(separatedBy: " ").first ?? "0") {
+                total += hour * 60
+            }
+        }
+        if text.contains("mins") {
+            if let mins = Int(text.components(separatedBy: " ").last?.replacingOccurrences(of: "mins", with: "") ?? "0") {
+                total += mins
+            }
+        }
+        return total
+    }
+    
+    class func getCurrentDay() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        return formatter.string(from: Date())
+    }
 }

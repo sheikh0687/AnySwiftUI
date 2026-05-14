@@ -5,23 +5,24 @@
 //  Created by Arbaz  on 20/03/26.
 //
 
-internal import Combine
+import Observation
 
-class MyBookingViewModel: ObservableObject {
+@Observable
+class MyBookingViewModel {
     
-    @Published var isLoading: Bool = false
-    @Published var customError: CustomError?
+    var isLoading: Bool = false
+    var customError: CustomError?
     
-    @Published var selectedSegment = 0
-    @Published var pendingCount = 0
-    @Published var acceptCount = 0
-    @Published var workerBookingDetail: [Res_WorkerBookingDetail] = []
+    var selectedSegment = 0
+    var pendingCount = 0
+    var acceptCount = 0
+    var workerBookingDetail: [Res_WorkerBookingDetail] = []
     
-    @Published var showWithReq: Bool = false
-    @Published var companyDetail: String = ""
-    @Published var shiftiD: String = ""
-    @Published var showDeletePop: Bool = false
-    @Published var conToBookingHour: Bool = false
+    var showWithReq: Bool = false
+    var companyDetail: String = ""
+    var shiftiD: String = ""
+    var showDeletePop: Bool = false
+    var conToBookingHour: Bool = false
     
     @MainActor
     func fetchNotificationCount() async throws -> Api_NotificationCount {

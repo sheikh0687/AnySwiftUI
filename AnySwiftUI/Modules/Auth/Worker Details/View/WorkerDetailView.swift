@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WorkerDetailView: View {
     
-    @StateObject private var viewModel = WorkerDetailViewModel()
+    @State private var viewModel = WorkerDetailViewModel()
     
     var body: some View {
         ZStack(alignment: .top) {

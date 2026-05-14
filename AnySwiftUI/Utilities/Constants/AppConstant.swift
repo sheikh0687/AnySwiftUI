@@ -9,4 +9,5 @@ import Foundation
 
 let appName = "Any"
 var paramSigupDetail: [String : String] = [:]
+var paramJobPostDict: [String : Any] = [:]
 let emptyString = ""

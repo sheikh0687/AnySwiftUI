@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ResetPasswordView: View {
     
-    @StateObject var viewModel = ResetPasswordViewModel()
+    @State var viewModel = ResetPasswordViewModel()
     
     var body: some View {
         ZStack(alignment: .top) {

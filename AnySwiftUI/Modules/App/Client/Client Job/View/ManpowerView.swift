@@ -85,7 +85,8 @@ struct ManpowerView: View {
         HStack(spacing: 12) {
             AsyncImage(url: URL(string: worker.image ?? "")) { phase in
                 switch phase {
-                case .success(let img): img.resizable().scaledToFill()
+                case .success(let img):
+                    img.resizable().scaledToFill()
                 default: Image(systemName: "person.circle.fill").resizable().foregroundColor(.gray)
                 }
             }
