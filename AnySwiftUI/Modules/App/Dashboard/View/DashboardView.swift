@@ -79,7 +79,7 @@ struct DashboardView: View {
                             }
                         
                         // MARK: Find Job
-                        JobPostingView()
+                        JobPostingView(viewModel: .init())
                             .tag(clientTab.jobPosting)
                             .tabItem {
                                 Label("Post a Job", systemImage: "plus.circle.fill")
@@ -98,6 +98,7 @@ struct DashboardView: View {
                             .tabItem {
                                 Label("Request", systemImage: "person.crop.circle.fill")
                             }
+                            .badge(topBarVM.requestCount > 0 ? topBarVM.requestCount : 0)
                     }
                     .environmentObject(topBarVM)
                     .accentColor(.THEME)
@@ -112,6 +113,10 @@ struct DashboardView: View {
             // 👉 GLOBAL NAVIGATION DESTINATIONS LIVE HERE
             .navigationDestination(isPresented: $topBarVM.navToMenu) {
                 OverallSettingView()
+            }
+            
+            .navigationDestination(isPresented: $topBarVM.navToChat) {
+                ChatView()
             }
         }
         
@@ -129,6 +134,10 @@ struct DashboardView: View {
             
             topBarVM.onMenuTap = {
                 topBarVM.navToMenu = true
+            }
+            
+            topBarVM.onChatTap = {
+                topBarVM.navToChat = true
             }
             
             Task {
@@ -182,7 +191,11 @@ struct DashboardView: View {
         .onChange(of: appState.goToHome) { _, go in
             if go {
                 navPath = NavigationPath()
-                selectedTab = appState.switchToTab          // switch tab
+                if appState.userType == "Worker" {
+                    selectedTab = appState.switchToTab
+                } else {
+                    selectClientTab = .clientJobs
+                }
                 topBarVM.navToMenu = false       // close menu if open
                 
                 // Reset trigger asynchronously so other views can react to it first
@@ -203,6 +216,7 @@ struct DashboardView: View {
                 topBarVM.review = response.average_rating ?? ""
                 topBarVM.ratingCount = response.total_rating_count ?? 0
                 topBarVM.attendanceRate = response.attandance ?? ""
+                topBarVM.requestCount = response.request ?? 0
             }
         } catch {
             print("Something Went Wrong: \(error.localizedDescription)")

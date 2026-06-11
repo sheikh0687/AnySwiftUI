@@ -84,6 +84,8 @@ class LoginViewModel {
         AppState.shared.businessLogo = res.business_logo ?? ""
         AppState.shared.outletName = res.business_name ?? ""
         AppState.shared.outletImage = res.business_logo ?? ""
+        AppState.shared.paymentType = res.request_payment_type ?? ""
+        AppState.shared.customeriD = res.customer_id ?? ""
     }
     
     @MainActor

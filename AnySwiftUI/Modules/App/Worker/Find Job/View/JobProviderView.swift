@@ -12,6 +12,7 @@ struct JobProviderView: View {
     
     @StateObject private var locationManager = LocationManager()
     @StateObject private var locationSearchVM = LocationSearchViewModel()
+    
     @State var viewModel = JobProviderViewModel()
 
     var body: some View {

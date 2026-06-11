@@ -20,7 +20,7 @@ struct IBTextField: View {
             TextField(placeholder, text: $text)
             //                .foregroundStyle(Color.font)
                 .font(font)
-                .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 .frame(width: geometry.size.width, height: 36)
             //                .overlay(RoundedRectangle(cornerRadius: 4.0).strokeBorder(Color.border, style: StrokeStyle(lineWidth: 1.0)))
             //                .background(.bg)
@@ -61,7 +61,7 @@ struct IBSecureTextField: View {
                     }
                 }
                 .font(font)
-                .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 35)) // space for eye
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)) // space for eye
                 .frame(width: geometry.size.width, height: 36)
                 .cornerRadius(4)
                 .textInputAutocapitalization(.never)

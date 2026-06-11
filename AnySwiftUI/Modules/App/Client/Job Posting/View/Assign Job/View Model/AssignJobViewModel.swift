@@ -17,6 +17,7 @@ class AssignJobViewModel {
     
     var jobiD: String = "1"
     var showSuccessSheet: Bool = false
+    var viewJobPost: Bool = false
     
     init(jobiD: String) {
         self.jobiD = jobiD

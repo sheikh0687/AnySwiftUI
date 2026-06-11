@@ -5,9 +5,16 @@
 //  Created by Arbaz  on 30/03/26.
 //
 
-internal import Combine
+import Observation
 
-class AppSettingViewModel: ObservableObject {
+@Observable
+class AppSettingViewModel {
     
-    
+    var navToCurrentShift: Bool = false
+    var navToChangePassword: Bool = false
+    var navToEditProfile: Bool = false
+    var navToOutletList: Bool = false
+    var navToPaymentType: Bool = false
+    var navToSetHourlyRate: Bool = false
+    var navToHistory: Bool = false
 }

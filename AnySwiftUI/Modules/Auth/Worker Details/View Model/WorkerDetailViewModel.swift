@@ -26,18 +26,23 @@ class WorkerDetailViewModel {
         defer { isLoading = false }
         
         var paramDict: [String : String] = [:]
+        
         paramDict["user_id"]  =   AppState.shared.useriD
         paramDict["email"]     =   AppState.shared.emailiD
         paramDict["first_name"]  =   AppState.shared.userFirstName
         paramDict["last_name"]  =   AppState.shared.userLastName
         paramDict["mobile"]     =   AppState.shared.userMobile
+        
         paramDict["pay_now_number"]  =   emptyString
         paramDict["local_bank_number"]  =   emptyString
         paramDict["bank_name"]  =   emptyString
+        
         paramDict["lat"]   =        ""
         paramDict["lon"]  =        ""
         paramDict["register_id"]  =   ""
+        
         paramDict["type"]     =   AppState.shared.userType
+        
         paramDict["about_us"]  =   "1"
         paramDict["address"]  =   "1"
         

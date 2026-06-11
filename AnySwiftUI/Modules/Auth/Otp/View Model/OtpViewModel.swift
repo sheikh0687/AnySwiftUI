@@ -80,7 +80,7 @@ class OtpViewModel {
     }
     
     func saveCredentials(res: Res_LoginResponse) {
-        AppState.shared.isLoggedIn = true
+//        AppState.shared.isLoggedIn = true
         AppState.shared.useriD = res.id ?? ""
         AppState.shared.userFirstName = res.first_name ?? ""
         AppState.shared.userLastName = res.last_name ?? ""
@@ -96,6 +96,7 @@ class OtpViewModel {
         AppState.shared.businessLogo = res.business_logo ?? ""
         AppState.shared.outletName = res.business_name ?? ""
         AppState.shared.outletImage = res.business_logo ?? ""
-
+        AppState.shared.paymentType = res.request_payment_type ?? ""
+        AppState.shared.customeriD = res.customer_id ?? ""
     }
 }

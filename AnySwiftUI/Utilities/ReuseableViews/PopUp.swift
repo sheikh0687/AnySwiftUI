@@ -534,22 +534,47 @@ struct PopDocView: View {
             }
         }
     }
+}
+
+struct ApprovalSuccessView: View {
     
-//    private func openNRICCameraPicker() {
-//        guard let topVC = UIApplication.topViewController() else { return }
-//        
-//        CameraHandler.sharedInstance.showActionSheet(vc: topVC)
-//        CameraHandler.sharedInstance.imagePickedBlock = { img in
-//            selectedNRICImage = img
-//        }
-//    }
-    
-//    private func openDOCCameraPicker() {
-//        guard let topVC = UIApplication.topViewController() else { return }
-//        
-//        CameraHandler.sharedInstance.showActionSheet(vc: topVC)
-//        CameraHandler.sharedInstance.imagePickedBlock = { img in
-//            selectedDOCImage = img
-//        }
-//    }
+    var onDone: () -> Void
+
+    var body: some View {
+        VStack(spacing: 20) {
+            Capsule()
+                .fill(Color(.systemGray4))
+                .frame(width: 40, height: 4)
+                .padding(.top, 12)
+            
+            Spacer()
+            
+            Image(systemName: "checkmark.circle.fill")
+                .font(.system(size: 64))
+                .foregroundColor(Color(.BUTTON))
+            
+            Text("Shift Approved")
+                .font(.system(size: 22, weight: .bold))
+            
+            Text("You have approved this shift\n\nThe service provider selected has been notified of your approval")
+                .font(.system(size: 15))
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 24)
+            
+            Spacer()
+            
+            Button { onDone() } label: {
+                Text("Done")
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 52)
+                    .background(Color(.BUTTON))
+                    .clipShape(Capsule())
+            }
+            .padding(.horizontal, 24)
+            .padding(.bottom, 24)
+        }
+    }
 }

@@ -45,7 +45,7 @@ struct WorkerTransactionView: View {
                 )
                 
                 IBLabel (
-                    text: "$ 841",
+                    text: "\(AppState.shared.currencySymbol) \(viewModel.totalEarning)",
                     font: .semibold(.largeTitle),
                     color: .black
                 )
@@ -61,7 +61,7 @@ struct WorkerTransactionView: View {
                 )
                 
                 IBLabel (
-                    text: "8",
+                    text: String(viewModel.totalJob),
                     font: .semibold(.largeTitle),
                     color: .black
                 )

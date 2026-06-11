@@ -64,10 +64,15 @@ struct AssignJobView: View {
         .sheet(isPresented: $viewModel.showSuccessSheet) {
             JobPostSuccessView(onBackToDashboard: {
                 viewModel.showSuccessSheet = false
-                appState.goToHome = true
+                appState.isLoggedIn = true
             }, onViewPostedJob: {
                 // Action blank as requested
+                viewModel.showSuccessSheet = false
+                viewModel.viewJobPost = true
             })
+        }
+        .navigationDestination(isPresented: $viewModel.viewJobPost) {
+            CurrentShiftView()
         }
     }
     

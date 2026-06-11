@@ -24,7 +24,7 @@ struct SelectJobDetailView: View {
     
     var body: some View {
         NavigationView {
-            Group {
+             Group {
                 if viewModel.isLoading {
                     loadingView
                 } else {

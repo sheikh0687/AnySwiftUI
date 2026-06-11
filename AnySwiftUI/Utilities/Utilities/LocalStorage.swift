@@ -26,6 +26,8 @@ enum AppStorageKey: String {
     case businessName
     case businessLogo
     case clientiD
+    case paymentType
+    case customeriD
 }
 
 final class AppState: ObservableObject {
@@ -111,6 +113,14 @@ final class AppState: ObservableObject {
     }
 
     @AppStorage(AppStorageKey.clientiD.rawValue) var clientiD: String = "" {
+        willSet { objectWillChange.send() }
+    }
+    
+    @AppStorage(AppStorageKey.paymentType.rawValue) var paymentType: String = "" {
+        willSet { objectWillChange.send() }
+    }
+    
+    @AppStorage(AppStorageKey.customeriD.rawValue) var customeriD: String = "" {
         willSet { objectWillChange.send() }
     }
 

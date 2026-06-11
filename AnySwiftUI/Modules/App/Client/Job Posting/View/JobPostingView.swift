@@ -10,7 +10,7 @@ import SwiftUI
 struct JobPostingView: View {
     
     @EnvironmentObject var appState: AppState
-    @State var viewModel = JobPostingViewModel()
+    @State var viewModel: JobPostingViewModel
     
     var body: some View {
         ZStack {
@@ -54,18 +54,27 @@ struct JobPostingView: View {
                     // MARK: Days / Dates
                     if viewModel.scheduleType != nil {
                         VStack(alignment: .leading, spacing: 12) {
-                            FormRow (
-                                title: "Days",
-                                value: viewModel.dayLabel,
-                                isDisabled: viewModel.scheduleType == .urgent
-                            ) {
-                                if viewModel.scheduleType == .weekly {
-                                    viewModel.showDaysPicker = true
-                                } else if viewModel.scheduleType == .specificDate {
-                                    viewModel.showDatePicker = true
+                            VStack(alignment: .leading, spacing: 4) {
+                                FormRow (
+                                    title: "Days",
+                                    value: viewModel.dayLabel,
+                                    isDisabled: viewModel.scheduleType == .urgent
+                                ) {
+                                    if viewModel.scheduleType == .weekly {
+                                        viewModel.showDaysPicker = true
+                                    } else if viewModel.scheduleType == .specificDate {
+                                        viewModel.showDatePicker = true
+                                    }
+                                }
+                                if viewModel.scheduleType == .urgent {
+                                    IBLabel (
+                                        text: "Note: The date for urgent bookings is fixed to today and cannot be modified.",
+                                        font: .semibold(.description),
+                                        color: .red
+                                    )
                                 }
                             }
-     
+                            
                             // Selected date chips (Specific Date mode)
                             if viewModel.scheduleType == .specificDate && !viewModel.selectedDates.isEmpty {
                                  DateChipsView(dates: viewModel.selectedDates) { index in
@@ -143,6 +152,7 @@ struct JobPostingView: View {
      
                     // MARK: Notes for Workers
                     VStack(alignment: .leading, spacing: 10) {
+                        
                         IBLabel (
                             text: viewModel.showNoteForWorker ? "Notes for Workers (Urgent)" : "Notes for Workers",
                             font: .semibold(.title),
@@ -168,6 +178,8 @@ struct JobPostingView: View {
                 }
                 .padding(.all, 24)
             }
+            .scrollDismissesKeyboard(.interactively)
+            .hideKeyboardOnTap()
             
             if viewModel.isLoading {
                 ZStack {
@@ -241,6 +253,14 @@ struct JobPostingView: View {
             SelectJobDetailView(mode: .mealProvision) { name, _ in
                 viewModel.meal = name
             }
+        }
+        
+        .sheet(isPresented: $viewModel.showRatePicker) {
+            SetRateView (
+                isComingFrom: "PublishJob",
+                preselectedJobId: viewModel.jobTypeID,
+                preselectedJobName: viewModel.jobTypeName
+            )
         }
         
         .sheet(isPresented: $viewModel.showDatePicker) {
@@ -420,6 +440,6 @@ struct CalendarPickerView: View {
 }
 
 #Preview {
-    JobPostingView()
+    JobPostingView(viewModel: .init(selectedType: .specificDate))
         .environmentObject(AppState.shared)
 }

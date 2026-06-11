@@ -107,6 +107,8 @@ enum Router: String {
     case set_shift_autoapproval_status
     case add_user_rating_review
     
+    case add_Outlet
+    case update_outlet
     case delete_Outlet
 //    case add_UpdateOutlet
 
@@ -307,13 +309,12 @@ enum Router: String {
             
         case .get_Outlet:
             return Router.oAuthRoute(path: "get_Outlet?")
+                        
+        case .add_Outlet:
+            return Router.oAuthRoute(path: "add_Outlet?")
             
-//        case .add_UpdateOutlet:
-//            if isComeOutlet {
-//                return Router.oAuthRoute(path: "update_Outlet?")
-//            } else {
-//                return Router.oAuthRoute(path: "add_Outlet?")
-//            }
+        case .update_outlet:
+            return Router.oAuthRoute(path: "update_Outlet?")
             
         case .delete_Outlet:
             return Router.oAuthRoute(path: "delete_Outlet?")

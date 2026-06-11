@@ -26,7 +26,7 @@ struct Api_FetchUrgentShift : Codable {
     }
 }
 
-struct Res_FetchUrgentShift : Codable {
+struct Res_FetchUrgentShift : Codable, Identifiable {
     let id : String?
     let user_id : String?
     let outlet_id : String?

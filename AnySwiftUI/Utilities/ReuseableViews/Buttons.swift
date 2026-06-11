@@ -7,25 +7,42 @@
 
 import SwiftUI
 
-struct IBSubmitButton : View {
-    
+struct IBSubmitButton: View {
+
     var buttonText = ""
     var isDisabled = false
+    var isLoading = false
     var font: Font = .semibold(.description)
-    var cloClicked:(()->Void)?
-    
+    var cloClicked: (() -> Void)?
+
     var body: some View {
         Button {
-            self.cloClicked?()
+            guard !isLoading else { return }
+            cloClicked?()
         } label: {
-            IBLabel(text: buttonText , font: font, color: .white)
-                .foregroundStyle(.white)
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 40, maxHeight: 40 , alignment: .center)
-                .background(.BUTTON)
-                .opacity(isDisabled ? 0.7 : 1)
-                .cornerRadius(8)
+            ZStack {
+                if isLoading {
+                    ProgressView()
+                        .tint(.white)
+                } else {
+                    IBLabel(
+                        text: buttonText,
+                        font: font,
+                        color: .white
+                    )
+                }
+            }
+            .frame(
+                minWidth: 0,
+                maxWidth: .infinity,
+                minHeight: 40,
+                maxHeight: 40
+            )
+            .background(.BUTTON)
+            .opacity((isDisabled || isLoading) ? 0.7 : 1)
+            .cornerRadius(8)
         }
-        .disabled(isDisabled)
+        .disabled(isDisabled || isLoading)
     }
 }
 

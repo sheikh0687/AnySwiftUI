@@ -25,26 +25,30 @@ class JobPostingViewModel {
     var scheduleType: ScheduleType? = nil
     
     // Weekly days
-     var selectedDaysName: String = ""
-     var shiftStatus: String = ""
+    var selectedDaysName: String = ""
+    var shiftStatus: String = ""
     
-//    c dates
-     var selectedDates: [String] = []
-     var selectedDayNames: [String] = []
+    //    c dates
+    var selectedDates: [String] = []
+    var selectedDayNames: [String] = []
     
-     var workerShifts: [WorkerShift] = [WorkerShift()]
-     var applyTimeToAllWorkers: Bool = false
+    var workerShifts: [WorkerShift] = [WorkerShift()]
+    var applyTimeToAllWorkers: Bool = false
     
-     var globalStartTime: Date = Date()
-     var globalEndTime: Date = Date()
+    var globalStartTime: Date = Date()
+    var globalEndTime: Date = Date()
     
-     var rateName: String = ""
-     var breakType: String = ""
+    var rateName: String = ""
+    var breakType: String = ""
     
-     var breakTime: String = ""
-     var meal: String = ""
+    var breakTime: String = ""
+    var meal: String = ""
     
-     var notes: String = ""
+    var notes: String = ""
+    
+    init(selectedType: ScheduleType) {
+        self.scheduleType = selectedType
+    }
     
     init() {
         self.selectedOutletName = AppState.shared.outletName
@@ -91,7 +95,7 @@ class JobPostingViewModel {
     // MARK: Sync worker array
     func syncWorker() {
         
-//        objectWillChange.send()   // 🔥 FORCE UI REFRESH
+        //        objectWillChange.send()   // 🔥 FORCE UI REFRESH
         
         if workerShifts.count < workerCount {
             let diff = workerCount - workerShifts.count
@@ -209,7 +213,7 @@ class JobPostingViewModel {
         case .none:
             dayName = ""
         }
-
+        
         paramJobPostDict["day_name"] = dayName
         
         print(paramJobPostDict)

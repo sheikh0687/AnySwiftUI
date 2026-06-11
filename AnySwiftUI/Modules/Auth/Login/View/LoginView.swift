@@ -147,10 +147,8 @@ struct LoginView: View {
                         Task {
                             do {
                                 let response = try await viewModel.login()
-                                
                                 if response.status == "1",
                                    let user = response.result {
-                                    
                                     // ⭐ Save session → app will auto navigate
                                     viewModel.saveCredentials(res: user)
                                 }
@@ -168,7 +166,7 @@ struct LoginView: View {
     private var signupInputs: some View {
         VStack(alignment: .leading, spacing: 32) {
             VStack(spacing: 4) {
-                HStack(spacing: 4) {
+                HStack(spacing: 8) {
                     Image(systemName: "person.fill")
                         .font(.title2)
                         .foregroundColor(.gray)
@@ -181,7 +179,7 @@ struct LoginView: View {
             }
             
             VStack(spacing: 4) {
-                HStack(spacing: 4) {
+                HStack(spacing: 8) {
                     Image(systemName: "person.fill")
                         .font(.title2)
                         .foregroundColor(.gray)
@@ -204,7 +202,11 @@ struct LoginView: View {
                     } label: {
                         HStack(spacing: 6) {
                             if let countryObj = viewModel.countryObj {
-                                IBLabel(text: "+\(countryObj.phoneCode)", font: .medium(.largeTitle), color: .black)
+                                IBLabel (
+                                    text: "+\(countryObj.phoneCode)",
+                                    font: .medium(.largeTitle),
+                                    color: .black
+                                )
                             }
                             
                             Image(systemName: "chevron.down")
@@ -215,11 +217,6 @@ struct LoginView: View {
                     .background(Color.white)
                     
                     IBTextField(placeholder: "Mobile", text: $viewModel.mobileNumber, keyboardType: .phonePad)
-                    //                TextField("123-245-89", text: $viewModel.mobile)
-                    //                    .keyboardType(.phonePad)
-                    //                    .font(.customfont(.regular, fontSize: 15))
-                    //                    .padding(.horizontal, 10)
-                    //                    .frame(height: 44)
                 }
                 Divider()
                     .frame(height: 0.5)
@@ -227,7 +224,7 @@ struct LoginView: View {
             }
             
             VStack(spacing: 4) {
-                HStack(spacing: 4) {
+                HStack(spacing: 8) {
                     Image(systemName: "envelope.fill")
                         .font(.title2)
                         .foregroundColor(.gray)
@@ -250,7 +247,7 @@ struct LoginView: View {
                         }
                     }
                 } label: {
-                    HStack(spacing: 18) {
+                    HStack(spacing: 10) {
                         Image(systemName: "network")
                             .font(.title2)
                             .foregroundColor(.gray)
@@ -274,7 +271,7 @@ struct LoginView: View {
             }
             
             VStack(spacing: 4) {
-                HStack(spacing: 4) {
+                HStack(spacing: 8) {
                     Image(systemName: "lock.fill")
                         .font(.title2)
                         .foregroundColor(.gray)
@@ -286,7 +283,7 @@ struct LoginView: View {
             }
             
             VStack(spacing: 4) {
-                HStack(spacing: 4) {
+                HStack(spacing: 8) {
                     Image(systemName: "lock.fill")
                         .font(.title2)
                         .foregroundColor(.gray)

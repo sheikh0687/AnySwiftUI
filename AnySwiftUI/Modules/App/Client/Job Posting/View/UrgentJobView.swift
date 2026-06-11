@@ -41,9 +41,34 @@ struct UrgentJobView: View {
                             img: ""
                         )
                     } else {
-                        ForEach(viewModel.urgentShift, id: \.id) { broadcast in
-                            BroadcastView(obj: broadcast)
+                        ForEach(viewModel.urgentShift) { broadcast in
+                            BroadcastView(obj: broadcast) {
+                                viewModel.updateShift = true
+                                viewModel.shiftiD = broadcast.id ?? ""
+                                viewModel.outletName = broadcast.business_name ?? ""
+                            } onDelete: {
+                                Task {
+                                    await deleteUrgentShift(shiftiD: broadcast.id ?? "")
+                                }
+                            }
                         }
+                    }
+                }
+                
+                Spacer()
+                
+                HStack {
+                    Spacer()
+                    Button {
+                        viewModel.addUrgentShift = true
+                    } label: {
+                        Image(systemName: "plus")
+                            .font(.system(size: 36, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(width: 44, height: 44)
+                            .background(Color.BLACK)
+                            .clipShape(.circle)
+                            .shadow(color: .black.opacity(0.25), radius: 8, x: 0, y: 4)
                     }
                 }
             }
@@ -51,6 +76,12 @@ struct UrgentJobView: View {
         }
         .task {
             await loadUrgentShift()
+        }
+        .navigationDestination(isPresented: $viewModel.addUrgentShift) {
+            JobPostingView(viewModel: .init(selectedType: .urgent))
+        }
+        .navigationDestination(isPresented: $viewModel.updateShift) {
+            UpdateShiftView(viewModel: .init(shiftiD: viewModel.shiftiD, selectedOutletName: viewModel.outletName))
         }
     }
     
@@ -70,6 +101,25 @@ struct UrgentJobView: View {
             viewModel.customError = .customError(message: error.localizedDescription)
         }
     }
+    
+    func deleteUrgentShift(shiftiD: String) async {
+        viewModel.isLoading = true
+        
+        do {
+            let result = try await viewModel.deleteUrgentShift(shiftiD: shiftiD)
+            if result.status == "1" {
+                withAnimation {
+                    viewModel.urgentShift.removeAll(where: { $0.id == shiftiD })
+                }
+                await loadUrgentShift()
+            } else {
+                viewModel.isLoading = false
+            }
+        } catch {
+            viewModel.isLoading = false
+            viewModel.customError = .customError(message: error.localizedDescription)
+        }
+    }
 }
 
 #Preview {
@@ -79,52 +129,128 @@ struct UrgentJobView: View {
 struct BroadcastView: View {
     
     let obj: Res_FetchUrgentShift?
+    var onUpdate: () -> Void = {}
+    var onDelete: () -> Void = {}
     
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack(spacing: 16) {
-                infoItem(title: "Job Type", value: obj?.job_type ?? "-")
-                infoItem(title: "Rate",
-                         value: "\(obj?.currency_symbol ?? "")\(obj?.shift_rate ?? "") / hr")
-            }
-            
-            HStack(spacing: 16) {
-                infoItem(title: "Start Time", value: obj?.start_time ?? "-")
-                infoItem(title: "End Time", value: obj?.end_time ?? "-")
-            }
-            
-            HStack(spacing: 16) {
-                infoItem(title: "Lunch", value: obj?.meals ?? "-")
-                infoItem(title: "Breaks", value: obj?.break_type ?? "-")
-            }
-        }
-        .padding(20)
-        .background (
-            RoundedRectangle(cornerRadius: 22)
-                .fill(Color.white)
-                .shadow(color: .black.opacity(0.06), radius: 18, x: 0, y: 10)
-        )
-        .padding(.horizontal, 16)
+    // MARK: Dynamic Values
+    private var jobType: String { obj?.job_type ?? "-" }
+    private var startTime: String { obj?.start_time ?? "-" }
+    private var endTime: String { obj?.end_time ?? "-" }
+    private var meals: String { obj?.meals?.isEmpty == false ? obj!.meals! : "Not Provided" }
+    private var breaks: String { obj?.break_type?.isEmpty == false ? obj!.break_type! : "Not Applicable" }
+    
+    private var rateText: String {
+        let currency = obj?.currency_symbol ?? "₹"
+        let rate = obj?.shift_rate ?? "0"
+        return "\(currency)\(rate) /Hour"
     }
     
-    private func infoItem(title: String, value: String) -> some View {
-        VStack(alignment: .leading, spacing: 6) {
+    var body: some View {
+        VStack(spacing: 0) {
             
-            Text(title)
-                .font(.system(size: 13, weight: .medium))
-                .foregroundColor(.gray)
+            // MARK: Row 1 (Job + Rate + Menu)
+            ZStack(alignment: .topTrailing) {
+                twoColumnRow (
+                    leftTitle: "Job Type",
+                    leftValue: jobType,
+                    rightTitle: "Rate",
+                    rightValue: rateText
+                )
+                
+                menuButton
+                    .offset(x: 8, y: -8)
+            }
             
-            Text(value)
-                .font(.system(size: 20, weight: .semibold))
-                .foregroundColor(.black)
-                .lineLimit(1)
+            dividerLine()
+            
+            // MARK: Row 2 (Start / End)
+            twoColumnRow (
+                leftTitle: "Start Time",
+                leftValue: startTime,
+                rightTitle: "End Time",
+                rightValue: endTime
+            )
+            
+            dividerLine()
+            
+            // MARK: Row 3 (Lunch / Breaks)
+            twoColumnRow (
+                leftTitle: "Lunch",
+                leftValue: meals,
+                rightTitle: "Breaks",
+                rightValue: breaks
+            )
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        //        .padding(.vertical, 12)
-        //        .padding(.horizontal, 14)
-        .background (
-            RoundedRectangle(cornerRadius: 14)
-                .fill(Color.gray.opacity(0.06))
-        )
+        .padding(.all, 16)
+        .background(cardBackground)
+        //        .padding(.horizontal, 16)
+    }
+    
+    private var menuButton: some View {
+        Menu {
+            Button { onUpdate() } label: {
+                Label("Update", systemImage: "pencil")
+            }
+            Button(role: .destructive) { onDelete() } label: {
+                Label("Delete", systemImage: "trash")
+            }
+        } label: {
+            Image(systemName: "ellipsis")
+                .font(.system(size: 18, weight: .bold))
+                .rotationEffect(.degrees(90))
+                .frame(width: 40, height: 40)
+                .contentShape(Rectangle())
+        }
+    }
+    
+    private func dividerLine() -> some View {
+        Divider()
+            .padding(.vertical, 14)
+    }
+    
+    private func twoColumnRow (
+        leftTitle: String,
+        leftValue: String,
+        rightTitle: String,
+        rightValue: String
+    ) -> some View {
+        HStack(spacing: 0) {
+            column(title: leftTitle, value: leftValue)
+            
+            Divider()
+                .frame(height: 50)
+            
+            column(title: rightTitle, value: rightValue)
+        }
+        .frame(maxWidth: .infinity)
+    }
+    
+    private func column(title: String, value: String) -> some View {
+        VStack(alignment: .center, spacing: 6) {
+            IBLabel (
+                text: title,
+                font: .semibold(.description),
+                color: .gray
+            )
+            .multilineTextAlignment(.center)
+            
+            IBLabel (
+                text: value,
+                font: .semibold(.title),
+                color: .BLACK
+            )
+            .multilineTextAlignment(.center)
+        }
+        .frame(maxWidth: .infinity, alignment: .center)  // ✅ Force center
+        //        .padding(.vertical, 8)
+    }
+    
+    private var cardBackground: some View {
+        RoundedRectangle(cornerRadius: 24)
+            .fill(Color(.systemGray6))
+            .overlay (
+                RoundedRectangle(cornerRadius: 24)
+                    .stroke(Color.gray.opacity(0.4), lineWidth: 1)
+            )
     }
 }

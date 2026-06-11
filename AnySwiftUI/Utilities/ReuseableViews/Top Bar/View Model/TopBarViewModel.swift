@@ -14,10 +14,12 @@ class TopBarViewModel: ObservableObject {
     @Published var attendanceRate: String = "0%"
     @Published var review: String = "0.0"
     @Published var ratingCount: Int = 2
+    @Published var requestCount: Int = 0
     
     @Published var showMenu: Bool = false
     @Published var showAttendance: Bool = true
     @Published var navToMenu: Bool = false
+    @Published var navToChat: Bool = false
     
     // Actions (like IBAction replacement)
     var onChatTap: (() -> Void)?

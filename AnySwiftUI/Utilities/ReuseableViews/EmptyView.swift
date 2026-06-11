@@ -46,6 +46,15 @@ struct EmptyView: View {
     }
 }
 
+extension View {
+    func hideKeyboardOnTap() -> some View {
+        self.onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
+                                            to: nil, from: nil, for: nil)
+        }
+    }
+}
+
 #Preview {
     EmptyView(title: "No Data", subtitle: "Please find later!", img: "tray")
 }

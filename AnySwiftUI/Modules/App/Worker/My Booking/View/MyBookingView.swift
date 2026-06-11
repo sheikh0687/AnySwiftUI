@@ -163,6 +163,7 @@ struct MyBookingView: View {
                 viewModel.acceptCount = response.accept_shift_count ?? 0
                 viewModel.pendingCount = response.pending_shift_count ?? 0
             }
+            
         } catch {
             viewModel.customError = .customError(message: error.localizedDescription)
         }

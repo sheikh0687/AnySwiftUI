@@ -225,7 +225,13 @@ struct User_details : Codable {
     let shift_autoapproval : String?
     let currency : String?
     let currency_symbol : String?
-
+    let attandance : String?
+    let completed_shift : Int?
+    let worker_experience : String?
+    let average_rating : String?
+    let total_rating_count : Int?
+    let certificate : String?
+    
     enum CodingKeys: String, CodingKey {
 
         case id = "id"
@@ -285,6 +291,12 @@ struct User_details : Codable {
         case shift_autoapproval = "shift_autoapproval"
         case currency = "currency"
         case currency_symbol = "currency_symbol"
+        case attandance = "attandance"
+        case completed_shift = "completed_shift"
+        case worker_experience = "worker_experience"
+        case average_rating = "average_rating"
+        case total_rating_count = "total_rating_count"
+        case certificate = "certificate"
     }
 
     init(from decoder: Decoder) throws {
@@ -346,6 +358,11 @@ struct User_details : Codable {
         shift_autoapproval = try values.decodeIfPresent(String.self, forKey: .shift_autoapproval)
         currency = try values.decodeIfPresent(String.self, forKey: .currency)
         currency_symbol = try values.decodeIfPresent(String.self, forKey: .currency_symbol)
+        attandance = try values.decodeIfPresent(String.self, forKey: .attandance)
+        completed_shift = try values.decodeIfPresent(Int.self, forKey: .completed_shift)
+        worker_experience = try values.decodeIfPresent(String.self, forKey: .worker_experience)
+        average_rating = try values.decodeIfPresent(String.self, forKey: .average_rating)
+        total_rating_count = try values.decodeIfPresent(Int.self, forKey: .total_rating_count)
+        certificate = try values.decodeIfPresent(String.self, forKey: .certificate)
     }
-
 }

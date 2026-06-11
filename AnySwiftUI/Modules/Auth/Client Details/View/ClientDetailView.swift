@@ -18,7 +18,11 @@ struct ClientDetailView: View {
                 inputFields
                 
                 IBSubmitButton(buttonText: "FINISH") {
-                    viewModel.navContinue = true
+                    if viewModel.validateLoginFields() {
+                        Task {
+                            await callUpdateClientProfile()
+                        }
+                    }
                 }
                 
                 Spacer()
@@ -31,17 +35,51 @@ struct ClientDetailView: View {
         .navigationDestination(isPresented: $viewModel.navContinue) {
             RegisteredView()
         }
+        .sheet(isPresented: $viewModel.showAddressPicker) {
+            LocationPickerView { result in
+                if let res = result {
+                    viewModel.businessAddress = res["address"] as? String ?? ""
+                    viewModel.businessLat     = res["lat"] as? Double ?? 0.0
+                    viewModel.businessLon     = res["lng"] as? Double ?? 0.0
+                }
+            }
+        }
+        .sheet(isPresented: $viewModel.showCameraPicker) {
+            ImagePicker(sourceType: .camera) { img in
+                viewModel.selectedBusinessProfile = img
+            }
+        }
+        .alert(item: $viewModel.customError) { error in
+            Alert (
+                title: Text(appName),
+                message: Text(error.localizedDescription),
+                dismissButton: .default(Text("Ok"))
+            )
+        }
+    }
+    
+    func callUpdateClientProfile() async {
+        viewModel.isLoading = true
+        
+        defer { viewModel.isLoading = false }
+        
+        do {
+            let response = try await viewModel.updateClientDetails()
+            if response.status == "1" {
+                viewModel.saveCredentials(res: response.result!)
+                viewModel.navContinue = true
+            }
+        } catch {
+            viewModel.customError = .customError(message: error.localizedDescription)
+        }
     }
     
     private var inputFields: some View {
         VStack(alignment: .leading, spacing: 24) {
             VStack(spacing: 4) {
                 HStack(spacing: 4) {
-//                    Image(systemName: "envelope.fill")
-//                        .font(.title2)
-//                        .foregroundColor(.gray)
                     IBTextField(placeholder: "Enter Business Name",
-                                text: $viewModel.mobileNumber,keyboardType:    UIKeyboardType.phonePad)
+                                text: $viewModel.businessName, keyboardType: UIKeyboardType.phonePad)
                 }
                 Divider()
                     .frame(height: 0.5)
@@ -50,56 +88,46 @@ struct ClientDetailView: View {
             
             VStack(spacing: 4) {
                 HStack(spacing: 4) {
-//                    Image(systemName: "envelope.fill")
-//                        .font(.title2)
-//                        .foregroundColor(.gray)
                     IBTextField(placeholder: "CIN or LLPIN or GSTIN or PAN Number",
-                                text: $viewModel.mobileNumber,keyboardType:    UIKeyboardType.default)
+                                text: $viewModel.registerNumber, keyboardType: UIKeyboardType.default)
                 }
                 Divider()
                     .frame(height: 0.5)
                     .background(Color.LIGHTGRAY)
             }
             
-            VStack(spacing: 4) {
-                HStack(spacing: 16) {
-//                    Image(systemName: "phone.fill")
-//                        .font(.title2)
-//                        .foregroundColor(.gray)
-                    
-                    Button {
-                        viewModel.showCountryPicker = true
-                    } label: {
-                        HStack(spacing: 6) {
-                            if let countryObj = viewModel.countryObj {
-                                IBLabel(text: "+\(countryObj.phoneCode)", font: .medium(.largeTitle), color: .black)
-                            }
-                            
-                            Image(systemName: "chevron.down")
-                                .font(.system(size: 12, weight: .medium))
-                                .foregroundColor(.gray)
-                        }
-                    }
-                    .background(Color.white)
-      
-                    IBTextField(placeholder: "Mobile", text: $viewModel.mobileNumber, keyboardType: .phonePad)
-                }
-                Divider()
-                    .frame(height: 0.5)
-                    .background(Color.LIGHTGRAY)
-            }
+//            VStack(spacing: 4) {
+//                HStack(spacing: 16) {
+////                    Image(systemName: "phone.fill")
+////                        .font(.title2)
+////                        .foregroundColor(.gray)
+//                    
+//                    Button {
+//                        viewModel.showCountryPicker = true
+//                    } label: {
+//                        HStack(spacing: 6) {
+//                            if let countryObj = viewModel.countryObj {
+//                                IBLabel(text: "+\(countryObj.phoneCode)", font: .medium(.largeTitle), color: .black)
+//                            }
+//                            
+//                            Image(systemName: "chevron.down")
+//                                .font(.system(size: 12, weight: .medium))
+//                                .foregroundColor(.gray)
+//                        }
+//                    }
+//                    .background(Color.white)
+//      
+//                    IBTextField(placeholder: "Mobile", text: $viewModel.mobileNumber, keyboardType: .phonePad)
+//                }
+//                Divider()
+//                    .frame(height: 0.5)
+//                    .background(Color.LIGHTGRAY)
+//            }
             
             VStack(alignment: .leading, spacing: 4) {
                 Button {
-//                    viewModel.showAddressPicker = true
+                    viewModel.showAddressPicker = true
                 } label: {
-//                    Text(viewModel.businessAddress.isEmpty ? "Choose Address" : viewModel.businessAddress)
-//                        .font(.customfont(.regular, fontSize: 14))
-//                        .foregroundColor(viewModel.location.isEmpty ? .gray : .black)
-//                        .multilineTextAlignment(.leading)
-//                        .frame(maxWidth: .infinity, alignment: .leading)
-//                        .frame(height: 50)
-                   
                     HStack {
                         IBLabel (
                             text: viewModel.businessAddress.isEmpty ? "Choose Address" : viewModel.businessAddress,
@@ -147,7 +175,7 @@ struct ClientDetailView: View {
                 }
                 
                 Button {
-//                    openNRICCameraPicker()
+                    viewModel.showCameraPicker = true
                 } label: {
                     IBLabel(text: "Upload a photo", font: .semibold(.note),
                             color: .white)
