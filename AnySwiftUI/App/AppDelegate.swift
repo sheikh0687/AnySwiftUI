@@ -19,7 +19,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         IQKeyboardManager.shared.isEnabled = true
         FirebaseApp.configure()
         
-        StripeAPI.defaultPublishableKey = "sk_test_51P5rKT2NILLEdEG6TlzIkl0813XPnrFxu8a0iy1MopgPMOer1n36RZnmN2quUTm5PnyJD7ZIRTqrcLzNoWaI7osb00NQaAhQdT"
+        StripeAPI.defaultPublishableKey = "pk_live_51J2qDbFQ7R30RqjsyCXuC4QRtLYrPoH8B2ycKMhlBCO47mvR1jTA97usIWHdzYMcQ3iAkRVdIX6qQtziE5fofONI00SpVUmiJi"
         
         UNUserNotificationCenter.current().delegate = self
         Messaging.messaging().delegate = self
