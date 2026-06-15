@@ -188,7 +188,11 @@ struct JobProviderView: View {
                     .frame(maxWidth: .infinity)
                     .padding()
             } else if viewModel.jobProviderList.isEmpty {
-                EmptyView(title: "", subtitle: "No Bookings At The Moment", img: "")
+                EmptyView (
+                    title: "High demand! All shifts for this date are already taken.",
+                    subtitle: "Don’t miss out — pick another available date now.",
+                    img: ""
+                )
             } else {
                 LazyVStack(spacing: 20) {
                     ForEach(viewModel.filteredList, id: \.id) { jobProvider in

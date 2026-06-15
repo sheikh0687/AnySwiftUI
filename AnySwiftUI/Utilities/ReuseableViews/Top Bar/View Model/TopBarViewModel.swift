@@ -20,6 +20,7 @@ class TopBarViewModel: ObservableObject {
     @Published var showAttendance: Bool = true
     @Published var navToMenu: Bool = false
     @Published var navToChat: Bool = false
+    @Published var navToNotificatin: Bool = false
     
     // Actions (like IBAction replacement)
     var onChatTap: (() -> Void)?

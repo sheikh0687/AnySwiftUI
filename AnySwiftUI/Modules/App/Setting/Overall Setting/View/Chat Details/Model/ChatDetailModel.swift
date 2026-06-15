@@ -459,3 +459,14 @@ struct Receiver_detail : Codable {
     }
 
 }
+
+struct ChatMessageUI: Identifiable, Equatable {
+    let id: String
+    let message: String
+    let dateTime: String
+    let isCurrentUser: Bool
+    let avatarURL: String?
+    let isSupport: Bool
+    let supportName: String?
+    let seenStatus: String   // "Read" or "Sent"
+}

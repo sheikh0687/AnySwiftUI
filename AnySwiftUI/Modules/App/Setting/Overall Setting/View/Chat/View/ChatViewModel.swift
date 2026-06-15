@@ -15,6 +15,11 @@ class ChatViewModel {
     var isLoading: Bool = false
     var customError: CustomError? = nil
     
+    var requestiD: String = ""
+    var receiveriD: String = ""
+    var userName: String = ""
+    
+    var navToChatDetail: Bool = false
     var arrayChatList: [Res_ChatList] = []
     
     func fetchChatMessage() async throws -> Api_ChatList {

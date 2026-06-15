@@ -23,6 +23,12 @@ struct ChatView: View {
                     } else {
                         ForEach(viewModel.arrayChatList, id: \.id) { chatss in
                             ChatListCard(obj: chatss)
+                                .onTapGesture {
+                                    viewModel.requestiD = chatss.request_id ?? ""
+                                    viewModel.receiveriD = chatss.sender_id ?? ""
+                                    viewModel.userName = "\(chatss.first_name ?? "") \(chatss.last_name ?? "")"
+                                    viewModel.navToChatDetail = true
+                                }
                         }
                     }
                 }
@@ -44,6 +50,13 @@ struct ChatView: View {
         }
         .task {
             await loadChats()
+        }
+        .navigationDestination(isPresented: $viewModel.navToChatDetail) {
+            ChatDetailView (
+                receiveriD: viewModel.receiveriD,
+                requestiD: viewModel.requestiD,
+                userName: viewModel.userName
+            )
         }
     }
     

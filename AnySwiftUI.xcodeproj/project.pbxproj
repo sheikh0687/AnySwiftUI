@@ -51,6 +51,9 @@
 		B747FA412F5BF454008AAAD7 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B747FA402F5BF454008AAAD7 /* Buttons.swift */; };
 		B747FA432F5BF456008AAAD7 /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B747FA422F5BF456008AAAD7 /* Labels.swift */; };
 		B747FA452F5BF45A008AAAD7 /* TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = B747FA442F5BF45A008AAAD7 /* TextFields.swift */; };
+		B74D8D0E2FDC074D00E350CD /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74D8D0D2FDC074D00E350CD /* NotificationView.swift */; };
+		B74D8D102FDC079000E350CD /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74D8D0F2FDC079000E350CD /* NotificationViewModel.swift */; };
+		B74D8D122FDC088900E350CD /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74D8D112FDC088900E350CD /* NotificationModel.swift */; };
 		B74DBB1F2F960D8300AAB836 /* OutletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74DBB1E2F960D8300AAB836 /* OutletModel.swift */; };
 		B74DBB212F960F5100AAB836 /* ManpowerSHift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74DBB202F960F5100AAB836 /* ManpowerSHift.swift */; };
 		B74DBB232F96123B00AAB836 /* UpcomingShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74DBB222F96123B00AAB836 /* UpcomingShift.swift */; };
@@ -236,6 +239,9 @@
 		B747FA402F5BF454008AAAD7 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		B747FA422F5BF456008AAAD7 /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
 		B747FA442F5BF45A008AAAD7 /* TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
+		B74D8D0D2FDC074D00E350CD /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		B74D8D0F2FDC079000E350CD /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		B74D8D112FDC088900E350CD /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		B74DBB1E2F960D8300AAB836 /* OutletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutletModel.swift; sourceTree = "<group>"; };
 		B74DBB202F960F5100AAB836 /* ManpowerSHift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManpowerSHift.swift; sourceTree = "<group>"; };
 		B74DBB222F96123B00AAB836 /* UpcomingShift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingShift.swift; sourceTree = "<group>"; };
@@ -885,6 +891,40 @@
 			path = ReuseableViews;
 			sourceTree = "<group>";
 		};
+		B74D8D092FDC072700E350CD /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				B74D8D0C2FDC073D00E350CD /* Model */,
+				B74D8D0B2FDC073800E350CD /* View */,
+				B74D8D0A2FDC073200E350CD /* View Model */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		B74D8D0A2FDC073200E350CD /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				B74D8D0F2FDC079000E350CD /* NotificationViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		B74D8D0B2FDC073800E350CD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B74D8D0D2FDC074D00E350CD /* NotificationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B74D8D0C2FDC073D00E350CD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B74D8D112FDC088900E350CD /* NotificationModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B766B9DB2F8E429E0090FA54 /* Offer Banner */ = {
 			isa = PBXGroup;
 			children = (
@@ -1056,6 +1096,7 @@
 				B77F78822FD933C6008D276A /* Add Rating Review */,
 				B7B5A8CB2FDADB660074CA0F /* Chat */,
 				B7B5A8D52FDAE7E40074CA0F /* Chat Details */,
+				B74D8D092FDC072700E350CD /* Notification */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2121,6 +2162,7 @@
 				B71D85C32F7BA72000C44B36 /* BookingCalendarVM.swift in Sources */,
 				B75C0D9D2F750C7B002C4493 /* Image.swift in Sources */,
 				B766B9E12F8E42C10090FA54 /* ClientOfferView.swift in Sources */,
+				B74D8D0E2FDC074D00E350CD /* NotificationView.swift in Sources */,
 				B766B9E22F8E42C10090FA54 /* OfferDetail.swift in Sources */,
 				B72267E12F3B0E4C0068BAF2 /* LoginView.swift in Sources */,
 				B766B9FA2F8E7EDE0090FA54 /* SameDayShift.swift in Sources */,
@@ -2158,6 +2200,7 @@
 				B72267C52F3AFF1A0068BAF2 /* AnySwiftUIApp.swift in Sources */,
 				B7B5A8D42FDADD3C0074CA0F /* ChatModel.swift in Sources */,
 				B74DBB212F960F5100AAB836 /* ManpowerSHift.swift in Sources */,
+				B74D8D122FDC088900E350CD /* NotificationModel.swift in Sources */,
 				B7306C992F695F0F0029B108 /* TopBarView.swift in Sources */,
 				B766B9EA2F8E5C300090FA54 /* ClockingAlert.swift in Sources */,
 				B723066D2FD2CDDF0075716B /* SavedPaymentCardViewModel.swift in Sources */,
@@ -2268,6 +2311,7 @@
 				B7EE8B692F72613600A4F93F /* PopUp.swift in Sources */,
 				B7F531872F8F9027007E6E45 /* DeclineShift.swift in Sources */,
 				B76B3EB72F67D583002EE02E /* LocationManager.swift in Sources */,
+				B74D8D102FDC079000E350CD /* NotificationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -118,6 +118,10 @@ struct DashboardView: View {
             .navigationDestination(isPresented: $topBarVM.navToChat) {
                 ChatView()
             }
+            
+            .navigationDestination(isPresented: $topBarVM.navToNotificatin) {
+                NotificationView()
+            }
         }
         
         // MARK: Lifecycle
@@ -138,6 +142,10 @@ struct DashboardView: View {
             
             topBarVM.onChatTap = {
                 topBarVM.navToChat = true
+            }
+            
+            topBarVM.onNotificationTap = {
+                topBarVM.navToNotificatin = true
             }
             
             Task {
@@ -171,6 +179,7 @@ struct DashboardView: View {
                 topBarVM.showMenu = false
             }
         }
+        
         .onChange(of: selectClientTab) { _, tab in
             switch tab {
             case .clientJobs:
