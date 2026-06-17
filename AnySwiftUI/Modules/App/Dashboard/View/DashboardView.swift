@@ -93,7 +93,7 @@ struct DashboardView: View {
                             }
                         
                         // MARK: Profile
-                        JobRequestView()
+                        JobRequestView(viewModel: .init(strDate: "", isFor: ""))
                             .tag(clientTab.jobRequest)
                             .tabItem {
                                 Label("Request", systemImage: "person.crop.circle.fill")

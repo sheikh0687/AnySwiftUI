@@ -1,173 +1,33 @@
 //
-//  WorkerTransaction.swift
+//  AuthoriseList.swift
 //  AnySwiftUI
 //
-//  Created by Arbaz  on 27/03/26.
+//  Created by Arbaz  on 17/06/26.
 //
 
 import Foundation
 
-struct Api_WorkerTransactionHistory : Codable {
-    let total_job : Int?
-    let total_earning : Int?
-    let result : [Res_WorkerTransactionHistory]?
+struct Api_AuthoriseList : Codable {
+    let result : [Res_AuthoriseList]?
+    let status : String?
     let message : String?
-    let status : String?
 
     enum CodingKeys: String, CodingKey {
 
-        case total_job = "total_job"
-        case total_earning = "total_earning"
         case result = "result"
+        case status = "status"
         case message = "message"
-        case status = "status"
     }
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        total_job = try values.decodeIfPresent(Int.self, forKey: .total_job)
-        total_earning = try values.decodeIfPresent(Int.self, forKey: .total_earning)
-        result = try values.decodeIfPresent([Res_WorkerTransactionHistory].self, forKey: .result)
+        result = try values.decodeIfPresent([Res_AuthoriseList].self, forKey: .result)
+        status = try values.decodeIfPresent(String.self, forKey: .status)
         message = try values.decodeIfPresent(String.self, forKey: .message)
-        status = try values.decodeIfPresent(String.self, forKey: .status)
     }
 }
 
-struct Res_WorkerTransactionHistory : Codable {
-    let id : String?
-    let card_id : String?
-    let customer_id : String?
-    let shift_id : String?
-    let client_id : String?
-    let user_id : String?
-    let day_name : String?
-    let status : String?
-    let cart_status : String?
-    let date : String?
-    let date_time : String?
-    let approver_id : String?
-    let approver_name : String?
-    let approver_type : String?
-    let shift_type : String?
-    let shift_rate : String?
-    let clock_in_time : String?
-    let clock_out_time : String?
-    let total_working_hr_time : String?
-    let total_working_min_time : String?
-    let total_amount : String?
-    let address : String?
-    let lat : String?
-    let lon : String?
-    let working_status : String?
-    let break_time : String?
-    let break_approver_id : String?
-    let break_approver_name : String?
-    let break_type : String?
-    let late : String?
-    let job_type : String?
-    let job_type_id : String?
-    let shift_autoapproval : String?
-    let country_id : String?
-    let shift_start_time : String?
-    let shift_end_time : String?
-    let set_shift_details : Set_shift_details?
-    let client_details : Client_details?
-    let user_details : User_details?
-    let format_date : String?
-    let rating_review_status : String?
-
-    enum CodingKeys: String, CodingKey {
-
-        case id = "id"
-        case card_id = "card_id"
-        case customer_id = "customer_id"
-        case shift_id = "shift_id"
-        case client_id = "client_id"
-        case user_id = "user_id"
-        case day_name = "day_name"
-        case status = "status"
-        case cart_status = "cart_status"
-        case date = "date"
-        case date_time = "date_time"
-        case approver_id = "approver_id"
-        case approver_name = "approver_name"
-        case approver_type = "approver_type"
-        case shift_type = "shift_type"
-        case shift_rate = "shift_rate"
-        case clock_in_time = "clock_in_time"
-        case clock_out_time = "clock_out_time"
-        case total_working_hr_time = "total_working_hr_time"
-        case total_working_min_time = "total_working_min_time"
-        case total_amount = "total_amount"
-        case address = "address"
-        case lat = "lat"
-        case lon = "lon"
-        case working_status = "working_status"
-        case break_time = "break_time"
-        case break_approver_id = "break_approver_id"
-        case break_approver_name = "break_approver_name"
-        case break_type = "break_type"
-        case late = "late"
-        case job_type = "job_type"
-        case job_type_id = "job_type_id"
-        case shift_autoapproval = "shift_autoapproval"
-        case country_id = "country_id"
-        case shift_start_time = "shift_start_time"
-        case shift_end_time = "shift_end_time"
-        case set_shift_details = "set_shift_details"
-        case client_details = "client_details"
-        case user_details = "user_details"
-        case format_date = "format_date"
-        case rating_review_status = "rating_review_status"
-    }
-
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        id = try values.decodeIfPresent(String.self, forKey: .id)
-        card_id = try values.decodeIfPresent(String.self, forKey: .card_id)
-        customer_id = try values.decodeIfPresent(String.self, forKey: .customer_id)
-        shift_id = try values.decodeIfPresent(String.self, forKey: .shift_id)
-        client_id = try values.decodeIfPresent(String.self, forKey: .client_id)
-        user_id = try values.decodeIfPresent(String.self, forKey: .user_id)
-        day_name = try values.decodeIfPresent(String.self, forKey: .day_name)
-        status = try values.decodeIfPresent(String.self, forKey: .status)
-        cart_status = try values.decodeIfPresent(String.self, forKey: .cart_status)
-        date = try values.decodeIfPresent(String.self, forKey: .date)
-        date_time = try values.decodeIfPresent(String.self, forKey: .date_time)
-        approver_id = try values.decodeIfPresent(String.self, forKey: .approver_id)
-        approver_name = try values.decodeIfPresent(String.self, forKey: .approver_name)
-        approver_type = try values.decodeIfPresent(String.self, forKey: .approver_type)
-        shift_type = try values.decodeIfPresent(String.self, forKey: .shift_type)
-        shift_rate = try values.decodeIfPresent(String.self, forKey: .shift_rate)
-        clock_in_time = try values.decodeIfPresent(String.self, forKey: .clock_in_time)
-        clock_out_time = try values.decodeIfPresent(String.self, forKey: .clock_out_time)
-        total_working_hr_time = try values.decodeIfPresent(String.self, forKey: .total_working_hr_time)
-        total_working_min_time = try values.decodeIfPresent(String.self, forKey: .total_working_min_time)
-        total_amount = try values.decodeIfPresent(String.self, forKey: .total_amount)
-        address = try values.decodeIfPresent(String.self, forKey: .address)
-        lat = try values.decodeIfPresent(String.self, forKey: .lat)
-        lon = try values.decodeIfPresent(String.self, forKey: .lon)
-        working_status = try values.decodeIfPresent(String.self, forKey: .working_status)
-        break_time = try values.decodeIfPresent(String.self, forKey: .break_time)
-        break_approver_id = try values.decodeIfPresent(String.self, forKey: .break_approver_id)
-        break_approver_name = try values.decodeIfPresent(String.self, forKey: .break_approver_name)
-        break_type = try values.decodeIfPresent(String.self, forKey: .break_type)
-        late = try values.decodeIfPresent(String.self, forKey: .late)
-        job_type = try values.decodeIfPresent(String.self, forKey: .job_type)
-        job_type_id = try values.decodeIfPresent(String.self, forKey: .job_type_id)
-        shift_autoapproval = try values.decodeIfPresent(String.self, forKey: .shift_autoapproval)
-        country_id = try values.decodeIfPresent(String.self, forKey: .country_id)
-        shift_start_time = try values.decodeIfPresent(String.self, forKey: .shift_start_time)
-        shift_end_time = try values.decodeIfPresent(String.self, forKey: .shift_end_time)
-        set_shift_details = try values.decodeIfPresent(Set_shift_details.self, forKey: .set_shift_details)
-        client_details = try values.decodeIfPresent(Client_details.self, forKey: .client_details)
-        user_details = try values.decodeIfPresent(User_details.self, forKey: .user_details)
-        format_date = try values.decodeIfPresent(String.self, forKey: .format_date)
-        rating_review_status = try values.decodeIfPresent(String.self, forKey: .rating_review_status)
-    }
-}
-
-struct User_details : Codable, Hashable {
+struct Res_AuthoriseList : Codable {
     let id : String?
     let customer_id : String?
     let card_id : String?
@@ -225,13 +85,7 @@ struct User_details : Codable, Hashable {
     let shift_autoapproval : String?
     let currency : String?
     let currency_symbol : String?
-    let attandance : String?
-    let completed_shift : Int?
-    let worker_experience : String?
-    let average_rating : String?
-    let total_rating_count : Int?
-    let certificate : String?
-    
+
     enum CodingKeys: String, CodingKey {
 
         case id = "id"
@@ -291,12 +145,6 @@ struct User_details : Codable, Hashable {
         case shift_autoapproval = "shift_autoapproval"
         case currency = "currency"
         case currency_symbol = "currency_symbol"
-        case attandance = "attandance"
-        case completed_shift = "completed_shift"
-        case worker_experience = "worker_experience"
-        case average_rating = "average_rating"
-        case total_rating_count = "total_rating_count"
-        case certificate = "certificate"
     }
 
     init(from decoder: Decoder) throws {
@@ -358,11 +206,6 @@ struct User_details : Codable, Hashable {
         shift_autoapproval = try values.decodeIfPresent(String.self, forKey: .shift_autoapproval)
         currency = try values.decodeIfPresent(String.self, forKey: .currency)
         currency_symbol = try values.decodeIfPresent(String.self, forKey: .currency_symbol)
-        attandance = try values.decodeIfPresent(String.self, forKey: .attandance)
-        completed_shift = try values.decodeIfPresent(Int.self, forKey: .completed_shift)
-        worker_experience = try values.decodeIfPresent(String.self, forKey: .worker_experience)
-        average_rating = try values.decodeIfPresent(String.self, forKey: .average_rating)
-        total_rating_count = try values.decodeIfPresent(Int.self, forKey: .total_rating_count)
-        certificate = try values.decodeIfPresent(String.self, forKey: .certificate)
     }
+
 }

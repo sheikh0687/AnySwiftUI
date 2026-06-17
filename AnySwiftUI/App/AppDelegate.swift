@@ -19,7 +19,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         IQKeyboardManager.shared.isEnabled = true
         FirebaseApp.configure()
         
-        StripeAPI.defaultPublishableKey = "pk_live_51J2qDbFQ7R30RqjsyCXuC4QRtLYrPoH8B2ycKMhlBCO47mvR1jTA97usIWHdzYMcQ3iAkRVdIX6qQtziE5fofONI00SpVUmiJi"
+        if let path = Bundle.main.path(forResource: "Secrets", ofType: "plist"),
+           let dict = NSDictionary(contentsOfFile: path),
+           let stripeKey = dict["StripePublishableKey"] as? String {
+            
+            StripeAPI.defaultPublishableKey = stripeKey
+        } else {
+            print("⚠️ Warning: Secrets.plist or Stripe key missing!")
+        }
         
         UNUserNotificationCenter.current().delegate = self
         Messaging.messaging().delegate = self

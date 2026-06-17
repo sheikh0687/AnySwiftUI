@@ -12,6 +12,7 @@ struct JobWeeklyView: View {
     let weekDays: [Date]
     let weekDayNames: [String]
     let currentMonthYear: String
+    let isLoading: Bool
     let jobTypes: [Res_WeeklyShift]
     
     @Binding var navigateToRequestByDate: String?
@@ -49,8 +50,13 @@ struct JobWeeklyView: View {
             
             // Job Types
             VStack(spacing: 12) {
-                ForEach(jobTypes, id: \.id) { jobType in
-                    jobTypeRow(jobType)
+                if isLoading {
+                    ProgressView("Loading...")
+                        .frame(maxWidth: .infinity)
+                } else {
+                    ForEach(jobTypes, id: \.id) { jobType in
+                        jobTypeRow(jobType)
+                    }
                 }
             }
             .padding(.horizontal, 16)

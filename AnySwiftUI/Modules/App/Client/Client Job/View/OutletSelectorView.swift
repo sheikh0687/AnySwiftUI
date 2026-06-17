@@ -63,8 +63,24 @@ struct OutletSelectorView: View {
                     .animation(.easeInOut, value: showDropDown)
             }
             .padding(12)
-            .background(Color(.systemGray6))
-            .cornerRadius(12)
+            .background (
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color.white)
+            )
+            .overlay (
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke (
+                        Color.black.opacity(0.06),
+                        lineWidth: 1
+                    )
+            )
+            .shadow (
+                color: Color.black.opacity(0.05),
+                radius: 6,
+                x: 0,
+                y: 4
+            )
+
         }
         .buttonStyle(.plain)
     }

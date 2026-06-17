@@ -161,7 +161,7 @@ struct Res_WorkerBookingDetail : Codable {
     }
 }
 
-struct Set_shift_details : Codable {
+struct Set_shift_details : Codable, Equatable, Hashable {
     let id : String?
     let user_id : String?
     let outlet_id : String?

@@ -30,7 +30,7 @@ struct Api_WorkerRequest : Codable {
     }
 }
 
-struct Res_WorkerRequest : Codable, Identifiable {
+struct Res_WorkerRequest : Codable, Identifiable, Hashable {
     let id : String?
     let card_id : String?
     let customer_id : String?

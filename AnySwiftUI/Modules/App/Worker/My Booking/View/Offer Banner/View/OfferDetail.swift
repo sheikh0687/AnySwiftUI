@@ -8,59 +8,109 @@
 import SwiftUI
 
 struct OfferDetail: View {
-    
-    var obj: Res_ClientOffer
-    
+
+    // ✅ Flat properties — works for both Worker (Res_ClientOffer)
+    // and Client (Res_ClientBannerList) banners
+    var image: String?
+    var title: String?
+    var descriptionText: String?
+    var type: String?
+    var dateTime: String?
+
     var body: some View {
-        ZStack {
-            VStack(spacing: 0) {
-                
-                // MARK: Top Image
-                AsyncImage(url: URL(string: obj.image ?? "")) { image in
-                    image
-                        .resizable()
-                        .scaledToFill()        // keep full logo visible
-                        .padding(.top, 20)
-                        .padding(.bottom, 10)
-                } placeholder: {
-                    ProgressView()
-                }
-                .frame(maxWidth: .infinity)
-                .frame(height: 160)
-                .background(Color.orange.opacity(0.08)) // fills empty space nicely
-                
-                // MARK: Card Content
-                ScrollView(showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: 16) {
-                        
-                        Text(obj.title ?? "")
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                        
-                        Divider()
-                        
-                        Text(obj.description ?? "")
-                            .foregroundColor(.secondary)
-                            .fixedSize(horizontal: false, vertical: true)
-                        
-                        Spacer()
+        VStack(spacing: 24) {
+
+            // MARK: - Top Image
+            AsyncImage(url: URL(string: image ?? "")) { img in
+                img
+                    .resizable()
+                    .scaledToFill()
+            } placeholder: {
+                ProgressView()
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 160)
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color(.systemBackground))
+            )
+            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+            )
+            .shadow(color: .black.opacity(0.08), radius: 8, x: 0, y: 4)
+
+            // MARK: - Card Content
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 16) {
+
+                    // Type + Date row (only shown when present, since
+                    // Res_ClientBannerList doesn't carry a `type`)
+                    if type != nil || dateTime != nil {
+                        HStack {
+                            if let type {
+                                Text(type.uppercased())
+                                    .font(.caption)
+                                    .fontWeight(.bold)
+                                    .padding(.horizontal, 10)
+                                    .padding(.vertical, 5)
+                                    .background(Color("BUTTON_COLOR").opacity(0.1))
+                                    .foregroundColor(Color("BUTTON_COLOR"))
+                                    .cornerRadius(8)
+                            }
+
+                            Spacer()
+
+                            if let dateTime {
+                                Text(dateTime)
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
                     }
-                    .padding(20)
-                    .background (
-                        RoundedRectangle(cornerRadius: 26)
-                            .fill(Color.white)
-                            .shadow(color: .black.opacity(0.12), radius: 12, x: 0, y: 6)
-                    )
-                    .padding(.horizontal)
+
+                    Text(title ?? "")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+
+                    Divider()
+
+                    Text(descriptionText ?? "")
+                        .foregroundColor(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    Spacer()
                 }
-//                .padding(.top, -30) // 👈 pulls card slightly over the image
-                
-                Spacer()
             }
         }
+        .padding(.all, 24)
         .navigationBarBackButtonHidden(false)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarTitle("Offer Detail", displayMode: .inline)
+        .navigationTitle("Offer Detail")
+    }
+}
+
+// MARK: - Convenience Initializers
+
+extension OfferDetail {
+
+    // ✅ Worker — Res_ClientOffer
+    init(obj: Res_ClientOffer) {
+        self.image           = obj.image
+        self.title           = obj.title
+        self.descriptionText = obj.description
+        self.type            = obj.type
+        self.dateTime        = obj.exp_date
+    }
+
+    // ✅ Client — Res_ClientBannerList
+    init(obj: Res_ClientBannerList) {
+        self.image           = obj.image
+        self.title           = obj.title
+        self.descriptionText = obj.description
+        self.type            = nil
+        self.dateTime        = obj.exp_date
     }
 }
 

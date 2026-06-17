@@ -37,22 +37,21 @@ struct OnboardingView: View {
                                     .padding(.top, 40)
                                 
                                 VStack(spacing: 16) {
-                                    //                                Text(viewModel.onboardingData[indexx].title)
-                                    //                                    .font(.customfont(.heavy, fontSize: 28))
-                                    //                                    .multilineTextAlignment(.center)
                                     
-                                    IBLabel(text: viewModel.onboardingData[indexx].title, font: .semibold(.heavyLarge))
-                                        .multilineTextAlignment(.center)
-                                    
-                                    //                                Text(viewModel.onboardingData[indexx].description)
-                                    //                                    .font(.customfont(.medium, fontSize: 18))
-                                    //                                    .foregroundColor(.gray)
-                                    //                                    .multilineTextAlignment(.center)
-                                    //                                    .padding(.horizontal, 40)
-                                    
-                                    IBLabel(text: viewModel.onboardingData[indexx].description, font: .medium(.largeTitle), color: .gray)
-                                        .multilineTextAlignment(.center)
-                                        .padding(.horizontal, 40)
+                                    IBLabel (
+                                        text: viewModel.onboardingData[indexx].title,
+                                        font: .semibold(.heavyLarge),
+                                        color: .primary
+                                    )
+                                    .multilineTextAlignment(.center)
+                                                                        
+                                    IBLabel (
+                                        text: viewModel.onboardingData[indexx].description,
+                                        font: .medium(.largeTitle),
+                                        color: .secondary
+                                    )
+                                    .multilineTextAlignment(.center)
+                                    .padding(.horizontal, 40)
                                 }
                             }
                             .tag(indexx)
@@ -67,7 +66,7 @@ struct OnboardingView: View {
                         ForEach(0..<viewModel.onboardingData.count, id: \.self) { index in
                             Circle()
                                 .fill(viewModel.currentPage == index
-                                      ? Color.black
+                                      ? Color.primary
                                       : Color.gray.opacity(0.3))
                                 .frame(width: 12, height: 12)
                         }

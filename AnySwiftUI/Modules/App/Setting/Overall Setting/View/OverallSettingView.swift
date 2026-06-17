@@ -11,43 +11,64 @@ struct OverallSettingView: View {
     
     @EnvironmentObject var appState: AppState
     @State var viewModel = AppSettingViewModel()
+    @State private var showLogoutPopup = false
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 24) {
-                if appState.userType == "Client" {
-                    BusinessView(viewModel: viewModel)
-                    
-                    AccountView(viewModel: viewModel)
-                    
-                    OthersView(viewModel: viewModel)
-                } else {
-                    AccountView(viewModel: viewModel)
-                    
-                    OthersView(viewModel: viewModel)
+        ZStack {
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 24) {
+                    if appState.userType == "Client" {
+                        BusinessView(viewModel: viewModel)
+                        
+                        AccountView(viewModel: viewModel)
+                        
+                        OthersView(viewModel: viewModel)
+                    } else {
+                        AccountView(viewModel: viewModel)
+                        
+                        OthersView(viewModel: viewModel)
+                    }
                 }
+                .padding(.all, 16)
             }
-            .padding(.all, 16)
-        }
-        .safeAreaInset(edge: .bottom) {
-            Button {
-                logout()
-            } label: {
-                Text("Logout")
-                    .font(.system(size: 20, weight: .semibold))
-                    .foregroundStyle(.red)
+            .safeAreaInset(edge: .bottom) {
+                Button {
+                    withAnimation(.spring(response: 0.4, dampingFraction: 0.75)) {
+                        showLogoutPopup = true
+                    }
+                } label: {
+                    HStack(spacing: 12) {
+                        Image(systemName: "rectangle.portrait.and.arrow.right")
+                            .font(.system(size: 20, weight: .bold))
+
+                        Text("Logout")
+                            .font(.system(size: 20, weight: .bold))
+                    }
+                    .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
                     .frame(height: 58)
-                    .background(Color.white)
-                    .overlay {
-                        Capsule()
-                            .stroke(Color.red.opacity(0.7), lineWidth: 1.5)
-                    }
+                    .background (
+                        LinearGradient (
+                            colors: [.red, Color.red.opacity(0.8)],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+                    .cornerRadius(16)
+                    .shadow(color: .red.opacity(0.3), radius: 10, x: 0, y: 5)
+                }
+                .padding(.horizontal, 16)
+                .padding(.top, 8)
+                .padding(.bottom, 12)
+                .background(Color(.systemBackground))
             }
-            .padding(.horizontal, 16)
-            .padding(.top, 8)
-            .padding(.bottom, 12)
-            .background(Color(.systemBackground))
+            // Add this wherever the body's outermost container is (e.g. on the NavigationStack / VStack):
+            .overlay {
+                if showLogoutPopup {
+                    logoutPopupView
+                        .zIndex(1)
+                }
+            }
         }
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.inline)
@@ -72,7 +93,86 @@ struct OverallSettingView: View {
         .navigationDestination(isPresented: $viewModel.navToHistory) {
             ClientTransactionHistoryView()
         }
+    }
+    
+    private var logoutPopupView: some View {
+        ZStack {
+            Color.black.opacity(0.4)
+                .ignoresSafeArea()
+                .transition(.opacity)              // now fades instead of popping
+                .onTapGesture { dismissPopup() }
 
+            VStack(spacing: 24) {
+                ZStack {
+                    Circle()
+                        .fill(Color.red.opacity(0.1))
+                        .frame(width: 80, height: 80)
+
+                    Image(systemName: "rectangle.portrait.and.arrow.right.fill")
+                        .font(.system(size: 36))
+                        .foregroundStyle(.red)
+                }
+                .padding(.top, 28)
+
+                VStack(spacing: 8) {
+                    Text("Logout")
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundStyle(.primary)         // dark-mode safe
+
+                    Text("Are you sure you want to logout?")
+                        .font(.system(size: 16))
+                        .foregroundStyle(.secondary)       // dark-mode safe
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 24)
+                }
+
+                HStack(spacing: 16) {
+                    Button {
+                        dismissPopup()
+                    } label: {
+                        Text("Cancel")
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundStyle(.primary)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(12)
+                    }
+
+                    Button {
+                        dismissPopup()
+                        // let the close animation finish before the screen reacts to isLoggedIn = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                            logout()
+                        }
+                    } label: {
+                        Text("Logout")
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .background(Color.red)
+                            .cornerRadius(12)
+                    }
+                }
+                .padding(.horizontal, 24)
+                .padding(.bottom, 24)
+            }
+            .background(Color(.systemBackground))         // dark-mode safe
+            .cornerRadius(24)
+            .padding(.horizontal, 32)
+            .shadow(color: .black.opacity(0.2), radius: 30, y: 10)
+            .transition(.asymmetric (
+                insertion: .scale(scale: 0.85, anchor: .center).combined(with: .opacity),
+                removal: .scale(scale: 0.85, anchor: .center).combined(with: .opacity)
+            ))
+        }
+    }
+
+    private func dismissPopup() {
+        withAnimation(.spring(response: 0.4, dampingFraction: 0.75)) {
+            showLogoutPopup = false
+        }
     }
     
     func logout() {

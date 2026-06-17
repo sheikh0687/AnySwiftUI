@@ -103,6 +103,7 @@ enum Router: String {
     case like_unlike
     case get_fav_client_list
     case worker_update_document
+    case get_client_banner_list
     
     case set_shift_autoapproval_status
     case add_user_rating_review
@@ -318,6 +319,8 @@ enum Router: String {
             
         case .delete_Outlet:
             return Router.oAuthRoute(path: "delete_Outlet?")
+        case .get_client_banner_list:
+            return Router.oAuthRoute(path: "get_client_banner_list?")
         }
     }
     

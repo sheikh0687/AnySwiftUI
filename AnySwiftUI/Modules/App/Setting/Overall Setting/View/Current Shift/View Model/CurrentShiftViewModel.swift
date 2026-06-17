@@ -16,6 +16,13 @@ class CurrentShiftViewModel {
     var isAutoApproval = false
     var errorMessage: String?
     
+    var adminType: String = ""
+    var navToAdminList: Bool = false
+    var navToUpdateShift: Bool = false
+    
+    var shiftiD: String = ""
+    var outletName: String = ""
+    
     @MainActor
     func getShiftList() async throws -> Api_CurrentShift {
         isLoading = true

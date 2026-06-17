@@ -9,7 +9,7 @@ import SwiftUI
 
 struct JobRequestView: View {
     
-    @State private var viewModel = JobRequestViewModel()
+    @State var viewModel: JobRequestViewModel
     
     @State private var navigateToChat: Res_WorkerRequest? = nil
     @State private var navigateToReviews: Bool = false
@@ -22,7 +22,6 @@ struct JobRequestView: View {
             }
             .padding(.all, 16)
             .background(Color(.systemBackground))
-            .navigationBarHidden(true)
             .task { await viewModel.loadRequests() }
             .refreshable { await viewModel.loadRequests() }
             .alert("Error", isPresented: Binding (
@@ -34,7 +33,7 @@ struct JobRequestView: View {
                 Text(viewModel.customError?.errorDescription ?? "")
             }
             .navigationDestination(isPresented: $navigateToReviews) {
-//                UserRatingView()
+                //                UserRatingView()
             }
             .sheet(item: $viewModel.approvalItem) { item in
                 ApprovalSheetView (
@@ -61,19 +60,21 @@ struct JobRequestView: View {
                 }
             }
             
-            //            .navigationDestination(item: $navigateToChat) { item in
-            ////                UserChatView (
-            ////                    receiverId: item.userDetails?.id ?? "",
-            ////                    userName: "\(item.userDetails?.firstName ?? "") \(item.userDetails?.lastName ?? "")",
-            ////                    reasonID: item.id ?? ""
-            ////                )
-            //            }
+            .navigationDestination(item: $navigateToChat) { item in
+                ChatDetailView (
+                    receiveriD: item.user_details?.id ?? "",
+                    requestiD: item.id ?? "",
+                    userName: "\(item.user_details?.first_name ?? "") \(item.user_details?.last_name ?? "")"
+                )
+            }
+            .navigationBarHidden(viewModel.isFor == "DateReq" ? false : true)
+            .navigationTitle(viewModel.isFor == "DateReq" ? viewModel.strDate : "")
         }
     }
     
     // MARK: - Tab Selector
     private var tabSelector: some View {
-         HStack(spacing: 8) {
+        HStack(spacing: 8) {
             segmentButton(title: "Pending", index: 0, badge: viewModel.pendingCount)
             segmentButton(title: "Approved", index: 1, badge: viewModel.acceptCount)
         }
@@ -153,9 +154,9 @@ struct JobRequestView: View {
             Text(viewModel.selectedSegment == 0
                  ? "No Pending Bookings At The Moment"
                  : "No Approved Bookings At The Moment")
-                .font(.system(size: 15))
-                .foregroundColor(.gray)
-                .multilineTextAlignment(.center)
+            .font(.system(size: 15))
+            .foregroundColor(.gray)
+            .multilineTextAlignment(.center)
         }
     }
 }
@@ -216,14 +217,14 @@ struct WorkerRequestCardView: View {
     
     private var workerInfo: some View {
         VStack(alignment: .leading, spacing: 3) {
-//            HStack(alignment: .top) {
-//                Spacer()
-//            }
+            //            HStack(alignment: .top) {
+            //                Spacer()
+            //            }
             
             Text("\(item.user_details?.first_name ?? "") \(item.user_details?.last_name ?? "")")
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundColor(.primary)
-
+            
             let currency = item.user_details?.currency_symbol ?? ""
             let rate     = item.shift_rate ?? ""
             let jobType  = item.set_shift_details?.job_type ?? ""
@@ -442,8 +443,8 @@ struct ApprovalSheetView: View {
                         Text(viewModel.selectedApprover.map {
                             "\($0.first_name ?? "") \($0.last_name ?? "") (\($0.type ?? ""))"
                         } ?? "Select an approver")
-                            .font(.system(size: 14))
-                            .foregroundColor(viewModel.selectedApprover == nil ? .secondary : .primary)
+                        .font(.system(size: 14))
+                        .foregroundColor(viewModel.selectedApprover == nil ? .secondary : .primary)
                         Spacer()
                         Image(systemName: "chevron.up.chevron.down")
                             .font(.system(size: 13))
@@ -523,5 +524,5 @@ struct ApprovalSheetView: View {
 }
 
 #Preview {
-    JobRequestView()
+    JobRequestView(viewModel: .init(strDate: "20-01-2021", isFor: "ss"))
 }

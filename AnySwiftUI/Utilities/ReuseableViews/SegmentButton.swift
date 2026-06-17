@@ -56,14 +56,10 @@ extension SegmentButton {
                 }
             }
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 10)
+            .padding(.horizontal, 18)
+            .padding(.vertical, 14)
             .background(isSelected ? .BUTTON : Color.clear)
             .clipShape(Capsule())
         }
     }
 }
-
-
-//#Preview {
-//    SegmentButton(item: .init(), selectedIndex: <#Binding<Int>#>)
-//}

@@ -37,6 +37,14 @@ class JobRequestViewModel {
     var selectedApprover: Res_OutletAdminList? = nil
     var isApproverLoading: Bool = false
     
+    var strDate: String = ""
+    var isFor: String = ""
+    
+    init(strDate: String, isFor: String) {
+        self.strDate = strDate
+        self.isFor = isFor
+    }
+    
     func loadRequests() async {
         isLoading = true
         defer { isLoading = false }
@@ -79,6 +87,7 @@ class JobRequestViewModel {
         var paramDict: [String : Any] = [:]
         paramDict["client_id"] = AppState.shared.clientiD
         paramDict["status"] = strStatus
+        paramDict["date"] = strDate
         
         print(paramDict)
         

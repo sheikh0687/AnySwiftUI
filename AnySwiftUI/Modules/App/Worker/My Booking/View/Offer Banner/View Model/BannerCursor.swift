@@ -8,6 +8,7 @@
 import Observation
 
 @Observable
+@MainActor
 // MARK: - Simple Banner Autoplay Engine
 final class BannerAutoPlayer {
     

@@ -43,7 +43,8 @@ struct CurrentShiftView: View {
                     systemIcon: "outletadmin",
                     iconColor: .teal
                 ) {
-//                    navigateTo("OutletAdmin")
+                    viewModel.adminType = "OutletAdmin"
+                    viewModel.navToAdminList = true
                 }
  
                 adminButton (
@@ -51,7 +52,8 @@ struct CurrentShiftView: View {
                     systemIcon: "authorisedapprvar",
                     iconColor: .teal
                 ) {
-//                    navigateTo("AuthrisedApprover")
+                    viewModel.adminType = "AuthrisedApprover"
+                    viewModel.navToAdminList = true
                 }
             }
             .padding(.horizontal, 16)
@@ -118,6 +120,12 @@ struct CurrentShiftView: View {
         .alert(item: $activeAlert) { alert in
             buildAlert(for: alert)
         }
+        .navigationDestination(isPresented: $viewModel.navToAdminList) {
+            AuthorizationVIew(viewModel: .init(strType: viewModel.adminType))
+        }
+        .navigationDestination(isPresented: $viewModel.navToUpdateShift) {
+            UpdateShiftView(viewModel: .init(shiftiD: viewModel.shiftiD, selectedOutletName: viewModel.outletName))
+        }
     }
     
     func loadShift() async {
@@ -164,7 +172,10 @@ struct CurrentShiftView: View {
                 title: Text("Confirm shift change"),
                 message: Text("Have you notified the worker via the in‑app message about these changes, and has the worker agreed?"),
                 primaryButton: .default(Text("Proceed")) {
-    //                navigateToUpdate(dic: dic)
+                    viewModel.navToUpdateShift = true
+                    viewModel.shiftiD = dic.id ?? ""
+                    viewModel.outletName = dic.business_name ?? ""
+//                    navigateToUpdate(dic: dic)
                 },
                 secondaryButton: .default(Text("Cancel"))
             )

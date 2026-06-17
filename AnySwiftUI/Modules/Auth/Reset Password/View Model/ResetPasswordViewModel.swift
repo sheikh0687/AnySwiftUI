@@ -16,12 +16,7 @@ class ResetPasswordViewModel {
     var navContinue: Bool = false
     
     @MainActor
-    func webResetPassword() async throws -> Api_ResetPassword {
-        isLoading = true
-        customError = nil
-        
-        defer { isLoading = false }
-        
+    func webResetPassword() async throws -> Api_ResetPassword {        
         var paramDict: [String : Any] = [:]
         paramDict["email"] = email
         
@@ -34,5 +29,13 @@ class ResetPasswordViewModel {
         )
         
         return response
+    }
+    
+    func validFeilds() -> Bool {
+        if email.isEmpty {
+            return true
+        }
+        
+        return false
     }
 }

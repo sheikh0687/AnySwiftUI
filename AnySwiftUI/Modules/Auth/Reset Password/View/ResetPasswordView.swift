@@ -77,8 +77,10 @@ struct ResetPasswordView: View {
                 
                 Spacer()
                 
-                IBSubmitButton(buttonText: "Next") {
-                    viewModel.navContinue = true
+                IBSubmitButton(buttonText: "Next",isDisabled: viewModel.validFeilds(), isLoading: viewModel.isLoading) {
+                    Task {
+                        await callForgetPassword()
+                    }
                 }
             }
             .padding(.all, 24)
@@ -86,6 +88,24 @@ struct ResetPasswordView: View {
         .navigationBarBackButtonHidden(false)
         .navigationDestination(isPresented: $viewModel.navContinue) {
             PasswordOtpView(viewModel: .init(contactNumber: "", email: "", strType: "", mobileCode: ""))
+        }
+    }
+    
+    func callForgetPassword() async {
+        viewModel.isLoading = true
+        
+        defer {
+            viewModel.isLoading = false
+        }
+        
+        do {
+            let response = try await viewModel.webResetPassword()
+            if response.status == "1" {
+                viewModel.navContinue = true
+                
+            }
+        } catch {
+            viewModel.customError = .customError(message: error.localizedDescription)
         }
     }
 }

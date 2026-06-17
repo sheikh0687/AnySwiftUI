@@ -8,21 +8,27 @@
 import SwiftUI
 
 struct ClientJobView: View {
-    
+
     @State var viewModel = ClientJobViewModel()
-    
+
     var segmentItems: [SegmentItem] {
         [
             SegmentItem(title: "Daily",  count: viewModel.dailyPendingCount),
             SegmentItem(title: "Weekly", count: viewModel.weeklyPendingCount)
         ]
     }
-    
+
     var body: some View {
-        ZStack(alignment: .top) {
+        VStack(spacing: 0) {
+            // Banner — always visible, fixed, never reacts to scroll
+            ClientOfferView()
+                .padding(.horizontal, 16)
+                .padding(.bottom, 8)
+                .padding(.top, 24)
+
             ScrollView {
-                
-                VStack(spacing: 0) {
+                VStack(spacing: 16) {
+                    // Outlet selector — collapses (scrolls away) naturally
                     OutletSelectorView (
                         selectedOutlet: viewModel.selectedOutlet,
                         outlets: viewModel.outlets,
@@ -31,17 +37,16 @@ struct ClientJobView: View {
                     )
                     .padding(.horizontal, 16)
                     .padding(.top, 12)
-                    
+
                     SegmentButton (
                         item: segmentItems,
-                        selectedIndex: Binding (
+                        selectedIndex: Binding(
                             get: { viewModel.selectedTabIndex },
                             set: { viewModel.selectedTabIndex = $0 }
                         )
                     )
                     .padding(.horizontal, 16)
-                    .padding(.top, 16)
-                    
+
                     tabContentView
                 }
             }
@@ -50,28 +55,22 @@ struct ClientJobView: View {
             do {
                 let outletResponse = try await viewModel.fetchOutlets()
                 viewModel.applyOutlets(outletResponse)
-                
+
                 await viewModel.refreshData()
             } catch {
                 print("Initial load error: \(error)")
             }
         }
-//        .overlay {
-//            if viewModel.isLoading {
-//                ProgressView()
-//                    .progressViewStyle(.circular)
-//                    .scaleEffect(1.5)
-//                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                    .background(Color.black.opacity(0.2))
-//            }
-//        }
         .onTapGesture {
             if viewModel.showOutletDropDown {
                 viewModel.showOutletDropDown = false
             }
         }
+        .navigationDestination(item: $viewModel.navigateToRequestByDate) { strDate in
+            JobRequestView(viewModel: .init(strDate: strDate, isFor: "DateReq"))
+        }
     }
-    
+
     @ViewBuilder
     var tabContentView: some View {
         ZStack {
@@ -83,6 +82,7 @@ struct ClientJobView: View {
                     weekDays: viewModel.weekDays,
                     weekDayNames: viewModel.weekDayNames,
                     currentMonthYear: viewModel.currentMonthYear,
+                    isLoading: viewModel.isLoading,
                     jobTypes: viewModel.jobTypes,
                     navigateToRequestByDate: $viewModel.navigateToRequestByDate,
                     onPreviousWeek: { viewModel.goToPreviousWeek() },
@@ -93,10 +93,10 @@ struct ClientJobView: View {
         }
         .animation(.easeInOut(duration: 0.35), value: viewModel.selectedTab)
     }
-    
+
     var dailyTabContent: some View {
         VStack(spacing: 20) {
-            ManpowerView (
+            ManpowerView(
                 todayShiftName: viewModel.todayShiftName,
                 todayShiftDescription: viewModel.todayShiftDescription,
                 manpowerWorkers: viewModel.manpowerWorkers,
@@ -105,7 +105,7 @@ struct ClientJobView: View {
 
             Divider().padding(.horizontal, 16)
 
-            UpcomingView (
+            UpcomingView(
                 upcomingShifts: viewModel.upcomingShifts,
                 navigateToRequestByDate: $viewModel.navigateToRequestByDate
             )
